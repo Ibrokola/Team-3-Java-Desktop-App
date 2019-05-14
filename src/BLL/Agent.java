@@ -1,19 +1,22 @@
 package BLL;
 
+import javafx.beans.property.SimpleStringProperty;
+
+@SuppressWarnings("unused")
 public class Agent {
     //properties
     private int id;
-    private simpleStringProperty firstName;
-    private simpleStringProperty middleInitial;
-    private simpleStringProperty lastName;
-    private simpleStringProperty phone;
-    private simpleStringProperty email;
-    private simpleStringProperty position;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty middleInitial;
+    private SimpleStringProperty lastName;
+    private SimpleStringProperty phone;
+    private SimpleStringProperty email;
+    private SimpleStringProperty position;
     private int agency;
 
     //constructor
-    public Agent(int id, simpleStringProperty fName, simpleStringProperty mInitial, simpleStringProperty lName,
-                 simpleStringProperty phone, simpleStringProperty email, simpleStringProperty position, int agency) {
+    public Agent(int id, SimpleStringProperty fName, SimpleStringProperty mInitial, SimpleStringProperty lName,
+                 SimpleStringProperty phone, SimpleStringProperty email, SimpleStringProperty position, int agency) {
         this.id = id;
         this.firstName = fName;
         this.middleInitial = mInitial;
@@ -34,11 +37,11 @@ public class Agent {
     public String getPosition(){ return position.get(); }
 
     //Set methods -- ID is auto set by database
-    public void setFirstName(string fname){ firstName.set(fname); }
-    public void setMiddleInitial(string mInit){ middleInitial.set(mInit); }
-    public void setLastName(string lname){ lastName.set(lname); }
-    public void setPhone(string phoneNew){ phone.set(phoneNew); }
-    public void setEmail(string emailNew){ email.set(emailNew); }
-    public void setPosition(string posit){ position.set(posit); }
-    public void setAgency(int agcy){ agency.set(agcy); }
+    public void setFirstName(String fname){ firstName.set(fname); }
+    public void setMiddleInitial(String mInit){ middleInitial.set(mInit); }
+    public void setLastName(String lname){ lastName.set(lname); }
+    public void setPhone(String phoneNew){ phone.set(phoneNew); }
+    public void setEmail(String emailNew){ email.set(emailNew); }
+    public void setPosition(String posit){ position.set(posit); }
+    public void setAgency(int agcy){ agency = agcy; }
 }
