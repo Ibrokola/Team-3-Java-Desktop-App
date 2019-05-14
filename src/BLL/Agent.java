@@ -15,15 +15,15 @@ public class Agent {
     private int agency;
 
     //constructor
-    public Agent(int id, SimpleStringProperty fName, SimpleStringProperty mInitial, SimpleStringProperty lName,
-                 SimpleStringProperty phone, SimpleStringProperty email, SimpleStringProperty position, int agency) {
+    public Agent(int id, String fName, String mInitial, String lName,
+                 String phone, String email, String position, int agency) {
         this.id = id;
-        this.firstName = fName;
-        this.middleInitial = mInitial;
-        this.lastName = lName;
-        this.phone = phone;
-        this.email = email;
-        this.position = position;
+        this.firstName = new SimpleStringProperty(fName);
+        this.middleInitial = new SimpleStringProperty(mInitial);
+        this.lastName = new SimpleStringProperty(lName);
+        this.phone = new SimpleStringProperty(phone);
+        this.email = new SimpleStringProperty(email);
+        this.position = new SimpleStringProperty(position);
         this.agency = agency;
     }
 
