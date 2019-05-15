@@ -35,6 +35,7 @@ public class Agent {
     public String getPhone(){ return phone.get(); }
     public String getEmail(){ return email.get(); }
     public String getPosition(){ return position.get(); }
+    public int getAgency(){ return agency; }
 
     //Set methods -- ID is auto set by database
     public void setFirstName(String fname){ firstName.set(fname); }

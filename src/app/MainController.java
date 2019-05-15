@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,12 @@ public class MainController {
     @FXML private Button btnPackage;
     @FXML private Button btnProduct;
     @FXML private Button btnSupplier;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
+
+    //Labels
+    @FXML private Label lblClock;
+    @FXML private Label lblWelcome;
 
 
     /******            SCENE SWAPS             ******/
@@ -71,6 +78,13 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+    }
+
+    //startup code
+    @FXML void initialize(){
+        lblClock.setVisible(false);
+        lblWelcome.setVisible(false);
+        btnLogout.setVisible(false);
     }
 
 }
