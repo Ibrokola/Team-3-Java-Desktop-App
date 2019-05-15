@@ -11,19 +11,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
+public class AgentController {
 
     @FXML
-    private Button btnAgent;
+    private Button btnBack;
 
+    //Returns the user to the main menu window
     @FXML
-    void btnAgentAction(ActionEvent event) throws IOException {
-        Parent agentParent = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
-        Scene agentScene = new Scene(agentParent);
+    void btnBackAction(ActionEvent event) throws IOException {
+        Parent mainParent = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Scene mainScene = new Scene(mainParent);
 
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(agentScene);
+        stage.setScene(mainScene);
     }
 
 }
