@@ -31,7 +31,6 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
     //Swaps to Customer scene when button is pressed
@@ -42,7 +41,6 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
     //Swaps to Package scene when button is pressed
@@ -53,7 +51,6 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
     //Swaps to Product scene when button is pressed
@@ -64,7 +61,6 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
     //Swaps to Supplier scene when button is pressed
@@ -75,7 +71,6 @@ public class MainController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
 }

@@ -24,7 +24,6 @@ public class AgentController {
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
     }
 
 }
