@@ -13,17 +13,69 @@ import java.io.IOException;
 
 public class MainController {
 
-    @FXML
-    private Button btnAgent;
+    //Buttons created
+    @FXML private Button btnAgent;
+    @FXML private Button btnCustomer;
+    @FXML private Button btnPackage;
+    @FXML private Button btnProduct;
+    @FXML private Button btnSupplier;
 
-    @FXML
-    void btnAgentAction(ActionEvent event) throws IOException {
-        Parent agentParent = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
-        Scene agentScene = new Scene(agentParent);
+
+    /******            SCENE SWAPS             ******/
+
+    //Swaps to Agent scene when button is pressed
+    @FXML void btnAgentAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
+        Scene scene = new Scene(root);
 
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(agentScene);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //Swaps to Customer scene when button is pressed
+    @FXML void btnCustomerAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/customer.fxml"));
+        Scene scene = new Scene(root);
+
+        //gets the stage  -- gets the window
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //Swaps to Package scene when button is pressed
+    @FXML void btnPackageAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/package.fxml"));
+        Scene scene = new Scene(root);
+
+        //gets the stage  -- gets the window
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //Swaps to Product scene when button is pressed
+    @FXML void btnProductAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/product.fxml"));
+        Scene scene = new Scene(root);
+
+        //gets the stage  -- gets the window
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //Swaps to Supplier scene when button is pressed
+    @FXML void btnSupplierAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/supplier.fxml"));
+        Scene scene = new Scene(root);
+
+        //gets the stage  -- gets the window
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

@@ -17,14 +17,14 @@ public class AgentController {
     private Button btnBack;
 
     //Returns the user to the main menu window
-    @FXML
-    void btnBackAction(ActionEvent event) throws IOException {
-        Parent mainParent = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
-        Scene mainScene = new Scene(mainParent);
+    @FXML void btnBackAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Scene scene = new Scene(root);
 
         //gets the stage  -- gets the window
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(mainScene);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
