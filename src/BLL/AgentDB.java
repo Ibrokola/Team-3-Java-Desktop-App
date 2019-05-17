@@ -50,6 +50,46 @@ public class AgentDB {
         return agents;
     }
 
+    //searchs an agent based on user input
+    public static List<Agent> searchAgents(String name){
+        List<Agent> agents = null;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select AgentId, AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone," +
+                    "AgtEmail, AgtPosition, AgencyId from Agents where AgtFirstName like %?% or AgtLastName like %?%";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+            stmt.setString(1, name);
+            stmt.setString(2, name);
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery(selectQuery);
+
+            agents = new ArrayList<Agent>();
+            //runs while reader has data
+            while(rs.next()){
+                Agent agent = new Agent(rs.getInt("AgentId"),
+                        rs.getString("AgtFirstName"),
+                        rs.getString("AgtMiddleInitial"),
+                        rs.getString("AgtLastName"),
+                        rs.getString("AgtBusPhone"),
+                        rs.getString("AgtEmail"),
+                        rs.getString("AgtPosition"),
+                        rs.getInt("AgencyId"));
+                agents.add(agent);
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return agents;
+    }
+
     //inserts an Agent
     public static void addAgent(Agent agent){
         try{

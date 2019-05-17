@@ -6,6 +6,12 @@
       <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
       <option name="REPORT_CONSTANT_REFERENCE_VALUES" value="false" />
     </inspection_tool>
+    <inspection_tool class="Duplicates" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Java>
+        <minSize>125</minSize>
+        <isEnabled>true</isEnabled>
+      </Java>
+    </inspection_tool>
     <inspection_tool class="SpellCheckingInspection" enabled="true" level="TYPO" enabled_by_default="true">
       <option name="processCode" value="false" />
       <option name="processLiterals" value="true" />

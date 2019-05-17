@@ -54,6 +54,49 @@ public class CustomerDB {
         return customers;
     }
 
+    //searchs a customer based off user input
+    public static List<Customer> searchCustomers(String name){
+        List<Customer> customers = null;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv," +
+                        "CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail from Customers" +
+                        "where CustFirstName like %?% or CustLastName like %?%";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery(selectQuery);
+
+            customers = new ArrayList<Customer>();
+            //runs while reader has data
+            while(rs.next()){
+                Customer customer = new Customer(rs.getInt("CustomerId"),
+                        rs.getString("CustFirstName"),
+                        rs.getString("CustLastName"),
+                        rs.getString("CustAddress"),
+                        rs.getString("CustCity"),
+                        rs.getString("CustProv"),
+                        rs.getString("CustPostal"),
+                        rs.getString("CustCountry"),
+                        rs.getString("CustHomePhone"),
+                        rs.getString("CustBusPhone"),
+                        rs.getString("CustEmail"),
+                        rs.getInt("AgentId"));
+                customers.add(customer);
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return customers;
+    }
+
     //updates a customer
     public static void updateCustomer(Customer customer){
         try{
@@ -93,8 +136,24 @@ public class CustomerDB {
     }
 
     //deletes a customer
-    public static void deleteCustomer(){
+    public static void deleteCustomer(Customer customer){
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+            String deleteQuery = "delete all from Customers where CustomerId=?";
 
+            PreparedStatement stmt = connect.prepareStatement(deleteQuery);
+            stmt.setInt(1, customer.getId());
+
+            //checks if agent is deleted
+            int numRows = stmt.executeUpdate();
+            if(numRows == 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Customer failed to delete. Contact Tech Support.");
+                alert.showAndWait();
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
     }
 
 }
