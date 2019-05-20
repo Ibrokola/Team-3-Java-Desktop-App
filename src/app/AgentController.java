@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
@@ -36,11 +37,6 @@ public class AgentController {
     @FXML void initialize() {
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         tableAgents.setItems(agents);
-    }
-
-    //creates the table columns for tableAgents
-    private void buildTable(){
-
     }
 
 }

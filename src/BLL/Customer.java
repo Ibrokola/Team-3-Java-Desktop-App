@@ -30,7 +30,7 @@ public class Customer {
         this.country = new SimpleStringProperty(country);
         this.homePhone = new SimpleStringProperty(hPhone);
         this.busPhone = new SimpleStringProperty(bPhone);
-
+        this.agent = agentId;
     }
 
     //Get methods
