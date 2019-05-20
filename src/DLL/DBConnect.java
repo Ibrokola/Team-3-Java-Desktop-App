@@ -10,12 +10,13 @@ public class DBConnect {
     {
         try {
             //gets driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             //connection string properties
-            String url = "jdbc:mysql://localhost:3306/travelexperts";
-            String username = "root";
-            String password = null;
+            // different connection strings for mysql8...
+            String url = "jdbc:mysql://localhost:3306/travelexperts?serverTimezone=UTC";
+            String username = "admin";
+            String password = "P@ssw0rd";
 
             //returns connection
             return DriverManager.getConnection(url, username, password);
