@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SupplierController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SupplierController">
    <children>
       <TabPane layoutY="50.0" prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -50,7 +50,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="btnHome" mnemonicParsing="false" onAction="#btnHomeAction" text="Home">
+      <Button fx:id="btnHomeSupplier" mnemonicParsing="false" onAction="#btnHomeAction" text="Home">
          <font>
             <Font size="18.0" />
          </font>
