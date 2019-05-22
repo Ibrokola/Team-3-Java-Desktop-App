@@ -121,6 +121,8 @@ public class SupplierController {
 
     //create tableview of suppliers
     public void loadSuppliers() {
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Branch Linda worked");
+        alert2.showAndWait();
 
         try {
             Connection conn = DBConnect.getConnection();
