@@ -10,13 +10,27 @@ public class DBConnect {
     {
         try {
             //gets driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            // mysql8 driver
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+            // mysql5 driver
+            Class.forName("com.mysql.jdbc.Driver");
 
             //connection string properties
             // different connection strings for mysql8...
-            String url = "jdbc:mysql://localhost:3306/travelexperts?serverTimezone=UTC";
-            String username = "admin";
-            String password = "P@ssw0rd";
+            // String url = "jdbc:mysql://localhost:3306/travelexperts?serverTimezone=UTC";
+            //String username = "admin";
+            //String password = "P@ssw0rd";
+
+            // connection strings mysql5...
+            //String url = "jdbc:mysql://localhost:3306/travelexperts";
+            //String username = "admin";
+            //String password = "P@ssw0rd";
+
+            //connection strings for mysql5, root user...
+            String url = "jdbc:mysql://localhost:3306/travelexperts";
+            String username = "root";
+            String password = "";
+
 
             //returns connection
             return DriverManager.getConnection(url, username, password);

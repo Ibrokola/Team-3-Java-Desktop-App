@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SupplierController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SupplierController">
    <children>
       <TabPane layoutY="50.0" prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -18,8 +18,8 @@
                <content>
                   <TableView fx:id="tvSupplierList" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="117.0" text="Supplier ID" />
-                      <TableColumn minWidth="0.0" prefWidth="248.0" text="Supplier Name" />
+                      <TableColumn fx:id="colSupplierId" prefWidth="117.0" text="Supplier ID" />
+                      <TableColumn fx:id="colSupplierName" minWidth="0.0" prefWidth="248.0" text="Supplier Name" />
                     </columns>
                   </TableView>
                </content>
@@ -32,7 +32,8 @@
                         <Label layoutX="50.0" layoutY="103.0" prefHeight="30.0" prefWidth="99.0" text="Supplier Name" />
                         <TextField fx:id="tfSupplierIdAdd" layoutX="203.0" layoutY="51.0" />
                         <TextField fx:id="tfSupplierNameAdd" layoutX="203.0" layoutY="103.0" />
-                        <Button fx:id="btnAddSupplier" layoutX="352.0" layoutY="184.0" mnemonicParsing="false" onAction="#btnAddSupplierAction" text="Add Supplier" />
+                        <Button fx:id="btnAddSupplier" layoutX="203.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnAddSupplierAction" text="Add Supplier" />
+                        <Button fx:id="btnClearAddSupplier" layoutX="203.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnClearAddSupplierAction" text="Clear" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -42,9 +43,10 @@
                      <children>
                         <Label layoutX="76.0" layoutY="93.0" prefHeight="30.0" prefWidth="99.0" text="Supplier Id" />
                         <Label layoutX="83.0" layoutY="140.0" prefHeight="30.0" prefWidth="99.0" text="Supplier Name" />
-                        <TextField fx:id="tfSupplierIdUpdate" layoutX="275.0" layoutY="95.0" />
-                        <TextField fx:id="tfSupplierNameUpdate" layoutX="275.0" layoutY="142.0" />
-                        <Button fx:id="btnUpdateSupplier" layoutX="374.0" layoutY="213.0" mnemonicParsing="false" onAction="#btnUpdateSupplierAction" text="Update Supplier" />
+                        <TextField fx:id="tfSupplierIdUpdate" layoutX="201.0" layoutY="96.0" />
+                        <TextField fx:id="tfSupplierNameUpdate" layoutX="201.0" layoutY="143.0" />
+                        <Button fx:id="btnUpdateSupplier" layoutX="201.0" layoutY="203.0" mnemonicParsing="false" onAction="#btnUpdateSupplierAction" text="Update Supplier" />
+                        <Button fx:id="btnClearUpdateSupplier" layoutX="201.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnClearUpdateSupplierAction" text="Clear" />
                      </children></AnchorPane>
               </content>
             </Tab>

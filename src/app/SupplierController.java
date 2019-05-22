@@ -18,9 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class SupplierController {
@@ -33,33 +31,62 @@ public class SupplierController {
     @FXML
     private URL location;
 
+    //Table view to show all suppliers
     @FXML
     private TableView<Supplier> tvSupplierList;
+    @FXML
+    private TableColumn<Supplier, Integer> colSupplierId;
+    @FXML
+    private TableColumn<Supplier, String> colSupplierName;
 
+    //text fields and buttons for Adding new Supplier
     @FXML
     private TextField tfSupplierIdAdd;
-
     @FXML
     private TextField tfSupplierNameAdd;
-
     @FXML
     private Button btnAddSupplier;
+    @FXML
+    private Button btnClearAddSupplier;
 
+    //text fields and buttons for Updating Supplier Info
     @FXML
     private TextField tfSupplierIdUpdate;
-
     @FXML
     private TextField tfSupplierNameUpdate;
-
     @FXML
     private Button btnUpdateSupplier;
+    @FXML
+    private Button btnClearUpdateSupplier;
 
+    //button to return to main page
     @FXML
     private Button btnHomeSupplier;
 
+    //add supplier to database
     @FXML
     void btnAddSupplierAction(ActionEvent event) {
 
+    }
+
+    //clear contents of text fields on the Add Supplier tab
+    @FXML
+    void btnClearAddSupplierAction(ActionEvent event) {
+        tfSupplierIdAdd.clear();
+        tfSupplierNameAdd.clear();
+    }
+
+    //update supplier in the database
+    @FXML
+    void btnUpdateSupplierAction(ActionEvent event) {
+
+    }
+
+    //clear contents of text fields on the Update Supplier tab
+    @FXML
+    void btnClearUpdateSupplierAction(ActionEvent event) {
+        tfSupplierIdUpdate.clear();
+        tfSupplierNameUpdate.clear();
     }
 
     // Brent's code
@@ -72,10 +99,7 @@ public class SupplierController {
         stage.setScene(scene);
     }
 
-    @FXML
-    void btnUpdateSupplierAction(ActionEvent event) {
 
-    }
 
     @FXML
     void initialize() {
@@ -88,14 +112,18 @@ public class SupplierController {
         assert btnUpdateSupplier != null : "fx:id=\"btnUpdateSupplier\" was not injected: check your FXML file 'supplier.fxml'.";
         assert btnHomeSupplier != null : "fx:id=\"btnHome\" was not injected: check your FXML file 'supplier.fxml'.";
 
-       // loadSuppliers();
+        //populate the tableview list of suppliers
+        colSupplierId.setCellValueFactory(cellData -> cellData.getValue().supplierIdProperty().asObject());
+        colSupplierName.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
+
+       loadSuppliers();
     }
 
-
-
+    //create tableview of suppliers
     public void loadSuppliers() {
-        Connection conn = DBConnect.getConnection();
+
         try {
+            Connection conn = DBConnect.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from suppliers");
             while (rs.next())
@@ -105,9 +133,13 @@ public class SupplierController {
                 ));
             }
             conn.close();
+
             tvSupplierList.setItems(supplierList);
 
         } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "loadSuppliers did not work");
+            alert.showAndWait();
+
             e.printStackTrace();
         }
     }
