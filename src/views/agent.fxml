@@ -17,16 +17,16 @@
          <font>
             <Font size="13.0" />
          </font></Button>
-      <TableView fx:id="tableAgents" layoutX="126.0" layoutY="316.0" prefHeight="256.0" prefWidth="678.0">
+      <TableView fx:id="tableAgents" layoutX="128.0" layoutY="318.0" prefHeight="256.0" prefWidth="685.0">
         <columns>
-          <TableColumn prefWidth="40.0" text="ID" />
-          <TableColumn prefWidth="90.0" text="First Name" />
-            <TableColumn prefWidth="60.0" text="M.Initial" />
-            <TableColumn prefWidth="90.0" text="Last Name" />
-            <TableColumn prefWidth="108.0" text="Phone" />
-            <TableColumn prefWidth="130.0" text="Email" />
-            <TableColumn prefWidth="100.0" text="Position" />
-            <TableColumn prefWidth="60.0" text="Agency #" />
+          <TableColumn fx:id="colID" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="90.0" text="First Name" />
+            <TableColumn fx:id="colMiddleInitial" prefWidth="60.0" text="M.Initial" />
+            <TableColumn fx:id="colLastName" prefWidth="90.0" text="Last Name" />
+            <TableColumn fx:id="colPhone" prefWidth="108.0" text="Phone" />
+            <TableColumn fx:id="colEmail" prefWidth="130.0" text="Email" />
+            <TableColumn fx:id="colPosition" prefWidth="100.0" text="Position" />
+            <TableColumn fx:id="colAgency" prefWidth="60.0" text="Agency #" />
         </columns>
       </TableView>
       <VBox layoutX="145.0" layoutY="45.0" prefHeight="158.0" prefWidth="83.0" spacing="25.0">
@@ -87,7 +87,7 @@
       <HBox alignment="CENTER" layoutX="274.0" layoutY="262.0" prefHeight="38.0" prefWidth="392.0" spacing="10.0">
          <children>
             <Label text="Search by name:" />
-            <TextField fx:id="txtSearch" onAction="#txtSearchAction" prefHeight="25.0" prefWidth="178.0" />
+            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="178.0" />
          </children>
       </HBox>
    </children>
