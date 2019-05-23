@@ -64,11 +64,11 @@ public class AgentDB {
 
             //makes a sql statement
             PreparedStatement stmt = connect.prepareStatement(selectQuery);
-            stmt.setString(1, "%" + name + "%");
-            stmt.setString(2, "%" + name + "%");
+            stmt.setString(1, '%' + name + '%');
+            stmt.setString(2, '%' + name + '%');
 
             //assigns & executes statement
-            ResultSet rs = stmt.executeQuery(selectQuery);
+            ResultSet rs = stmt.executeQuery();
 
             agents = new ArrayList<Agent>();
             //runs while reader has data

@@ -3,6 +3,8 @@ package app;
 import BLL.Agent;
 import BLL.AgentDB;
 import BLL.Validation;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import jdk.jfr.ValueDescriptor;
 
@@ -98,6 +103,7 @@ public class AgentController {
     }
     //Allows the user to edit the text fields once an agent is selected
     @FXML void btnEditAction(ActionEvent event) {
+        //allows textboxes to be changed
         txtFirstName.setEditable(true);
         txtMiddleInitial.setEditable(true);
         txtLastName.setEditable(true);
@@ -105,6 +111,9 @@ public class AgentController {
         txtEmail.setEditable(true);
         txtPosition.setEditable(true);
         txtAgency.setEditable(true);
+
+        //enables save button
+        btnSave.setDisable(false);
     }
     //updates an agent with the current text fields
     @FXML void btnSaveAction(ActionEvent event) {
@@ -122,13 +131,6 @@ public class AgentController {
             AgentDB.updateAgent(agent);
         }
     }
-
-    //updates the table based of search of "is like" for name
-    @FXML void txtSearchAction(ActionEvent event) {
-        //ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
-        //tableAgents.setItems(agents);
-    }
-
 
     //runs on startup
     @FXML void initialize() {
@@ -150,6 +152,46 @@ public class AgentController {
         //Adds the data to the table
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         tableAgents.setItems(agents);
+
+        //Changes the table based off text in search bar
+        txtSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                                String oldValue, String newValue) {
+
+                ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
+                tableAgents.setItems(agents);
+            }
+        });
+
+        //fills text boxes with table row clicked
+        tableAgents.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                int index = tableAgents.getSelectionModel().getSelectedIndex();
+                Agent agent = tableAgents.getItems().get(index);
+
+                txtAgentId.setText(Integer.toString(agent.getID()));
+                txtFirstName.setText(agent.getFirstName());
+                txtMiddleInitial.setText(agent.getMiddleInitial());
+                txtLastName.setText(agent.getLastName());
+                txtPhone.setText(agent.getPhone());
+                txtEmail.setText(agent.getEmail());
+                txtPosition.setText(agent.getPosition());
+                txtAgency.setText(Integer.toString(agent.getAgency()));
+
+                //enables choice buttons, sets textboxes read only till choice made.
+                btnEdit.setDisable(false);
+                btnDelete.setDisable(false);
+                txtFirstName.setEditable(false);
+                txtMiddleInitial.setEditable(false);
+                txtLastName.setEditable(false);
+                txtPhone.setEditable(false);
+                txtEmail.setEditable(false);
+                txtPosition.setEditable(false);
+                txtAgency.setEditable(false);
+            }
+
+        });
     }
 
 }

@@ -87,7 +87,7 @@
       <HBox alignment="CENTER" layoutX="274.0" layoutY="262.0" prefHeight="38.0" prefWidth="392.0" spacing="10.0">
          <children>
             <Label text="Search by name:" />
-            <TextField fx:id="txtSearch" onAction="#txtSearchAction" prefHeight="25.0" prefWidth="178.0" />
+            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="178.0" />
          </children>
       </HBox>
    </children>
