@@ -1,6 +1,7 @@
 package BLL;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class Validation {
@@ -23,6 +24,7 @@ public class Validation {
         }
     }
 
+    //checks a number is whole, and is above 0
     public static boolean isInteger(int num, String name) {
         if (num - Math.floor(num) == 0 && num >= 0) {
             return true;
@@ -31,5 +33,14 @@ public class Validation {
             alert.show();
             return false;
         }
+    }
+
+    //checks that a combo box has a current selection
+    public static boolean hasSelection(ComboBox combo, String name){
+        if(combo.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, name + " must have a selection!");
+            alert.show();
+            return false;
+        }else{ return true; }
     }
 }

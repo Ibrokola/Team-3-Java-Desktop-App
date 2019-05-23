@@ -38,6 +38,7 @@ public class AgentController {
     @FXML private TextField txtEmail;
     @FXML private TextField txtPosition;
     @FXML private TextField txtAgency;
+    @FXML private TextField txtSearch;
 
 
     //data holder
@@ -111,6 +112,11 @@ public class AgentController {
             //updates the agent in the database
             AgentDB.updateAgent(agent);
         }
+    }
+
+    //updates the table based of search of "is like" for name
+    @FXML void txtSearchAction(ActionEvent event) {
+
     }
 
 
