@@ -38,30 +38,25 @@ public class SupplierController {
     private TableColumn<Supplier, String> colSupplierName;
 
     /////////////////////////////////////////////////////////////
-    //button for Adding new Supplier
-    private Button btnAddSupplier;
-
-
-    ////////////////////////////////////////////////////////////
-    //text fields and buttons for Updating Supplier Info
+    //Buttons & text fields
     @FXML
     private TextField tfSupplierId;
     @FXML
     private TextField tfSupplierName;
     @FXML
-    private Button btnUpdateSupplier;
+    private Button btnAddSupplier;
+    @FXML
+    private Button btnDeleteSupplier;
     @FXML
     private Button btnClearSupplier;
+    @FXML
+    private Button btnEditSupplier;
+    @FXML
+    private Button btnSaveSupplier;
 
-    //////////////////////////////////////////////////////////
-    //button to return to main page
     @FXML
     private Button btnHomeSupplier;
 
-    ////////////////////////////////////////////////////////////
-    //button to select line(supplier) to update
-    @FXML
-    private Button btnSelectSupplier;
 
     //////////////////////////////////////////////////////////
     //add supplier to database
@@ -70,11 +65,18 @@ public class SupplierController {
 
     }
 
+    //////////////////////////////////////////////////////////
+    //delete supplier from database
+    @FXML
+    void btnDeleteSupplierAction(ActionEvent event) {
+
+    }
+
 
     /////////////////////////////////////////////////////////////////
-    //update supplier in the database
+    //update(Save edits) supplier in the database
     @FXML
-    void btnUpdateSupplierAction(ActionEvent event) {
+    void btnSaveSupplierAction(ActionEvent event) {
 
         Connection conn = DBConnect.getConnection();
 
@@ -94,10 +96,9 @@ public class SupplierController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
     /////////////////////////////////////////////////////////////////////////
-    //clear contents of text fields on the Update Supplier tab
+    //clear contents of text fields
     @FXML
     void btnClearSupplierAction(ActionEvent event) {
         tfSupplierId.clear();
@@ -115,13 +116,19 @@ public class SupplierController {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
+
     /////////////////////////////////////////////////////////////////////////
-    //Uses the selection from the Tableview to and redirects to Update tab
+    //Uses the selection from the Tableview to populate the text fields
     @FXML
-    void btnSelectSupplierAction(ActionEvent event) throws IOException {
+    void btnEditSupplierAction(ActionEvent event) throws IOException {
         Supplier s = tvSupplierList.getSelectionModel().getSelectedItem();
-        tfSupplierId.setText(s.getSupplierId()+"");
-        tfSupplierName.setText(s.getSupName()+"");
+        if (s != null) {
+            tfSupplierId.setText(s.getSupplierId() + "");
+            tfSupplierName.setText(s.getSupName() + "");
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Please select supplier");
+            alert2.showAndWait();
+        }
     }
 
 
