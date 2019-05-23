@@ -17,15 +17,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import jdk.jfr.ValueDescriptor;
 
 import java.io.IOException;
 
 public class AgentController {
+    /*
+    * Purpose: Controller for the Agent.fxml file, that handles operations within the window.
+    * Author: Brent Ward
+    * Module:
+    * Date May 15, 2019
+    * */
 
     //buttons
     @FXML private Button btnBack;
@@ -90,7 +94,7 @@ public class AgentController {
         if(Validation.isProvided(txtAgentId, "Agent id") && Validation.isProvided(txtFirstName, "First name")
                 && Validation.isProvided(txtLastName, "Last name") && Validation.isProvided(txtPhone, "Phone") &&
                 Validation.isProvided(txtEmail, "Email") && Validation.isProvided(txtPosition, "Position") &&
-                Validation.isProvided(txtAgency, "Agency id")){
+                Validation.isProvided(txtAgency, "Agency id") && Validation.isInteger(Integer.parseInt(txtAgency.getText()), "Agency id")){
 
             //Creates the agent object with the text fields
             Agent agent = new Agent(Integer.parseInt(txtAgentId.getText()),txtFirstName.getText(), txtFirstName.getText(),
@@ -120,7 +124,7 @@ public class AgentController {
         if(Validation.isProvided(txtAgentId, "Agent id") && Validation.isProvided(txtFirstName, "First name")
                 && Validation.isProvided(txtLastName, "Last name") && Validation.isProvided(txtPhone, "Phone") &&
                 Validation.isProvided(txtEmail, "Email") && Validation.isProvided(txtPosition, "Position") &&
-                Validation.isProvided(txtAgency, "Agency id")) {
+                Validation.isProvided(txtAgency, "Agency id") && Validation.isInteger(Integer.parseInt(txtAgency.getText()), "Agency id")) {
 
             //Creates the agent object with the text fields
             Agent agent = new Agent(Integer.parseInt(txtAgentId.getText()),txtFirstName.getText(), txtFirstName.getText(),
@@ -149,9 +153,11 @@ public class AgentController {
         colEmail.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
         colPosition.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
         colAgency.setCellValueFactory(cellData -> cellData.getValue().getAgencyProperty().asObject());
+
         //Adds the data to the table
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         tableAgents.setItems(agents);
+
 
         //Changes the table based off text in search bar
         txtSearch.textProperty().addListener(new ChangeListener<String>() {
@@ -170,6 +176,7 @@ public class AgentController {
                 int index = tableAgents.getSelectionModel().getSelectedIndex();
                 Agent agent = tableAgents.getItems().get(index);
 
+                //fills text fields with selected Agents data
                 txtAgentId.setText(Integer.toString(agent.getID()));
                 txtFirstName.setText(agent.getFirstName());
                 txtMiddleInitial.setText(agent.getMiddleInitial());

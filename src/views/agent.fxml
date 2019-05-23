@@ -17,7 +17,7 @@
          <font>
             <Font size="13.0" />
          </font></Button>
-      <TableView fx:id="tableAgents" layoutX="126.0" layoutY="316.0" prefHeight="256.0" prefWidth="678.0">
+      <TableView fx:id="tableAgents" layoutX="128.0" layoutY="318.0" prefHeight="256.0" prefWidth="685.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="colFirstName" prefWidth="90.0" text="First Name" />

@@ -64,7 +64,7 @@ public class CustomerDB {
 
             //query
             String selectQuery = "select CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv," +
-                        "CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId from Customers" +
+                        "CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId from Customers " +
                         "where CustFirstName like ? or CustLastName like ?";
 
             //makes a sql statement
@@ -73,7 +73,7 @@ public class CustomerDB {
             stmt.setString(2, '%' + name + '%');
 
             //assigns & executes statement
-            ResultSet rs = stmt.executeQuery(selectQuery);
+            ResultSet rs = stmt.executeQuery();
 
             customers = new ArrayList<Customer>();
             //runs while reader has data

@@ -5,6 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 @SuppressWarnings("unused")
 public class Agent {
+    /*
+     * Purpose: Agent object used to store the database data.
+     * Author: Brent Ward
+     * Module:
+     * Date May 15, 2019
+     * */
+
     //properties
     private SimpleIntegerProperty id;
     private SimpleStringProperty firstName;
