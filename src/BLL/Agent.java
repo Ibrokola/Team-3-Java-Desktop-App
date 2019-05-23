@@ -14,7 +14,18 @@ public class Agent {
     private SimpleStringProperty position;
     private int agency;
 
-    //constructor
+    //constructors
+    public Agent(String fName, String mInitial, String lName,
+                 String phone, String email, String position, int agency) {
+        this.firstName = new SimpleStringProperty(fName);
+        this.middleInitial = new SimpleStringProperty(mInitial);
+        this.lastName = new SimpleStringProperty(lName);
+        this.phone = new SimpleStringProperty(phone);
+        this.email = new SimpleStringProperty(email);
+        this.position = new SimpleStringProperty(position);
+        this.agency = agency;
+    }
+
     public Agent(int id, String fName, String mInitial, String lName,
                  String phone, String email, String position, int agency) {
         this.id = id;
