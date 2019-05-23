@@ -20,10 +20,10 @@ public class Supplier {
     public SimpleIntegerProperty supplierIdProperty() {
         return supplierId;
     }
-//Supplier Id is created automatically by the database.
-/*    public void setSupplierId(int supplierId) {
+
+    public void setSupplierId(int supplierId) {
         this.supplierId.set(supplierId);
-    }*/
+    }
 
     public String getSupName() {
         return supName.get();
