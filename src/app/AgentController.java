@@ -41,8 +41,17 @@ public class AgentController {
     @FXML private TextField txtSearch;
 
 
-    //data holder
+    //table
     @FXML private TableView<Agent> tableAgents;
+    @FXML private TableColumn<Agent, Integer> colID;
+    @FXML private TableColumn<Agent, String> colFirstName;
+    @FXML private TableColumn<Agent, String> colMiddleInitial;
+    @FXML private TableColumn<Agent, String> colLastName;
+    @FXML private TableColumn<Agent, String> colPhone;
+    @FXML private TableColumn<Agent, String> colEmail;
+    @FXML private TableColumn<Agent, String> colPosition;
+    @FXML private TableColumn<Agent, Integer> colAgency;
+
 
     /****       Button Actions        ****/
 
@@ -116,20 +125,31 @@ public class AgentController {
 
     //updates the table based of search of "is like" for name
     @FXML void txtSearchAction(ActionEvent event) {
-
+        //ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
+        //tableAgents.setItems(agents);
     }
 
 
     //runs on startup
     @FXML void initialize() {
-        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
-        tableAgents.setItems(agents);
-
-        //locking UI on load
+         //locking UI on load
         txtAgentId.setDisable(true);
         btnEdit.setDisable(true);
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+
+        //sets up table columns
+        colID.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asObject());
+        colFirstName.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
+        colMiddleInitial.setCellValueFactory(cellData -> cellData.getValue().getMiddleInitialProperty());
+        colLastName.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
+        colPhone.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
+        colEmail.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
+        colPosition.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
+        colAgency.setCellValueFactory(cellData -> cellData.getValue().getAgencyProperty().asObject());
+        //Adds the data to the table
+        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
+        tableAgents.setItems(agents);
     }
 
 }

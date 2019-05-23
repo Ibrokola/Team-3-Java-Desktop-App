@@ -26,7 +26,7 @@
                </VBox.margin>
             </Label>
          </children></VBox>
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="336.0" prefHeight="50.0" prefWidth="574.0" spacing="20.0">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="526.0" prefHeight="69.0" prefWidth="910.0" spacing="20.0">
          <children>
             <Button fx:id="btnAgent" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAgentAction" prefWidth="90.0" text="Agents" />
             <Button fx:id="btnCustomer" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnCustomerAction" prefWidth="90.0" text="Customers" />
@@ -35,8 +35,8 @@
             <Button fx:id="btnSupplier" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSupplierAction" prefWidth="90.0" text="Suppliers" />
          </children>
       </HBox>
-      <Label layoutX="33.0" layoutY="306.0" text="Select a Spreadsheet to Edit:" />
-      <VBox alignment="TOP_RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="76.0" prefWidth="240.0" spacing="6.0">
+      <Label layoutX="37.0" layoutY="518.0" text="Select a Spreadsheet to Edit:" />
+      <VBox alignment="TOP_RIGHT" layoutX="676.0" layoutY="14.0" prefHeight="76.0" prefWidth="240.0" spacing="6.0">
          <children>
             <Label fx:id="lblClock" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Date/Time Clock" />
             <Label fx:id="lblWelcome" text="Welcome, [USER'S NAME]" />
