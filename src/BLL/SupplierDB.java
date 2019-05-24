@@ -72,30 +72,35 @@ public class SupplierDB {
     }
 
     public static void deleteSupplier(Supplier supplier){
+        String selection = supplier.getSupplierId() + ", " + supplier.getSupName();
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "Delete Supplier Number " + selection + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        deleteAlert.showAndWait();
 
-        Connection conn = DBConnect.getConnection();
+        if (deleteAlert.getResult() == ButtonType.YES) {
 
-        try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM suppliers WHERE SupplierId=?");
 
-            stmt.setInt(1, supplier.getSupplierId());
+            Connection conn = DBConnect.getConnection();
 
-            int rowsUpdated = stmt.executeUpdate();
-            if (rowsUpdated == 0)
-            {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Error deleting from the database", ButtonType.OK);
-                alert.showAndWait();
-            } else if (rowsUpdated == 1)
-            {
-                Alert alert3 = new Alert(Alert.AlertType.INFORMATION, "Supplier Deleted", ButtonType.OK);
-                alert3.showAndWait();
+            try {
+                PreparedStatement stmt = conn.prepareStatement("DELETE FROM suppliers WHERE SupplierId=?");
+
+                stmt.setInt(1, supplier.getSupplierId());
+
+                int rowsUpdated = stmt.executeUpdate();
+                if (rowsUpdated == 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Error deleting from the database", ButtonType.OK);
+                    alert.showAndWait();
+                } else if (rowsUpdated == 1) {
+                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION, "Supplier Deleted", ButtonType.OK);
+                    alert3.showAndWait();
+                }
+
+                conn.close();
+
+            } catch (
+                    SQLException e) {
+                e.printStackTrace();
             }
-
-            conn.close();
-
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
         }
 
     }
