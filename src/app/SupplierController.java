@@ -63,6 +63,10 @@ public class SupplierController {
     //add supplier to database
     @FXML
     void btnAddSupplierAction(ActionEvent event) {
+        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        SupplierDB.addSupplier(supplier);
+        loadSuppliers();
+        clearSupplierTextFields();
 
     }
 
@@ -70,7 +74,10 @@ public class SupplierController {
     //delete supplier from database
     @FXML
     void btnDeleteSupplierAction(ActionEvent event) {
-
+        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        SupplierDB.deleteSupplier(supplier);
+        loadSuppliers();
+        clearSupplierTextFields();
     }
 
 
@@ -82,7 +89,6 @@ public class SupplierController {
         SupplierDB.updateSupplier(supplier);
         loadSuppliers();
         clearSupplierTextFields();
-
     }
     /////////////////////////////////////////////////////////////////////////
     //clear contents of text fields
