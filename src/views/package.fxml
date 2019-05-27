@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.PackageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PackageController">
+   <children>
+      <TableView fx:id="tblPackages" layoutX="243.0" layoutY="38.0" prefHeight="347.0" prefWidth="343.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAddPackage" layoutX="32.0" layoutY="224.0" mnemonicParsing="false" text="Add Package" />
+      <Button fx:id="btnDeletePackage" layoutX="32.0" layoutY="307.0" mnemonicParsing="false" text="Delete Package" />
+      <TextField layoutX="15.0" layoutY="38.0" prefHeight="25.0" prefWidth="206.0" promptText="Package Name" />
+      <TextField layoutX="15.0" layoutY="63.0" prefHeight="25.0" prefWidth="206.0" promptText="Package Description" />
+      <TextField layoutX="18.0" layoutY="163.0" prefHeight="25.0" prefWidth="199.0" promptText="Package Base Price" />
+      <DatePicker layoutX="15.0" layoutY="84.0" prefHeight="25.0" prefWidth="206.0" promptText="Start Date" />
+      <DatePicker layoutX="15.0" layoutY="109.0" prefHeight="25.0" prefWidth="206.0" promptText="End Date" />
+   </children>
 </AnchorPane>
