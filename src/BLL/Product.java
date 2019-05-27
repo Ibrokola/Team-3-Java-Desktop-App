@@ -8,11 +8,19 @@ public class Product {
     SimpleIntegerProperty productId;
     SimpleStringProperty prodName;
 
+    public Product(){}
+
+    // Fix for auto-incremental PK
+    public Product(String prodName) {
+        // this.productId = new SimpleIntegerProperty(productId);
+        this.prodName = new SimpleStringProperty(prodName);
+    }
+
     public Product(int productId, String prodName) {
-        super();
         this.productId = new SimpleIntegerProperty(productId);
         this.prodName = new SimpleStringProperty(prodName);
     }
+
 
     public int getProductId() {
         return productId.get();
