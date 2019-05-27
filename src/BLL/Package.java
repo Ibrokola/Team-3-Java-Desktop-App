@@ -1,9 +1,6 @@
 package BLL;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -27,8 +24,8 @@ public class Package {
         super();
         this.PackageId = new SimpleIntegerProperty (PackageId);
         this.PkgName = new SimpleStringProperty(PkgName);
-        this.PkgStartDate = new ObjectProperty<Date> (PkgStartDate);
-        this.PkgEndDate = new ObjectProperty<Date> (PkgEndDate);
+        this.PkgStartDate = new SimpleObjectProperty<Date> (PkgStartDate);
+        this.PkgEndDate = new SimpleObjectProperty<Date>(PkgEndDate);
         this.PkgDesc = new SimpleStringProperty (PkgDesc);
         this.PkgBasePrice = new SimpleDoubleProperty (PkgBasePrice);
         this.PkgAgencyCommission = new SimpleDoubleProperty (PkgAgencyCommission);
