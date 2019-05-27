@@ -10,9 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ProductDB {
 
-    public static List<Product> getAgents() {
+    public static List<Product> getProducts() {
         ArrayList<Product> products = null;
 
 
@@ -56,14 +57,17 @@ public class ProductDB {
             // call prepared statement
             PreparedStatement stmt = conn.prepareStatement("Insert into Products values(?, ?)");
 
-            stmt.setInt(1, product.getProductId());
+            stmt.setString(1, null);
             stmt.setString(2, product.getProdName());
 
             // checks if the data was inserted
-            int numRows = stmt.executeUpdate();
-            if (numRows == 0)
+
+            int numInserts = stmt.executeUpdate();
+
+            if (numInserts == 0)
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Product not added. Try again or contact Tech Support.");
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Product not added. Try again or contact Tech Support.");
                 alert.showAndWait();
             }
             stmt.close();
@@ -88,8 +92,8 @@ public class ProductDB {
             stmt.setInt(2, product.getProductId());
 
             //checks if the data was inserted
-            int numRows = stmt.executeUpdate();
-            if (numRows == 0)
+            int numInserts = stmt.executeUpdate();
+            if (numInserts == 0)
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR,
                         "Product update failed. Please try again or contact Tech Support.");
@@ -99,5 +103,40 @@ public class ProductDB {
             conn.close();
 
         }catch(Exception e) { e.printStackTrace(); }
+    }
+
+    //Searches product in response to text input
+    public static List<Product> searchProducts(String para) {
+        List<Product> products = null;
+
+        try {
+
+            //Instantiate DB connection
+            Connection conn = DBConnect.getConnection();
+
+            //Prepare an sql statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select * from Products where ProductId like ? or ProdName like ?");
+            stmt.setString(1, '%' + para + '%');
+            stmt.setString(2, '%' + para + '%');
+
+            //Executes statement
+            ResultSet rs = stmt.executeQuery();
+
+            products = new ArrayList<>();
+            //runs while reader has data
+            while (rs.next()) {
+                products.add(new Product(
+                        rs.getInt(1),
+                        rs.getString(2)));
+            }
+            rs.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return products;
     }
 }
