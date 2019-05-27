@@ -1,5 +1,6 @@
 package app;
 
+import BLL.Administrator;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -35,6 +37,15 @@ public class MainController {
 
 
     /******            SCENE SWAPS             ******/
+
+    @FXML void btnLogoutAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+        Scene scene = new Scene(root);
+
+        //gets the stage  -- gets the window
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+    }
 
     //Swaps to Agent scene when button is pressed
     @FXML void btnAgentAction(ActionEvent event) throws IOException {
@@ -101,8 +112,9 @@ public class MainController {
     @FXML void initialize(){
         startClock(); //runs the clock
 
-        lblWelcome.setVisible(false);
-        btnLogout.setVisible(false);
+        //builds the welcome label
+        Administrator user = LoginController.userLoggedIn();
+        lblWelcome.setText("Welcome " + user.getLastName() + ", " + user.getFirstName());
     }
 
 }

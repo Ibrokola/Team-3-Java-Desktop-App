@@ -26,8 +26,4 @@ public class Administrator {
     public String getFirstName(){ return firstName.get(); }
     public String getLastName(){ return lastName.get(); }
 
-    //login functions
-    public void login(){ loginStatus = true; }
-    public void logOut() { loginStatus = false; }
-    public boolean isLoggedIn(){ return loginStatus; }
 }

@@ -103,7 +103,8 @@ public class AgentDB {
             Connection connect = DBConnect.getConnection();
 
             //query
-            String insertQuery = "Insert into Agents values(?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "Insert into Agents(AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, " +
+                    "AgtPosition, AgencyId) values(?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement stmt = connect.prepareStatement(insertQuery);
 
@@ -178,7 +179,7 @@ public class AgentDB {
             checkStmt.setInt(1, agent.getID());
 
             //checks if the data was inserted
-            int checkNumRows = checkStmt.executeUpdate();
+            int checkNumRows = checkStmt.getMaxRows();
             if (checkNumRows == 0) { //Runs if agent has no customers
                 String deleteQuery = "delete all from Agents where AgentId=?";
 

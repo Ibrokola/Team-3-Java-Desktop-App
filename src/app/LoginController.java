@@ -21,8 +21,10 @@ public class LoginController {
 
     @FXML private Button btnLogin;
 
+    static Administrator tempAdmin;
+
     @FXML void btnLoginAction(ActionEvent event) throws IOException {
-        Administrator tempAdmin = AdministratorDB.checkAdmin(txtUsername.getText(), txtPassword.getText());
+       tempAdmin = AdministratorDB.checkAdmin(txtUsername.getText(), txtPassword.getText());
         if(tempAdmin != null){
             Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
             Scene scene = new Scene(root);
@@ -31,6 +33,10 @@ public class LoginController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
         }
+    }
+
+    public static Administrator userLoggedIn(){
+        return tempAdmin;
     }
 
 }
