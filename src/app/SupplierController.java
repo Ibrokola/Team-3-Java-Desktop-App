@@ -2,13 +2,11 @@ package app;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 import BLL.Supplier;
+import BLL.SupplierDB;
 import DLL.DBConnect;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +29,7 @@ public class SupplierController {
     @FXML
     private URL location;
 
+    //////////////////////////////////////////////////////////
     //Table view to show all suppliers
     @FXML
     private TableView<Supplier> tvSupplierList;
@@ -39,59 +38,75 @@ public class SupplierController {
     @FXML
     private TableColumn<Supplier, String> colSupplierName;
 
-    //text fields and buttons for Adding new Supplier
+    /////////////////////////////////////////////////////////////
+    //Buttons & text fields
     @FXML
-    private TextField tfSupplierIdAdd;
+    private TextField tfSupplierId;
     @FXML
-    private TextField tfSupplierNameAdd;
+    private TextField tfSupplierName;
     @FXML
     private Button btnAddSupplier;
     @FXML
-    private Button btnClearAddSupplier;
+    private Button btnDeleteSupplier;
+    @FXML
+    private Button btnClearSupplier;
+    @FXML
+    private Button btnEditSupplier;
+    @FXML
+    private Button btnSaveSupplier;
 
-    //text fields and buttons for Updating Supplier Info
-    @FXML
-    private TextField tfSupplierIdUpdate;
-    @FXML
-    private TextField tfSupplierNameUpdate;
-    @FXML
-    private Button btnUpdateSupplier;
-    @FXML
-    private Button btnClearUpdateSupplier;
-
-    //button to return to main page
     @FXML
     private Button btnHomeSupplier;
 
+
+    //////////////////////////////////////////////////////////
     //add supplier to database
     @FXML
     void btnAddSupplierAction(ActionEvent event) {
+        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        SupplierDB.addSupplier(supplier);
+        loadSuppliers();
+        clearSupplierTextFields();
 
     }
 
-    //clear contents of text fields on the Add Supplier tab
+    //////////////////////////////////////////////////////////
+    //delete supplier from database
     @FXML
-    void btnClearAddSupplierAction(ActionEvent event) {
-        tfSupplierIdAdd.clear();
-        tfSupplierNameAdd.clear();
+    void btnDeleteSupplierAction(ActionEvent event) {
+        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        SupplierDB.deleteSupplier(supplier);
+        loadSuppliers();
+        clearSupplierTextFields();
     }
 
-    //update supplier in the database
+
+    /////////////////////////////////////////////////////////////////
+    //update(Save edits) supplier in the database
     @FXML
-    void btnUpdateSupplierAction(ActionEvent event) {
-
+    void btnSaveSupplierAction(ActionEvent event) {
+        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        SupplierDB.updateSupplier(supplier);
+        loadSuppliers();
+        clearSupplierTextFields();
     }
-
-    //clear contents of text fields on the Update Supplier tab
+    /////////////////////////////////////////////////////////////////////////
+    //clear contents of text fields
     @FXML
-    void btnClearUpdateSupplierAction(ActionEvent event) {
-        tfSupplierIdUpdate.clear();
-        tfSupplierNameUpdate.clear();
+    void btnClearSupplierAction(ActionEvent event) {
+        clearSupplierTextFields();
     }
 
+    void clearSupplierTextFields(){
+        tfSupplierId.clear();
+        tfSupplierName.clear();
+    }
+
+    /////////////////////////////////////////////////////////////////////
     // Brent's code
     // Takes the user back to the home page.
-   @FXML void btnHomeAction(ActionEvent event) throws IOException {
+   @FXML
+   void btnHomeAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         Scene scene = new Scene(root);
 
@@ -99,18 +114,29 @@ public class SupplierController {
         stage.setScene(scene);
     }
 
+    /////////////////////////////////////////////////////////////////////////
+    //Uses the selection from the Tableview to populate the text fields
+    @FXML
+    void btnEditSupplierAction(ActionEvent event) throws IOException {
+        Supplier s = tvSupplierList.getSelectionModel().getSelectedItem();
+        if (s != null) {
+            btnSaveSupplier.setDisable(false);
+            btnDeleteSupplier.setDisable(false);
+            tfSupplierId.setText(s.getSupplierId() + "");
+            tfSupplierName.setText(s.getSupName() + "");
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Please select supplier");
+            alert2.showAndWait();
+        }
+    }
 
 
+    ////////////////////////////////////////////////////////////////////////
     @FXML
     void initialize() {
-        assert tvSupplierList != null : "fx:id=\"tvSupplierList\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert tfSupplierIdAdd != null : "fx:id=\"tfSupplierIdAdd\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert tfSupplierNameAdd != null : "fx:id=\"tfSupplierNameAdd\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert btnAddSupplier != null : "fx:id=\"btnAddSupplier\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert tfSupplierIdUpdate != null : "fx:id=\"tfSupplierIdUpdate\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert tfSupplierNameUpdate != null : "fx:id=\"tfSupplierNameUpdate\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert btnUpdateSupplier != null : "fx:id=\"btnUpdateSupplier\" was not injected: check your FXML file 'supplier.fxml'.";
-        assert btnHomeSupplier != null : "fx:id=\"btnHome\" was not injected: check your FXML file 'supplier.fxml'.";
+
+        btnDeleteSupplier.setDisable(true);
+        btnSaveSupplier.setDisable(true);
 
         //populate the tableview list of suppliers
         colSupplierId.setCellValueFactory(cellData -> cellData.getValue().supplierIdProperty().asObject());
@@ -124,6 +150,7 @@ public class SupplierController {
 
         try {
             Connection conn = DBConnect.getConnection();
+            supplierList.clear();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from suppliers");
             while (rs.next())

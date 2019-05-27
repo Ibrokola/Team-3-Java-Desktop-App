@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDB {
+    /*
+     * Purpose: Communicates between the customer object, and the database to complete operations.
+     * Author: Brent Ward
+     * Module:
+     * Date May 15, 2019
+     * */
 
     //gets list of customers
     public static List<Customer> getCustomers(){
@@ -64,16 +70,16 @@ public class CustomerDB {
 
             //query
             String selectQuery = "select CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv," +
-                        "CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId from Customers" +
-                        "where CustFirstName like %?% or CustLastName like %?%";
+                        "CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId from Customers " +
+                        "where CustFirstName like ? or CustLastName like ?";
 
             //makes a sql statement
             PreparedStatement stmt = connect.prepareStatement(selectQuery);
-            stmt.setString(1,name);
-            stmt.setString(2, name);
+            stmt.setString(1,'%' + name + '%');
+            stmt.setString(2, '%' + name + '%');
 
             //assigns & executes statement
-            ResultSet rs = stmt.executeQuery(selectQuery);
+            ResultSet rs = stmt.executeQuery();
 
             customers = new ArrayList<Customer>();
             //runs while reader has data

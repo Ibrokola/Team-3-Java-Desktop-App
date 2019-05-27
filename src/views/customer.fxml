@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.CustomerController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CustomerController">
+   <children>
+      <TableView fx:id="tableCustomers" layoutX="14.0" layoutY="309.0" prefHeight="285.0" prefWidth="903.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="75.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="colAddress" prefWidth="100.0" text="Address" />
+            <TableColumn fx:id="colCity" prefWidth="75.0" text="City" />
+            <TableColumn fx:id="colProv" prefWidth="50.0" text="Prov" />
+            <TableColumn fx:id="colPostal" prefWidth="75.0" text="Postal" />
+            <TableColumn fx:id="colCountry" prefWidth="75.0" text="Country" />
+            <TableColumn fx:id="colHomePhone" prefWidth="75.0" text="Phone (H)" />
+            <TableColumn fx:id="colBusPhone" prefWidth="75.0" text="Phone (B)" />
+            <TableColumn fx:id="colEmail" prefWidth="125.0" text="Email" />
+            <TableColumn fx:id="colAgentId" prefWidth="55.0" text="Agent Id" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="806.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnBackAction" text="Return to Home">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="25.0" text="Customer Database:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="260.0" prefHeight="42.0" prefWidth="903.0" spacing="15.0">
+         <children>
+            <Label text="Search by name:" />
+            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="194.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="218.0" prefHeight="42.0" prefWidth="903.0" spacing="50.0">
+         <children>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteAction" text="Delete">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEditAction" text="Edit" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveAction" text="Save" />
+         </children>
+      </HBox>
+      <VBox layoutX="112.0" layoutY="60.0" prefHeight="150.0" prefWidth="87.0" spacing="22.0">
+         <children>
+            <Label text="Customer ID:" />
+            <Label text="First Name:" />
+            <Label text="Last Name:" />
+            <Label text="Address:" />
+         </children>
+      </VBox>
+      <VBox layoutX="211.0" layoutY="57.0" prefHeight="156.0" prefWidth="165.0" spacing="14.0">
+         <children>
+            <TextField fx:id="txtCustId" maxWidth="-Infinity" prefWidth="60.0" />
+            <TextField fx:id="txtFirstName" />
+            <TextField fx:id="txtLastName" />
+            <TextField fx:id="txtAddress" />
+         </children>
+      </VBox>
+      <VBox layoutX="396.0" layoutY="63.0" prefHeight="150.0" prefWidth="69.0" spacing="22.0">
+         <children>
+            <Label text="City" />
+            <Label text="Prov" />
+            <Label text="Postal" />
+            <Label text="Country" />
+         </children>
+      </VBox>
+      <VBox layoutX="466.0" layoutY="57.0" prefHeight="156.0" prefWidth="100.0" spacing="14.0">
+         <children>
+            <TextField fx:id="txtCity" />
+            <TextField fx:id="txtProv" />
+            <TextField fx:id="txtPostal" />
+            <TextField fx:id="txtCountry" />
+         </children>
+      </VBox>
+      <VBox layoutX="588.0" layoutY="60.0" prefHeight="150.0" prefWidth="69.0" spacing="22.0">
+         <children>
+            <Label text="Phone (H):" />
+            <Label text="Phone (B):" />
+            <Label text="Email:" />
+            <Label text="Agent's ID:" />
+         </children>
+      </VBox>
+      <VBox layoutX="668.0" layoutY="60.0" prefHeight="156.0" prefWidth="141.0" spacing="14.0">
+         <children>
+            <TextField fx:id="txtHomePhone" />
+            <TextField fx:id="txtBusPhone" />
+            <TextField fx:id="txtEmail" />
+            <TextField fx:id="txtAgentId" maxWidth="-Infinity" prefWidth="60.0" />
+         </children>
+      </VBox>
+   </children>
+</Pane>
