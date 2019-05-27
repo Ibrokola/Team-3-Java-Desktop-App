@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgentDB {
+    /*
+     * Purpose: Communicates between the agent object, and the database to complete operations.
+     * Author: Brent Ward
+     * Module:
+     * Date May 15, 2019
+     * */
 
     //Gets list of agents
     public static List<Agent> getAgents(){
@@ -97,19 +103,19 @@ public class AgentDB {
             Connection connect = DBConnect.getConnection();
 
             //query
-            String insertQuery = "Insert into Agents values(?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "Insert into Agents(AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, " +
+                    "AgtPosition, AgencyId) values(?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement stmt = connect.prepareStatement(insertQuery);
 
             //sets parameters for ?
-            stmt.setInt(1, agent.getID());
-            stmt.setString(2, agent.getFirstName());
-            stmt.setString(3, agent.getMiddleInitial());
-            stmt.setString(4, agent.getLastName());
-            stmt.setString(5, agent.getPhone());
-            stmt.setString(6, agent.getEmail());
-            stmt.setString(7, agent.getPosition());
-            stmt.setInt(8, agent.getAgency());
+            stmt.setString(1, agent.getFirstName());
+            stmt.setString(2, agent.getMiddleInitial());
+            stmt.setString(3, agent.getLastName());
+            stmt.setString(4, agent.getPhone());
+            stmt.setString(5, agent.getEmail());
+            stmt.setString(6, agent.getPosition());
+            stmt.setInt(7, agent.getAgency());
 
             //checks if the data was inserted
             int numRows = stmt.executeUpdate();
@@ -173,7 +179,7 @@ public class AgentDB {
             checkStmt.setInt(1, agent.getID());
 
             //checks if the data was inserted
-            int checkNumRows = checkStmt.executeUpdate();
+            int checkNumRows = checkStmt.getMaxRows();
             if (checkNumRows == 0) { //Runs if agent has no customers
                 String deleteQuery = "delete all from Agents where AgentId=?";
 

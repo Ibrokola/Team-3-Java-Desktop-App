@@ -40,7 +40,7 @@
          <children>
             <Label fx:id="lblClock" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Date/Time Clock" />
             <Label fx:id="lblWelcome" text="Welcome, [USER'S NAME]" />
-            <Button fx:id="btnLogout" mnemonicParsing="false" text="Logout" />
+            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutAction" text="Logout" />
          </children>
       </VBox>
    </children>

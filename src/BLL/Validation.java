@@ -14,7 +14,7 @@ public class Validation {
 
     //checks that a textfield is not empty
     public static boolean isProvided(TextField text, String name){
-        if(text.getText() != null){
+        if(text.getText() != ""){
             return true;
         }
         else{
@@ -41,6 +41,8 @@ public class Validation {
             Alert alert = new Alert(Alert.AlertType.ERROR, name + " must have a selection!");
             alert.show();
             return false;
-        }else{ return true; }
+        }else {
+            return true;
+        }
     }
 }
