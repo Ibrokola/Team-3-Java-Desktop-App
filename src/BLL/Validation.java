@@ -41,6 +41,8 @@ public class Validation {
             Alert alert = new Alert(Alert.AlertType.ERROR, name + " must have a selection!");
             alert.show();
             return false;
-        }else{ return true; }
+        }else {
+            return true;
+        }
     }
 }
