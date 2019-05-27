@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDB {
+    /*
+     * Purpose: Communicates between the customer object, and the database to complete operations.
+     * Author: Brent Ward
+     * Module:
+     * Date May 15, 2019
+     * */
 
     //gets list of customers
     public static List<Customer> getCustomers(){
