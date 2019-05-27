@@ -56,6 +56,7 @@ public class AgentDB {
         return agents;
     }
 
+
     //searchs an agent based on user input
     public static List<Agent> searchAgents(String name){
         List<Agent> agents = null;
@@ -96,6 +97,7 @@ public class AgentDB {
         return agents;
     }
 
+
     //inserts an Agent
     public static void addAgent(Agent agent){
         try{
@@ -128,6 +130,7 @@ public class AgentDB {
 
         }catch(Exception e) { e.printStackTrace(); }
     }
+
 
     //updates an Agent
     public static void updateAgent(Agent agent){
@@ -164,43 +167,25 @@ public class AgentDB {
         }catch(Exception e) { e.printStackTrace(); }
     }
 
+
     //deletes an Agent
     public static void deleteAgent(Agent agent){
         try{
             //connection built
             Connection connect = DBConnect.getConnection();
 
-            //Checks to see if there are any customers linked to the agent
-            String checkQuery = "Select * from Customers where AgentId=?";
+            String deleteQuery = "delete from Agents where AgentId=?";
 
-            PreparedStatement checkStmt = connect.prepareStatement(checkQuery);
+            PreparedStatement stmt = connect.prepareStatement(deleteQuery);
+            stmt.setInt(1, agent.getID());
 
-            //sets parameters for check statement
-            checkStmt.setInt(1, agent.getID());
-
-            //checks if the data was inserted
-            int checkNumRows = checkStmt.getMaxRows();
-            if (checkNumRows == 0) { //Runs if agent has no customers
-                String deleteQuery = "delete all from Agents where AgentId=?";
-
-                PreparedStatement stmt = connect.prepareStatement(deleteQuery);
-                stmt.setInt(1, agent.getID());
-
-                //checks if agent is deleted
-                int numRows = stmt.executeUpdate();
-                if(numRows == 0){
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Agent failed to delete. Contact Tech Support.");
-                    alert.showAndWait();
-                }
-            }
-            else if(checkNumRows != 0){//Runs if customers exist for that agent
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot delete this agent till all their Customers have been reassigned!");
+            //checks if agent is deleted
+            int numRows = stmt.executeUpdate();
+            if(numRows == 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Agent failed to delete. Contact Tech Support.");
                 alert.showAndWait();
             }
-            else{
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Unknown Issue. Contact Tech Support.");
-                alert.showAndWait();
-            }
+
             connect.close();
 
         }catch(Exception e) { e.printStackTrace(); }
