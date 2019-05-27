@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import BLL.Product;
-import BLL.ProductDB;
-import BLL.Validation;
+import BLL.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,12 +40,22 @@ public class ProductController {
     private TableColumn<Product, Integer> clProdId;
     @FXML
     private TableColumn<Product, String> clProdName;
+    @FXML
+    private TableView<ProductSupplier> tvProdSup;
+    @FXML
+    private TableColumn<ProductSupplier, Integer> clProdSupId;
+    @FXML
+    private TableColumn<ProductSupplier, String> clProdSupProd;
+    @FXML
+    private TableColumn<ProductSupplier, String> clProdSupSup;
 
     // Textfield attributes
     @FXML
     private TextField txtProdSearch;
     @FXML
     private TextField txtProdName;
+    @FXML
+    private TextField txtSearchSup;
 
     // Button attributes
     @FXML
@@ -134,7 +142,7 @@ public class ProductController {
     @FXML
     void initialize() {
 
-        // Prepare table columns
+        // Prepare table columns products
         clProdId.setCellValueFactory(cellData -> cellData.getValue().productIdProperty().asObject());
         clProdName.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
 
@@ -148,6 +156,7 @@ public class ProductController {
 
                 ObservableList<Product> products = FXCollections.observableArrayList(
                         ProductDB.searchProducts(txtProdSearch.getText()));
+
                 tvProducts.setItems(products);
             }
         });
@@ -173,6 +182,23 @@ public class ProductController {
         });
 
 
+        // Prepare table columns products suppliers
+        clProdSupId.setCellValueFactory(cellData -> cellData.getValue().productSupplierIdProperty().asObject());
+        clProdSupProd.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
+        clProdSupSup.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
+
+        txtSearchSup.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                        ProductSupplierDB.searchProductsSuppliers(txtSearchSup.getText()));
+
+                tvProdSup.setItems(productsSuppliers);
+            }
+        });
+
+        loadProductsSuppliers();
+
         btnAdd.setDisable(true);
         btnUpdate.setDisable(true);
         btnRemove.setDisable(true);
@@ -185,6 +211,13 @@ public class ProductController {
         tvProducts.setItems(products);
 
     }
+
+    private void loadProductsSuppliers(){
+        ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        tvProdSup.setItems(productsSuppliers);
+    }
+
 }
 
 
