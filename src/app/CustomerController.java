@@ -27,7 +27,7 @@ public class CustomerController {
     /*
      * Purpose: Controller for the Customer.fxml file, that handles operations within the window.
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 15, 2019
      * */
 
@@ -72,7 +72,7 @@ public class CustomerController {
 
     //Returns the user to the main menu window
     @FXML void btnBackAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
         Scene scene = new Scene(root);
 
         //gets the stage  -- gets the window

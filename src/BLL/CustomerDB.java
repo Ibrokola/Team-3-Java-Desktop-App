@@ -14,7 +14,7 @@ public class CustomerDB {
     /*
      * Purpose: Communicates between the customer object, and the database to complete operations.
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 15, 2019
      * */
 

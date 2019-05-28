@@ -107,7 +107,7 @@ public class SupplierController {
     // Takes the user back to the home page.
    @FXML
    void btnHomeAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
         Scene scene = new Scene(root);
 
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

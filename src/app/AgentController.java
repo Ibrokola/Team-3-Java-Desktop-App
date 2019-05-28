@@ -27,7 +27,7 @@ public class AgentController {
     /*
     * Purpose: Controller for the Agent.fxml file, that handles operations within the window.
     * Author: Brent Ward
-    * Module:
+    * Module: PROJ-207-OSD
     * Date May 15, 2019
     * */
 
@@ -66,7 +66,7 @@ public class AgentController {
 
     //Returns the user to the main menu window
     @FXML void btnBackAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
         Scene scene = new Scene(root);
 
         //gets the stage  -- gets the window

@@ -13,7 +13,7 @@ public class AdministratorDB {
     /*
      * Purpose: Handles the communications to the database for logging in
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 24, 2019
      * */
 

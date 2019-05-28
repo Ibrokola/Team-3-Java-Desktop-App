@@ -128,7 +128,7 @@ public class ProductController {
     void btnHomeAction(ActionEvent event){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

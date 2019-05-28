@@ -16,6 +16,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+    /*
+     * Purpose: Controller class for the login page.
+     * Author: Brent Ward
+     * Module: PROJ-207-OSD
+     * Date: May 20, 2019
+     * */
 
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
@@ -27,7 +33,7 @@ public class LoginController {
     @FXML void btnLoginAction(ActionEvent event) throws IOException {
        tempAdmin = AdministratorDB.checkAdmin(txtUsername.getText(), txtPassword.getText());
         if(tempAdmin != null){
-            Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
             Scene scene = new Scene(root);
 
             //gets the stage  -- gets the window

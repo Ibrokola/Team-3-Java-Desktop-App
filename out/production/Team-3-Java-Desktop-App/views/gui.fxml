@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUIController">
+   <top>
+      <HBox prefHeight="79.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="79.0" prefWidth="194.0" style="-fx-background-color: #01cafe;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/TravelSiteLogo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="13.0" prefWidth="134.0">
+                     <children>
+                        <Label text="TRAVEL" textFill="WHITE">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label text="EXPERTS" textFill="WHITE">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="26.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></HBox>
+            <VBox prefHeight="79.0" prefWidth="588.0">
+               <children>
+                  <Label text="PAGE TITLE">
+                     <font>
+                        <Font name="Trebuchet MS" size="28.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Page desc.">
+                     <font>
+                        <Font name="Trebuchet MS" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="40.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="79.0" prefWidth="218.0">
+               <children>
+                  <Label fx:id="lblClock" text="CLOCK">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="323.0" prefWidth="194.0" style="-fx-background-color: #01cafe;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="121.0" prefWidth="194.0">
+               <children>
+                  <HBox layoutX="-3.0" layoutY="3.0" prefHeight="68.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="15.0" top="2.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../assets/userAvatar.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="68.0" prefWidth="126.0">
+                           <children>
+                              <Label text="Welcome" textFill="WHITE">
+                                 <font>
+                                    <Font name="Trebuchet MS" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="lblWelcome" prefHeight="24.0" prefWidth="126.0" text="Last, First" textFill="WHITE" textOverrun="CLIP">
+                                 <font>
+                                    <Font name="Trebuchet MS" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutY="71.0" prefHeight="34.0" prefWidth="193.0">
+                     <children>
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutAction" prefWidth="80.0" style="-fx-background-color: #00add2;" text="Logout" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <HBox fx:id="boxDashboard" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblDashboard" prefHeight="43.0" prefWidth="113.0" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="boxAgents" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnAgents" mnemonicParsing="false" onAction="#btnAgentsAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblAgents" prefHeight="43.0" prefWidth="113.0" text="Agents" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="boxCustomers" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#btnCustomersAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblCustomers" prefHeight="43.0" prefWidth="113.0" text="Customers" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="boxPackages" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnPackages" mnemonicParsing="false" onAction="#btnPackagesAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblPackages" prefHeight="43.0" prefWidth="113.0" text="Packages" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="boxProducts" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnProducts" mnemonicParsing="false" onAction="#btnProductsAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblProducts" prefHeight="43.0" prefWidth="113.0" text="Products" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="boxSuppliers" alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
+               <children>
+                  <Button fx:id="btnSuppliers" mnemonicParsing="false" onAction="#btnSuppliersAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lblSuppliers" prefHeight="43.0" prefWidth="113.0" text="Suppliers" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="13.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="29.0" prefWidth="194.0" style="-fx-background-color: #01cafe;" />
+            <Label contentDisplay="CENTER" text="© Travel Experts 2019">
+               <HBox.margin>
+                  <Insets left="240.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="26.0" layoutY="314.0" prefHeight="230.0" prefWidth="755.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

@@ -14,7 +14,7 @@ public class AgentDB {
     /*
      * Purpose: Communicates between the agent object, and the database to complete operations.
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 15, 2019
      * */
 

@@ -7,7 +7,7 @@ public class Customer {
     /*
      * Purpose: Customer Object used to store the database data.
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 15, 2019
      * */
 

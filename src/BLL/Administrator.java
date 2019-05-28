@@ -6,7 +6,7 @@ public class Administrator {
     /*
      * Purpose: Stores the components of a user login
      * Author: Brent Ward
-     * Module:
+     * Module: PROJ-207-OSD
      * Date May 24, 2019
      * */
 
