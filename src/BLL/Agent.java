@@ -75,4 +75,9 @@ public class Agent {
     public void setEmail(String emailNew){ email.set(emailNew); }
     public void setPosition(String posit){ position.set(posit); }
     public void setAgency(int agcy){ agency.set(agcy); }
+
+    //to string override
+    @Override public String toString() {
+        return lastName.get() + ", " + firstName.get();
+    }
 }

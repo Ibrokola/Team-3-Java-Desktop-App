@@ -139,7 +139,7 @@ public class AgentDB {
             Connection connect = DBConnect.getConnection();
 
             //query
-            String updateQuery = "update Agents set AgtFirstName=?, AgtMiddleInitial=?, AgtLastName=?, AgtBusPhone=?" +
+            String updateQuery = "update Agents set AgtFirstName=?, AgtMiddleInitial=?, AgtLastName=?, AgtBusPhone=?," +
                                     "AgtEmail=?, AgtPosition=?, AgencyId=? where AgentId=?";
 
             PreparedStatement stmt = connect.prepareStatement(updateQuery);

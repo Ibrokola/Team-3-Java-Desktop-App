@@ -9,6 +9,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,11 +46,18 @@ public class AgentController {
     @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
     @FXML private Button btnSignout;
+
     @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
+
     @FXML private Button btnAddAgent;
     @FXML private Button btnAddGoBack;
+    @FXML private Button btnUpdateAgent;
+    @FXML private Button btnUpdateGoBack;
+
+    @FXML private Button btnDeleteAgent;
+    @FXML private Button btnDeleteGoBack;
 
     //panes
     @FXML private Pane paneAdd;
@@ -64,13 +73,33 @@ public class AgentController {
     @FXML private TextField txtAddPhone;
     @FXML private TextField txtAddEmail;
 
+    @FXML private TextField txtUpdateFirstName;
+    @FXML private TextField txtUpdateMiddleInitial;
+    @FXML private TextField txtUpdateLastName;
+    @FXML private TextField txtUpdatePhone;
+    @FXML private TextField txtUpdateEmail;
+
     //Combo boxes
     @FXML private ComboBox<String> cbAddPosition;
     @FXML private ComboBox<String> cbAddAgency;
 
-    //Other properties
+    @FXML private ComboBox<Agent> cbUpdateAgent;
+    @FXML private ComboBox<String> cbUpdatePosition;
+    @FXML private ComboBox<String> cbUpdateAgency;
+
+    @FXML private ComboBox<Agent> cbDeleteAgent;
+
+    //Labels
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
+
+    @FXML private Label lblDeleteFirstName;
+    @FXML private Label lblDeleteMiddleInitial;
+    @FXML private Label lblDeleteLastName;
+    @FXML private Label lblDeletePhone;
+    @FXML private Label lblDeleteEmail;
+    @FXML private Label lblDeletePosition;
+    @FXML private Label lblDeleteAgency;
 
 
 
@@ -142,22 +171,10 @@ public class AgentController {
             loadAddPane();
         }
         if(event.getSource() == btnUpdate){
-            paneUpdate.toFront();
-
-            //layout setup
-            paneAdd.setVisible(false);
-            paneUpdate.setVisible(true);
-            paneDelete.setVisible(false);
-            paneOverview.setVisible(false);
+            loadUpdatePane();
         }
         if(event.getSource() == btnDelete){
-            paneDelete.toFront();
-
-            //layout setup
-            paneAdd.setVisible(false);
-            paneUpdate.setVisible(false);
-            paneDelete.setVisible(true);
-            paneOverview.setVisible(false);
+            loadDeletePane();
         }
 
         /*** Add Pane ***/
@@ -185,7 +202,44 @@ public class AgentController {
                 loadOverviewPane();
             }
         }
-        if(event.getSource() == btnAddGoBack){
+
+        /*** Update Pane ***/
+        if(event.getSource() == btnUpdateAgent){
+            if(Validation.isProvided(txtUpdateFirstName, "first name") && Validation.isProvided(txtUpdateLastName, "last name")
+                    && Validation.isProvided(txtUpdatePhone, "phone") && Validation.isProvided(txtUpdateEmail, "email")
+                    && Validation.hasSelection(cbUpdatePosition, "position") && Validation.hasSelection(cbUpdateAgency, "agency")){
+
+                Agent tempAgent = cbUpdateAgent.getSelectionModel().getSelectedItem(); //used to grab the id
+
+                //grabs the agency property from cb
+                int agency = 0;
+                if(cbUpdateAgency.getSelectionModel().getSelectedItem() == "Calgary"){
+                    agency = 1;
+                }else if(cbUpdateAgency.getSelectionModel().getSelectedItem() == "Okotoks"){
+                    agency = 2;
+                }
+
+                Agent agent = new Agent(tempAgent.getID(), txtUpdateFirstName.getText(), txtUpdateMiddleInitial.getText(),
+                        txtUpdateLastName.getText(), txtUpdatePhone.getText(), txtUpdateEmail.getText(),
+                        cbUpdatePosition.getSelectionModel().getSelectedItem(), agency);
+
+                //pushes it to the database
+                AgentDB.updateAgent(agent);
+
+                loadOverviewPane();
+            }
+        }
+
+        /*** Delete Pane ***/
+        if(event.getSource() == btnDeleteAgent){
+            Agent agent = cbDeleteAgent.getSelectionModel().getSelectedItem();
+            AgentDB.deleteAgent(agent);
+
+            loadOverviewPane();
+        }
+
+        //Go back buttons
+        if(event.getSource() == btnAddGoBack || event.getSource() == btnUpdateGoBack || event.getSource() == btnDeleteGoBack){
             loadOverviewPane();
         }
 
@@ -259,12 +313,104 @@ public class AgentController {
         cbAddAgency.getSelectionModel().clearSelection();
         cbAddAgency.getItems().removeAll(cbAddAgency.getItems());
         cbAddAgency.getItems().addAll("Calgary", "Okotoks");
+
+        //clear text fields
+        txtAddFirstName.clear();
+        txtAddMiddleInitial.clear();
+        txtAddLastName.clear();
+        txtAddPhone.clear();
+        txtAddEmail.clear();
     }
 
     private void loadUpdatePane(){
+        paneUpdate.toFront();
 
+        //layout setup
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(true);
+        paneDelete.setVisible(false);
+        paneOverview.setVisible(false);
+
+        //combobox setup
+        cbUpdateAgent.getItems().removeAll(cbDeleteAgent.getItems());
+        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
+        cbUpdateAgent.setItems(agents);
+
+        cbUpdatePosition.getSelectionModel().clearSelection();
+        cbUpdatePosition.getItems().removeAll(cbUpdatePosition.getItems());
+        cbUpdatePosition.getItems().addAll("Junior Agent", "Intermediate Agent", "Senior Agent");
+
+        cbUpdateAgency.getSelectionModel().clearSelection();
+        cbUpdateAgency.getItems().removeAll(cbUpdateAgency.getItems());
+        cbUpdateAgency.getItems().addAll("Calgary", "Okotoks");
+
+        //clears text fields
+        txtUpdateFirstName.clear();
+        txtUpdateMiddleInitial.clear();
+        txtUpdateLastName.clear();
+        txtUpdatePhone.clear();
+        txtUpdateEmail.clear();
     }
     private void loadDeletePane(){
+        paneDelete.toFront();
 
+        //layout setup
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        paneDelete.setVisible(true);
+        paneOverview.setVisible(false);
+
+        //combobox setup
+        cbDeleteAgent.getItems().removeAll(cbDeleteAgent.getItems());
+        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
+        cbDeleteAgent.setItems(agents);
+
+        //clear labels
+        lblDeleteFirstName.setText("");
+        lblDeleteMiddleInitial.setText("");
+        lblDeleteLastName.setText("");
+        lblDeletePhone.setText("");
+        lblDeleteEmail.setText("");
+        lblDeletePosition.setText("");
+        lblDeleteAgency.setText("");
+    }
+
+    /****       Combo box Events       ****/
+
+
+    @FXML void cbUpdateSelection(ActionEvent event){
+        Agent tempAgent = cbUpdateAgent.getSelectionModel().getSelectedItem();
+
+        txtUpdateFirstName.setText(tempAgent.getFirstName());
+        txtUpdateMiddleInitial.setText(tempAgent.getMiddleInitial());
+        txtUpdateLastName.setText(tempAgent.getLastName());
+        txtUpdatePhone.setText(tempAgent.getPhone());
+        txtUpdateEmail.setText(tempAgent.getEmail());
+        cbUpdatePosition.setValue(tempAgent.getPosition());
+        String agency = null;
+        if(tempAgent.getAgency() == 1){
+            agency = "Calgary";
+        }else if(tempAgent.getAgency() == 2){
+            agency = "Okotoks";
+        }
+        cbUpdateAgency.setValue(agency);
+    }
+
+    @FXML void cbDeleteSelection(ActionEvent event){
+        Agent tempAgent = cbDeleteAgent.getSelectionModel().getSelectedItem();
+
+        lblDeleteFirstName.setText(tempAgent.getFirstName());
+        lblDeleteMiddleInitial.setText(tempAgent.getMiddleInitial());
+        lblDeleteLastName.setText(tempAgent.getLastName());
+        lblDeletePhone.setText(tempAgent.getPhone());
+        lblDeleteEmail.setText(tempAgent.getEmail());
+        lblDeletePosition.setText(tempAgent.getPosition());
+        String agency = null;
+        if(tempAgent.getAgency() == 1){
+            agency = "Calgary";
+        }else if(tempAgent.getAgency() == 2){
+            agency = "Okotoks";
+        }
+        lblDeleteAgency.setText(agency);
     }
 }
