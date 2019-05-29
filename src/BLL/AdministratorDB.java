@@ -25,7 +25,7 @@ public class AdministratorDB {
             Connection connect = DBConnect.getConnection();
 
             //query
-            String selectQuery = "select adminFirstName, adminLastName from Administrators where " +
+            String selectQuery = "select adminFirstName, adminLastName from administrators where " +
                                 "adminUsername = ? and adminPassword = ?";
 
             //makes a sql statement

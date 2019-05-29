@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.DashboardController">
    <top>
       <HBox prefHeight="79.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/TravelSiteLogo.png" />
+                        <Image url="@../images/TravelSiteLogo.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="5.0" top="5.0" />
@@ -95,7 +95,7 @@
                               <Insets left="15.0" top="2.0" />
                            </HBox.margin>
                            <image>
-                              <Image url="@../assets/userAvatar.png" />
+                              <Image url="@../images/userAvatar.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="68.0" prefWidth="126.0">

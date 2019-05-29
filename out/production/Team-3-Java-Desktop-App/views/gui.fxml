@@ -3,296 +3,206 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUIController">
-   <top>
-      <HBox prefHeight="79.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUIController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="79.0" prefWidth="194.0" style="-fx-background-color: #01cafe;">
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                      <image>
-                        <Image url="@../assets/TravelSiteLogo.png" />
+                        <Image url="@../images/TravelSiteLogo.png" />
                      </image>
-                     <HBox.margin>
-                        <Insets left="5.0" top="5.0" />
-                     </HBox.margin>
                   </ImageView>
-                  <VBox prefHeight="13.0" prefWidth="134.0">
-                     <children>
-                        <Label text="TRAVEL" textFill="WHITE">
-                           <font>
-                              <Font name="Trebuchet MS Bold" size="26.0" />
-                           </font>
-                        </Label>
-                        <Label text="EXPERTS" textFill="WHITE">
-                           <font>
-                              <Font name="Trebuchet MS Bold" size="26.0" />
-                           </font>
-                        </Label>
-                     </children>
+                  <Label text="TRAVEL EXPERTS" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
+                        <Insets left="15.0" />
                      </HBox.margin>
-                  </VBox>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin></HBox>
-            <VBox prefHeight="79.0" prefWidth="588.0">
-               <children>
-                  <Label text="PAGE TITLE">
                      <font>
-                        <Font name="Trebuchet MS" size="28.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
-                     <padding>
-                        <Insets left="20.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Page desc.">
-                     <font>
-                        <Font name="Trebuchet MS" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets left="40.0" top="5.0" />
-                     </padding>
                   </Label>
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="79.0" prefWidth="218.0">
-               <children>
-                  <Label fx:id="lblClock" text="CLOCK">
-                     <HBox.margin>
-                        <Insets right="20.0" top="15.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </HBox>
-         </children>
-      </HBox>
-   </top>
-   <left>
-      <VBox prefHeight="323.0" prefWidth="194.0" style="-fx-background-color: #01cafe;" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="121.0" prefWidth="194.0">
-               <children>
-                  <HBox layoutX="-3.0" layoutY="3.0" prefHeight="68.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="15.0" top="2.0" />
-                           </HBox.margin>
-                           <image>
-                              <Image url="@../assets/userAvatar.png" />
-                           </image>
-                        </ImageView>
-                        <VBox prefHeight="68.0" prefWidth="126.0">
-                           <children>
-                              <Label text="Welcome" textFill="WHITE">
-                                 <font>
-                                    <Font name="Trebuchet MS" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="lblWelcome" prefHeight="24.0" prefWidth="126.0" text="Last, First" textFill="WHITE" textOverrun="CLIP">
-                                 <font>
-                                    <Font name="Trebuchet MS" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutY="71.0" prefHeight="34.0" prefWidth="193.0">
-                     <children>
-                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutAction" prefWidth="80.0" style="-fx-background-color: #00add2;" text="Logout" textFill="WHITE" />
-                     </children>
-                  </HBox>
-               </children>
-            </Pane>
-            <HBox fx:id="boxDashboard" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblDashboard" prefHeight="43.0" prefWidth="113.0" text="Dashboard" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/userAvatar.png" />
+               </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox fx:id="boxAgents" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnAgents" mnemonicParsing="false" onAction="#btnAgentsAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblAgents" prefHeight="43.0" prefWidth="113.0" text="Agents" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
+               </VBox.margin></ImageView>
+            <Label text="Welcome" textFill="WHITE" />
+            <Label fx:id="lblUserName" text="USER NAME" textFill="#e7e5e5">
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="20.0" />
                </VBox.margin>
-            </HBox>
-            <HBox fx:id="boxCustomers" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#btnCustomersAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblCustomers" prefHeight="43.0" prefWidth="113.0" text="Customers" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
+            </Label>
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Dashboard" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets />
                </VBox.margin>
-            </HBox>
-            <HBox fx:id="boxPackages" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnPackages" mnemonicParsing="false" onAction="#btnPackagesAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblPackages" prefHeight="43.0" prefWidth="113.0" text="Packages" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Agents">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Customers">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Packages">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Products">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Suppliers">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Settings">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Label fx:id="lblClock" text="DATE TIME CLOCK" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </HBox>
-            <HBox fx:id="boxProducts" alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnProducts" mnemonicParsing="false" onAction="#btnProductsAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblProducts" prefHeight="43.0" prefWidth="113.0" text="Products" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox fx:id="boxSuppliers" alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" prefHeight="60.0" prefWidth="183.0" style="-fx-background-color: #01b3e3;">
-               <children>
-                  <Button fx:id="btnSuppliers" mnemonicParsing="false" onAction="#btnSuppliersAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #00add2;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="lblSuppliers" prefHeight="43.0" prefWidth="113.0" text="Suppliers" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </left>
-   <bottom>
-      <HBox prefHeight="13.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="29.0" prefWidth="194.0" style="-fx-background-color: #01cafe;" />
-            <Label contentDisplay="CENTER" text="© Travel Experts 2019">
-               <HBox.margin>
-                  <Insets left="240.0" />
-               </HBox.margin>
             </Label>
          </children>
-      </HBox>
-   </bottom>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      </VBox>
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
-            <TableView layoutX="26.0" layoutY="314.0" prefHeight="230.0" prefWidth="755.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
+            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0">
+               <children>
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <Label layoutX="57.0" layoutY="25.0" text="PAGE TITLE" textFill="#e7e5e5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="45.0" layoutY="89.0" prefHeight="57.0" prefWidth="661.0" spacing="80.0">
+                     <children>
+                        <Button fx:id="btnAdd" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Add" />
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Update" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Delete" />
+                     </children>
+                  </HBox>
+                  <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="398.0" prefWidth="746.0" stylesheets="@../css/style.css">
+                     <content>
+                        <VBox prefHeight="398.0" prefWidth="746.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
-      </Pane>
-   </center>
-</BorderPane>
+      </StackPane>
+   </children>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+</AnchorPane>
