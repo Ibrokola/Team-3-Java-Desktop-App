@@ -1,12 +1,14 @@
 package app;
 
+import BLL.Administrator;
 import BLL.Agent;
 import BLL.AgentDB;
 import BLL.Validation;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,191 +16,255 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AgentController {
     /*
-    * Purpose: Controller for the Agent.fxml file, that handles operations within the window.
-    * Author: Brent Ward
-    * Module: PROJ-207-OSD
-    * Date May 15, 2019
-    * */
+     * Purpose: Controller for the Agent viewpage.
+     * Author: Brent Ward - starting template found at k33ptoo.
+     * Module: PROJ-207-OSD
+     * Date: May 15, 2019
+     * */
 
     //buttons
-    @FXML private Button btnBack;
+    @FXML private Button btnDashboard;
+    @FXML private Button btnAgents;
+    @FXML private Button btnCustomers;
+    @FXML private Button btnPackages;
+    @FXML private Button btnProducts;
+    @FXML private Button btnSuppliers;
+    @FXML private Button btnSettings;
+    @FXML private Button btnSignout;
     @FXML private Button btnAdd;
+    @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
-    @FXML private Button btnEdit;
-    @FXML private Button btnSave;
+    @FXML private Button btnAddAgent;
+    @FXML private Button btnAddGoBack;
 
-    //text fields
-    @FXML private TextField txtAgentId;
-    @FXML private TextField txtFirstName;
-    @FXML private TextField txtMiddleInitial;
-    @FXML private TextField txtLastName;
-    @FXML private TextField txtPhone;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtPosition;
-    @FXML private TextField txtAgency;
+    //panes
+    @FXML private Pane paneAdd;
+    @FXML private Pane paneUpdate;
+    @FXML private Pane paneDelete;
+    @FXML private Pane paneOverview;
+
+    //Text fields
     @FXML private TextField txtSearch;
+    @FXML private TextField txtAddFirstName;
+    @FXML private TextField txtAddMiddleInitial;
+    @FXML private TextField txtAddLastName;
+    @FXML private TextField txtAddPhone;
+    @FXML private TextField txtAddEmail;
+
+    //Combo boxes
+    @FXML private ComboBox<String> cbAddPosition;
+    @FXML private ComboBox<String> cbAddAgency;
+
+    //Other properties
+    @FXML private Label lblUserName;
+    @FXML private Label lblClock;
 
 
-    //table
-    @FXML private TableView<Agent> tableAgents;
-    @FXML private TableColumn<Agent, Integer> colID;
-    @FXML private TableColumn<Agent, String> colFirstName;
-    @FXML private TableColumn<Agent, String> colMiddleInitial;
-    @FXML private TableColumn<Agent, String> colLastName;
-    @FXML private TableColumn<Agent, String> colPhone;
-    @FXML private TableColumn<Agent, String> colEmail;
-    @FXML private TableColumn<Agent, String> colPosition;
-    @FXML private TableColumn<Agent, Integer> colAgency;
 
+    //handles all button clocks
+    @FXML void handleButtonClicks(ActionEvent event) throws IOException {
+        //dashboard button
+        if(event.getSource() == btnDashboard){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //agent button
+        if(event.getSource() == btnAgents){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //customer button
+        if(event.getSource() == btnCustomers){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/customer.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //package button
+        if(event.getSource() == btnPackages){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/package.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //product button
+        if(event.getSource() == btnProducts){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/product.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //supplier button
+        if(event.getSource() == btnSuppliers){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/supplier.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //settings button
+        if(event.getSource() == btnSettings){
 
-    /****       Button Actions        ****/
-
-    //Returns the user to the main menu window
-    @FXML void btnBackAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-        Scene scene = new Scene(root);
-
-        //gets the stage  -- gets the window
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-    }
-    //Adds an agent with the current text fields
-    @FXML void btnAddAction(ActionEvent event) {
-        if(Validation.isProvided(txtFirstName, "First name") && Validation.isProvided(txtLastName, "Last name") &&
-                Validation.isProvided(txtPhone, "Phone") && Validation.isProvided(txtEmail, "Email") &&
-                Validation.isProvided(txtPosition, "Position") &&
-                Validation.isInteger(Integer.parseInt(txtAgency.getText()), "Agency id")){
-
-            //Creates the agent object with the text fields
-            Agent agent = new Agent(txtFirstName.getText(), txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(),
-                    txtEmail.getText(), txtPosition.getText(), Integer.parseInt(txtAgency.getText()));
-
-            //adds the agent to the database
-            AgentDB.addAgent(agent);
+        }
+        //log out
+        if(event.getSource() == btnSignout){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
 
-    }
-    //deletes an agent with the current text fields
-    @FXML void btnDeleteAction(ActionEvent event) {
-        if(Validation.isProvided(txtAgentId, "Agent id") && Validation.isProvided(txtFirstName, "First name")
-                && Validation.isProvided(txtLastName, "Last name") && Validation.isProvided(txtPhone, "Phone") &&
-                Validation.isProvided(txtEmail, "Email") && Validation.isProvided(txtPosition, "Position") &&
-                Validation.isProvided(txtAgency, "Agency id") && Validation.isInteger(Integer.parseInt(txtAgency.getText()), "Agency id")){
-
-            //Creates the agent object with the text fields
-            Agent agent = new Agent(Integer.parseInt(txtAgentId.getText()),txtFirstName.getText(), txtFirstName.getText(),
-                    txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), txtPosition.getText(),
-                    Integer.parseInt(txtAgency.getText()));
-
-            //deletes the agent from the database
-            AgentDB.deleteAgent(agent);
+        /*** Pane switching buttons ***/
+        if(event.getSource() == btnAdd){
+            loadAddPane();
         }
-    }
-    //Allows the user to edit the text fields once an agent is selected
-    @FXML void btnEditAction(ActionEvent event) {
-        //allows textboxes to be changed
-        txtFirstName.setEditable(true);
-        txtMiddleInitial.setEditable(true);
-        txtLastName.setEditable(true);
-        txtPhone.setEditable(true);
-        txtEmail.setEditable(true);
-        txtPosition.setEditable(true);
-        txtAgency.setEditable(true);
+        if(event.getSource() == btnUpdate){
+            paneUpdate.toFront();
 
-        //enables save button
-        btnSave.setDisable(false);
-    }
-    //updates an agent with the current text fields
-    @FXML void btnSaveAction(ActionEvent event) {
-        if(Validation.isProvided(txtAgentId, "Agent id") && Validation.isProvided(txtFirstName, "First name")
-                && Validation.isProvided(txtLastName, "Last name") && Validation.isProvided(txtPhone, "Phone") &&
-                Validation.isProvided(txtEmail, "Email") && Validation.isProvided(txtPosition, "Position") &&
-                Validation.isProvided(txtAgency, "Agency id") && Validation.isInteger(Integer.parseInt(txtAgency.getText()), "Agency id")) {
-
-            //Creates the agent object with the text fields
-            Agent agent = new Agent(Integer.parseInt(txtAgentId.getText()),txtFirstName.getText(), txtFirstName.getText(),
-                    txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), txtPosition.getText(),
-                    Integer.parseInt(txtAgency.getText()));
-
-            //updates the agent in the database
-            AgentDB.updateAgent(agent);
+            //layout setup
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(true);
+            paneDelete.setVisible(false);
+            paneOverview.setVisible(false);
         }
+        if(event.getSource() == btnDelete){
+            paneDelete.toFront();
+
+            //layout setup
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(false);
+            paneDelete.setVisible(true);
+            paneOverview.setVisible(false);
+        }
+
+        /*** Add Pane ***/
+        if(event.getSource() == btnAddAgent){
+            if(Validation.isProvided(txtAddFirstName, "first name") && Validation.isProvided(txtAddMiddleInitial, "middle initial") &&
+                    Validation.isProvided(txtAddLastName, "last name") && Validation.isProvided(txtAddPhone, "phone") &&
+                    Validation.isProvided(txtAddEmail, "email") && Validation.hasSelection(cbAddPosition, "position") &&
+                    Validation.hasSelection(cbAddAgency, "agency")){
+
+                int agency = 0;
+
+                //Assigns agency combobox value
+                if(cbAddAgency.getSelectionModel().getSelectedItem() == "Calgary"){
+                    agency = 1;
+                }else if(cbAddAgency.getSelectionModel().getSelectedItem() == "Okotoks"){
+                    agency = 2;
+                }
+
+                Agent agent = new Agent(txtAddFirstName.getText(), txtAddMiddleInitial.getText(), txtAddLastName.getText(), txtAddPhone.getText(),
+                                            txtAddEmail.getText(), cbAddPosition.getSelectionModel().getSelectedItem(), agency);
+
+                //Adds the agent to the database
+                AgentDB.addAgent(agent);
+
+                loadOverviewPane();
+            }
+        }
+        if(event.getSource() == btnAddGoBack){
+            loadOverviewPane();
+        }
+
+
     }
 
-    //runs on startup
+    //Widget Code
+    private void startClock() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a   -   dd/MM/YYYY");
+            lblClock.setText(LocalDateTime.now().format(formatter));
+        }), new KeyFrame(Duration.seconds(1)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+    }
+
+    //Startup Sequence
     @FXML void initialize() {
-         //locking UI on load
-        txtAgentId.setDisable(true);
-        btnEdit.setDisable(true);
-        btnSave.setDisable(true);
-        btnDelete.setDisable(true);
+        startClock(); //runs the clock
+        //builds the welcome label
+        Administrator user = LoginController.userLoggedIn();
+        lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
+        lblUserName.setWrapText(true);
 
-        //sets up table columns
-        colID.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asObject());
-        colFirstName.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
-        colMiddleInitial.setCellValueFactory(cellData -> cellData.getValue().getMiddleInitialProperty());
-        colLastName.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
-        colPhone.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
-        colEmail.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
-        colPosition.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
-        colAgency.setCellValueFactory(cellData -> cellData.getValue().getAgencyProperty().asObject());
+        //layout setup
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
 
-        //Adds the data to the table
-        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
-        tableAgents.setItems(agents);
+        loadOverviewPane();
 
+
+        /****           Listeners            ****/
 
         //Changes the table based off text in search bar
         txtSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                                 String oldValue, String newValue) {
-
-                ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
-                tableAgents.setItems(agents);
+                //ADD CODE HERE
             }
-        });
-
-        //fills text boxes with table row clicked
-        tableAgents.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                int index = tableAgents.getSelectionModel().getSelectedIndex();
-                Agent agent = tableAgents.getItems().get(index);
-
-                //fills text fields with selected Agents data
-                txtAgentId.setText(Integer.toString(agent.getID()));
-                txtFirstName.setText(agent.getFirstName());
-                txtMiddleInitial.setText(agent.getMiddleInitial());
-                txtLastName.setText(agent.getLastName());
-                txtPhone.setText(agent.getPhone());
-                txtEmail.setText(agent.getEmail());
-                txtPosition.setText(agent.getPosition());
-                txtAgency.setText(Integer.toString(agent.getAgency()));
-
-                //enables choice buttons, sets textboxes read only till choice made.
-                btnEdit.setDisable(false);
-                btnDelete.setDisable(false);
-                txtFirstName.setEditable(false);
-                txtMiddleInitial.setEditable(false);
-                txtLastName.setEditable(false);
-                txtPhone.setEditable(false);
-                txtEmail.setEditable(false);
-                txtPosition.setEditable(false);
-                txtAgency.setEditable(false);
-            }
-
         });
     }
 
+    /*** Pane loading ***/
+
+    private void loadOverviewPane(){
+        paneOverview.toFront();
+
+        //returns to overview pane
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
+    }
+    private void loadAddPane(){
+        paneAdd.toFront();
+
+        //layout setup
+        paneAdd.setVisible(true);
+        paneUpdate.setVisible(false);
+        paneDelete.setVisible(false);
+        paneOverview.setVisible(false);
+
+        //sets up combo boxes
+        cbAddPosition.getSelectionModel().clearSelection();
+        cbAddPosition.getItems().removeAll(cbAddPosition.getItems());
+        cbAddPosition.getItems().addAll("Junior Agent", "Intermediate Agent", "Senior Agent");
+
+        cbAddAgency.getSelectionModel().clearSelection();
+        cbAddAgency.getItems().removeAll(cbAddAgency.getItems());
+        cbAddAgency.getItems().addAll("Calgary", "Okotoks");
+    }
+
+    private void loadUpdatePane(){
+
+    }
+    private void loadDeletePane(){
+
+    }
 }

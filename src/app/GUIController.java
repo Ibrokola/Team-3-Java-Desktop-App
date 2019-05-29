@@ -143,8 +143,8 @@ public class GUIController {
     @FXML void initialize() {
         startClock(); //runs the clock
         //builds the welcome label
-        //Administrator user = LoginController.userLoggedIn();
-        //lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
-        //lblUserName.setWrapText(true);
+        Administrator user = LoginController.userLoggedIn();
+        lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
+        lblUserName.setWrapText(true);
     }
 }

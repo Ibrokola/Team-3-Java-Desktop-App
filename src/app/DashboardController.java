@@ -1,11 +1,5 @@
 package app;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
 import BLL.Administrator;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -18,110 +12,117 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class DashboardController {
     /*
-     * Purpose: Controller class for the applications dashboard/home page.
-     * Author: Brent Ward
-     * Module:PROJ-207-OSD
-     * Date May 15, 2019
+     * Purpose: Controller for dashboard/home page for the desktop app.
+     * Author: Brent Ward - starting template found at k33ptoo.
+     * Module: PROJ-207-OSD
+     * Date: May 15, 2019
      * */
 
-
-    //Labels
-    @FXML private Label lblClock;
-    @FXML private Label lblWelcome;
-
-    //Buttons
-    @FXML private Button btnLogout;
+    //buttons
     @FXML private Button btnDashboard;
     @FXML private Button btnAgents;
     @FXML private Button btnCustomers;
     @FXML private Button btnPackages;
     @FXML private Button btnProducts;
     @FXML private Button btnSuppliers;
+    @FXML private Button btnSettings;
+    @FXML private Button btnSignout;
 
 
-    /****         BUTTON ACTIONS           ****/
+    //Other properties
+    @FXML private Label lblUserName;
+    @FXML private Label lblClock;
 
-    //Logout function
-    @FXML void btnLogoutAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
 
-    //Returns to dashboard
-    @FXML void btnDashboardAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
-    //Navigates to Agent page
-    @FXML void btnAgentsAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
-    //Navigates to Customer page
-    @FXML void btnCustomersAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/customer.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
-    //Navigates to Packages page
-    @FXML void btnPackagesAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/package.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
-    //Navigates to Products page
-    @FXML void btnProductsAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/product.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
-    }
-    //Navigates to Suppliers page
-    @FXML void btnSuppliersAction(ActionEvent event) throws IOException {
-        //Changes the scene, fetches the stage
-        Parent root = FXMLLoader.load(getClass().getResource("../views/supplier.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
-        stage.setScene(scene);
+    //handles all button clocks
+    @FXML void handleButtonClicks(ActionEvent event) throws IOException {
+        //dashboard button
+        if(event.getSource() == btnDashboard){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //agent button
+        if(event.getSource() == btnAgents){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/agent.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //customer button
+        if(event.getSource() == btnCustomers){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/customer.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //package button
+        if(event.getSource() == btnPackages){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/package.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //product button
+        if(event.getSource() == btnProducts){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/product.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //supplier button
+        if(event.getSource() == btnSuppliers){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/supplier.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
+        //settings button
+        if(event.getSource() == btnSettings){
+
+        }
+        //log out
+        if(event.getSource() == btnSignout){
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
+        }
     }
 
     //Widget Code
     private void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a   -   dd/MM/YYYY");
             lblClock.setText(LocalDateTime.now().format(formatter));
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
 
-
     //Startup Sequence
     @FXML void initialize() {
         startClock(); //runs the clock
         //builds the welcome label
         Administrator user = LoginController.userLoggedIn();
-        lblWelcome.setText(user.getLastName() + ", " + user.getFirstName());
-        lblWelcome.setWrapText(true);
+        lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
+        lblUserName.setWrapText(true);
     }
 }
