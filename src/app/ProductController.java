@@ -48,6 +48,12 @@ public class ProductController {
     private TableColumn<ProductSupplier, String> clProdSupProd;
     @FXML
     private TableColumn<ProductSupplier, String> clProdSupSup;
+    @FXML
+    private TableView<PackageProductSupplier> tvPckProd;
+    @FXML
+    private TableColumn<PackageProductSupplier, String> clProdPck;
+    @FXML
+    private TableColumn<PackageProductSupplier, String> clProdSup;
 
     // Textfield attributes
     @FXML
@@ -56,6 +62,8 @@ public class ProductController {
     private TextField txtProdName;
     @FXML
     private TextField txtSearchSup;
+    @FXML
+    private TextField txtSearchPck;
 
     // Button attributes
     @FXML
@@ -68,8 +76,26 @@ public class ProductController {
     private Button btnUpdate;
     @FXML
     private Button btnRemove;
+    @FXML
+    private Button btnSupAdd;
+
+    @FXML
+    private Button btnSupUpdate;
+
+    @FXML
+    private Button btnSupClear;
+
+    @FXML
+    private Button btnPckClear;
+
+    @FXML
+    private Button btnPckAdd;
+
+    @FXML
+    private Button btnPckUpdate;
 
     private int prodId;
+
 
     // Button methods
     // Add product button callback
@@ -122,6 +148,37 @@ public class ProductController {
             btnUpdate.setDisable(true);
             btnAdd.setDisable(true);
         }
+    }
+
+    @FXML
+    void btnPckAddAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnPckClearAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnPckUpdateAction(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void btnSupAddAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSupClearAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSupUpdateAction(ActionEvent event) {
+
     }
 
     @FXML
@@ -219,5 +276,4 @@ public class ProductController {
     }
 
 }
-
 

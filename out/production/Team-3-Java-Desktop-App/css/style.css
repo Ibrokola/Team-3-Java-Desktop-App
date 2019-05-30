@@ -86,3 +86,8 @@
     -fx-background-color: #10165F;
     -fx-background-radius: 5em;
 }
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+

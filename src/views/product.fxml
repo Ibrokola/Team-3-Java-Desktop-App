@@ -13,46 +13,46 @@
 
 <AnchorPane prefHeight="579.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ProductController">
    <children>
-      <TabPane layoutY="43.0" prefHeight="441.0" prefWidth="760.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="43.0" prefHeight="521.0" prefWidth="760.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Products">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="739.0">
                      <children>
-                        <TableView fx:id="tvProducts" layoutX="48.0" layoutY="128.0" prefHeight="264.0" prefWidth="518.0">
+                        <TableView fx:id="tvProducts" layoutX="7.0" layoutY="173.0" prefHeight="309.0" prefWidth="562.0">
                           <columns>
-                            <TableColumn fx:id="clProdId" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="clProdName" prefWidth="254.0" text="Product" />
+                            <TableColumn fx:id="clProdId" prefWidth="95.0" text="ID" />
+                            <TableColumn fx:id="clProdName" prefWidth="466.0" text="Product" />
                           </columns>
                         </TableView>
-                        <TextField fx:id="txtProdName" layoutX="154.0" layoutY="35.0" />
-                        <TextField fx:id="txtProdSearch" layoutX="104.0" layoutY="80.0" prefHeight="27.0" prefWidth="217.0" />
-                        <Label layoutX="49.0" layoutY="81.0" prefHeight="24.0" prefWidth="53.0" text="Search:">
+                        <TextField fx:id="txtProdName" layoutX="115.0" layoutY="44.0" />
+                        <TextField fx:id="txtProdSearch" layoutX="65.0" layoutY="118.0" prefHeight="27.0" prefWidth="217.0" />
+                        <Label layoutX="10.0" layoutY="119.0" prefHeight="24.0" prefWidth="53.0" text="Search:">
                            <font>
                               <Font name="Malayalam MN" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="48.0" layoutY="37.0" text="Product Name:">
+                        <Label layoutX="9.0" layoutY="46.0" text="Product Name:">
                            <font>
                               <Font name="Malayalam MN" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnClear" layoutX="449.0" layoutY="36.0" mnemonicParsing="false" onAction="#btnClearAction" prefHeight="26.0" prefWidth="76.0" text="Clear">
+                        <Button fx:id="btnClear" layoutX="410.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnClearAction" prefHeight="26.0" prefWidth="76.0" text="Clear">
                            <font>
                               <Font name="Kefa Regular" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAdd" layoutX="355.0" layoutY="36.0" mnemonicParsing="false" onAction="#btnAddAction" prefHeight="26.0" prefWidth="76.0" text="Add">
+                        <Button fx:id="btnAdd" layoutX="316.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnAddAction" prefHeight="26.0" prefWidth="76.0" text="Add">
                            <font>
                               <Font name="Kefa Regular" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnUpdate" layoutX="355.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnUpdateAction" prefHeight="26.0" prefWidth="76.0" text="Update">
+                        <Button fx:id="btnUpdate" layoutX="316.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnUpdateAction" prefHeight="26.0" prefWidth="76.0" text="Update">
                            <font>
                               <Font name="Kefa Regular" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnRemove" layoutX="449.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnRemoveAction" prefHeight="26.0" prefWidth="76.0" text="Remove">
+                        <Button fx:id="btnRemove" layoutX="410.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnRemoveAction" prefHeight="26.0" prefWidth="76.0" text="Remove">
                            <font>
                               <Font name="Kefa Regular" size="14.0" />
                            </font>
@@ -63,30 +63,96 @@
           </Tab>
           <Tab text="Products Suppliers">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="760.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="760.0">
                      <children>
-                        <TableView fx:id="tvProdSup" layoutX="41.0" layoutY="129.0" prefHeight="266.0" prefWidth="565.0">
+                        <TableView fx:id="tvProdSup" layoutX="9.0" layoutY="189.0" prefHeight="286.0" prefWidth="564.0">
                           <columns>
                             <TableColumn fx:id="clProdSupId" prefWidth="67.0" text="Id" />
-                            <TableColumn fx:id="clProdSupProd" prefWidth="208.0" text="Product" />
-                              <TableColumn fx:id="clProdSupSup" prefWidth="232.0" text="Supplier" />
+                            <TableColumn fx:id="clProdSupProd" prefWidth="259.0" text="Product" />
+                              <TableColumn fx:id="clProdSupSup" prefWidth="269.0" text="Supplier" />
                           </columns>
                         </TableView>
-                        <TextField fx:id="txtSearchSup" layoutX="95.0" layoutY="81.0" prefHeight="27.0" prefWidth="257.0" />
-                        <Label layoutX="43.0" layoutY="81.0" prefHeight="26.0" prefWidth="52.0" text="Search:">
+                        <TextField fx:id="txtSearchSup" layoutX="64.0" layoutY="131.0" prefHeight="27.0" prefWidth="257.0" />
+                        <Label layoutX="12.0" layoutY="131.0" prefHeight="26.0" prefWidth="52.0" text="Search:">
                            <font>
                               <Font name="Malayalam MN" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="43.0" layoutY="19.0" prefWidth="150.0" />
-                        <ComboBox layoutX="224.0" layoutY="19.0" prefWidth="150.0" />
+                        <ComboBox layoutX="76.0" layoutY="54.0" prefWidth="150.0" />
+                        <ComboBox layoutX="317.0" layoutY="53.0" prefHeight="27.0" prefWidth="250.0" />
+                        <Button fx:id="btnSupAdd" contentDisplay="CENTER" layoutX="429.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnSupAddAction" text="Add">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSupUpdate" layoutX="495.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnSupUpdateAction" text="Update">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSupClear" layoutX="351.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnSupClearAction" text="Clear">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="10.0" layoutY="54.0" prefHeight="26.0" prefWidth="59.0" text="Product:">
+                           <font>
+                              <Font name="Malayalam MN" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="247.0" layoutY="54.0" prefHeight="26.0" prefWidth="60.0" text="Supplier:">
+                           <font>
+                              <Font name="Malayalam MN" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
             <Tab text="Package Products Suppliers">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="584.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="584.0">
+                     <children>
+                        <TableView fx:id="tvPckProd" layoutX="15.0" layoutY="172.0" prefHeight="299.0" prefWidth="540.0">
+                          <columns>
+                            <TableColumn fx:id="clProdPck" prefWidth="281.0" text="Package" />
+                              <TableColumn fx:id="clProdSup" prefWidth="257.0" text="Product Supplier" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="15.0" layoutY="126.0" text="Search:">
+                           <font>
+                              <Font name="Malayalam MN" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtSearchPck" layoutX="72.0" layoutY="122.0" prefHeight="27.0" prefWidth="212.0" />
+                        <Button fx:id="btnPckClear" layoutX="307.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnPckClearAction" prefHeight="29.0" prefWidth="64.0" text="Clear">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="15.0" layoutY="54.0" text="Package:">
+                           <font>
+                              <Font name="Malayalam MN" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="267.0" layoutY="54.0" text="Product Supplier:">
+                           <font>
+                              <Font name="Malayalam MN" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="79.0" layoutY="50.0" prefHeight="27.0" prefWidth="159.0" />
+                        <ComboBox layoutX="392.0" layoutY="50.0" prefHeight="27.0" prefWidth="157.0" />
+                        <Button fx:id="btnPckAdd" layoutX="394.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnPckAddAction" prefHeight="29.0" prefWidth="54.0" text="Add">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnPckUpdate" layoutX="469.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnPckUpdateAction" prefHeight="29.0" prefWidth="84.0" text="Update">
+                           <font>
+                              <Font name="Krungthep" size="14.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
