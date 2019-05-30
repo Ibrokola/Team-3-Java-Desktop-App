@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #2C2F33;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUIController">
    <children>
-      <VBox id="sidebar" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="sidebar" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
                <children>
@@ -163,18 +163,18 @@
             </Label>
          </children>
       </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
          <children>
-            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css" />
-            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css" />
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@../css/style.css">
+            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" />
+            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" />
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" stylesheets="@../css/style.css">
                <children>
                   <Label layoutX="57.0" layoutY="25.0" text="PAGE TITLE" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" stylesheets="@../css/style.css" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="text-field" stylesheets="@../css/style.css" />
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8_Search_52px.png" />

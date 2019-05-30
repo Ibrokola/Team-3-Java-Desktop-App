@@ -45,7 +45,7 @@
 }
 
 /* Pane Styling */
-.pane {
+.mainPane {
     -fx-background-color:  #2C2F33;
 }
 
@@ -102,3 +102,8 @@
     -fx-background-color: #23272A;
     -fx-background-radius: 5em;
 }
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
