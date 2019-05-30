@@ -288,7 +288,8 @@ public class AgentController {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                                 String oldValue, String newValue) {
-                //ADD CODE HERE
+                ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
+                tableAgents.setItems(agents);
             }
         });
     }

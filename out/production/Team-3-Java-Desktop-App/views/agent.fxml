@@ -200,21 +200,21 @@
                               </VBox>
                               <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
                                  <children>
-                                    <TextField fx:id="txtAddFirstName" promptText="Enter first name" />
-                                    <TextField fx:id="txtAddMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" />
-                                    <TextField fx:id="txtAddLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" />
-                                    <TextField fx:id="txtAddPhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" />
-                                    <TextField fx:id="txtAddEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" />
-                                    <ComboBox fx:id="cbAddPosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" />
-                                    <ComboBox fx:id="cbAddAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" />
+                                    <TextField fx:id="txtAddFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddPhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbAddPosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbAddAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" stylesheets="@../css/style.css" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnAddAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
-                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnAddAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Add" />
+                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
@@ -237,7 +237,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick an agent:" textFill="WHITE" />
-                              <ComboBox fx:id="cbUpdateAgent" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbUpdateAgent" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">
@@ -255,21 +255,21 @@
                               </VBox>
                               <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
                                  <children>
-                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" />
-                                    <TextField fx:id="txtUpdateMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" />
-                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" />
-                                    <TextField fx:id="txtUpdatePhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" />
-                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" />
-                                    <ComboBox fx:id="cbUpdatePosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" />
-                                    <ComboBox fx:id="cbUpdateAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" />
+                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdatePhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbUpdatePosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbUpdateAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" stylesheets="@../css/style.css" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnUpdateAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
-                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnUpdateAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Update" />
+                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
@@ -292,7 +292,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick an agent:" textFill="WHITE" />
-                              <ComboBox fx:id="cbDeleteAgent" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbDeleteAgent" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0">
@@ -323,17 +323,17 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnDeleteAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Delete" />
-                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnDeleteAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Delete" />
+                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@../css/style.css">
                <children>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" stylesheets="@../css/style.css" />
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8_Search_52px.png" />
