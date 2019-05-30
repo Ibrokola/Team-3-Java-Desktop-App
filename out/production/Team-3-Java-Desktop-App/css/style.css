@@ -14,7 +14,7 @@
 -fx-text-fill : white;
 }
 .button:hover {
--fx-background-color : #2C2F33;
+-fx-background-color : #30363a;
 }
 .button:pressed {
 -fx-background-color : #2C2F20;
@@ -31,6 +31,12 @@
 
 /* Text field Styling */
 .text-field{
+    -fx-background-color:  #2C2F33;
+    -fx-border-color:  #B7C3D7;
+    -fx-border-radius:  2em;
+    -fx-text-fill: white;
+}
+.searchBar{
     -fx-background-color:  #2C2F33;
     -fx-border-color:  #B7C3D7;
     -fx-border-radius:  2em;
@@ -55,13 +61,12 @@
 .table-view .column-header-background .filler {
     -fx-background-color: #23272A;
     -fx-stroke: transparent;
-    -fx-size:50;
+    -fx-size:40;
     -fx-alignment: CENTER ;
     -fx-text-alignment: center;
-
 }
 .table-row-cell:filled:hover {
-    -fx-size:50;
+    -fx-size:40;
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
 }
@@ -76,13 +81,23 @@
 .table-view .table-column{
     -fx-text-alignment: center;
     -fx-alignment: CENTER
-
 }
 .table-row-cell{
-    -fx-background-color: #99AAB5;
+    -fx-background-color: #535960;
 }
 .table-row-cell:odd{
-    -fx-background-color: #7289DA;
+    -fx-background-color: #676e77;
+}
+.table-cell{
+    -fx-text-fill: white;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: rgba(1, 11, 12, 1);
+    -fx-padding: 1em;
 }
 
 
@@ -104,6 +119,6 @@
 }
 
 .scroll-pane > .corner {
-    -fx-background-color: black;
+    -fx-background-color: #2C2F33;
 }
 
