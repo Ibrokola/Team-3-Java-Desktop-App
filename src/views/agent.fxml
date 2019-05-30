@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -274,7 +275,7 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -330,9 +331,14 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" visible="false">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
                   <Label layoutX="57.0" layoutY="25.0" text="Agents" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
@@ -345,20 +351,18 @@
                         <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Delete" />
                      </children>
                   </HBox>
-                  <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="398.0" prefWidth="746.0" stylesheets="@../css/style.css">
-                     <content>
-                        <VBox prefHeight="398.0" prefWidth="746.0" spacing="5.0" style="-fx-background-color: #02030A;">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Search_52px.png" />
-                     </image>
-                  </ImageView>
+                  <TableView fx:id="tableAgents" layoutX="30.0" layoutY="186.0" prefHeight="358.0" prefWidth="733.0" stylesheets="@../css/style.css">
+                     <columns>
+                        <TableColumn fx:id="colID" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="colFirstName" prefWidth="100.0" text="First Name" />
+                        <TableColumn fx:id="colMiddleInitial" prefWidth="100.0" text="Middle Initial" />
+                        <TableColumn fx:id="colLastName" prefWidth="100.0" text="Last Name" />
+                        <TableColumn fx:id="colPhone" prefWidth="100.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="colPosition" prefWidth="150.0" text="Position" />
+                        <TableColumn fx:id="colAgency" prefWidth="75.0" text="Agency" />
+                     </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>
