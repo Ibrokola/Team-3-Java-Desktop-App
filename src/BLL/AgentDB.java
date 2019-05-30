@@ -56,6 +56,40 @@ public class AgentDB {
         return agents;
     }
 
+    //grabs a singular agent
+    public static Agent grabAgent(int id){
+        Agent agent = null;
+
+        try {
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select AgentId, AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone," +
+                    "AgtEmail, AgtPosition, AgencyId from Agents where AgentId=?";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+            stmt.setInt(1, id);
+
+            //assigns and executes statement
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                agent = new Agent(rs.getInt("AgentId"),
+                        rs.getString("AgtFirstName"),
+                        rs.getString("AgtMiddleInitial"),
+                        rs.getString("AgtLastName"),
+                        rs.getString("AgtBusPhone"),
+                        rs.getString("AgtEmail"),
+                        rs.getString("AgtPosition"),
+                        rs.getInt("AgencyId"));
+            }
+            connect.close();
+
+        }catch(Exception e){ e.printStackTrace(); }
+
+        return agent;
+    }
 
     //searchs an agent based on user input
     public static List<Agent> searchAgents(String name){

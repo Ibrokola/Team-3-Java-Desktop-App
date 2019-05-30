@@ -2,107 +2,370 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #23272A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CustomerController">
    <children>
-      <TableView fx:id="tableCustomers" layoutX="14.0" layoutY="309.0" prefHeight="285.0" prefWidth="903.0">
-        <columns>
-          <TableColumn fx:id="colID" prefWidth="40.0" text="ID" />
-          <TableColumn fx:id="colFirstName" prefWidth="75.0" text="First Name" />
-            <TableColumn fx:id="colLastName" prefWidth="75.0" text="Last Name" />
-            <TableColumn fx:id="colAddress" prefWidth="100.0" text="Address" />
-            <TableColumn fx:id="colCity" prefWidth="75.0" text="City" />
-            <TableColumn fx:id="colProv" prefWidth="50.0" text="Prov" />
-            <TableColumn fx:id="colPostal" prefWidth="75.0" text="Postal" />
-            <TableColumn fx:id="colCountry" prefWidth="75.0" text="Country" />
-            <TableColumn fx:id="colHomePhone" prefWidth="75.0" text="Phone (H)" />
-            <TableColumn fx:id="colBusPhone" prefWidth="75.0" text="Phone (B)" />
-            <TableColumn fx:id="colEmail" prefWidth="125.0" text="Email" />
-            <TableColumn fx:id="colAgentId" prefWidth="55.0" text="Agent Id" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnBack" layoutX="806.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnBackAction" text="Return to Home">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
-      <Label layoutX="14.0" layoutY="25.0" text="Customer Database:">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="260.0" prefHeight="42.0" prefWidth="903.0" spacing="15.0">
+      <VBox id="sidebar" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Search by name:" />
-            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="194.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="218.0" prefHeight="42.0" prefWidth="903.0" spacing="50.0">
-         <children>
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteAction" text="Delete">
-               <HBox.margin>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/TravelSiteLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="TRAVEL EXPERTS" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/userAvatar.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin></ImageView>
+            <Label text="Welcome" textFill="WHITE" />
+            <Label fx:id="lblUserName" text="USER NAME" textFill="#e7e5e5">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Dashboard" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
                   <Insets />
-               </HBox.margin>
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Button>
-            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEditAction" text="Edit" />
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveAction" text="Save" />
-         </children>
-      </HBox>
-      <VBox layoutX="112.0" layoutY="60.0" prefHeight="150.0" prefWidth="87.0" spacing="22.0">
-         <children>
-            <Label text="Customer ID:" />
-            <Label text="First Name:" />
-            <Label text="Last Name:" />
-            <Label text="Address:" />
+            <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Agents">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Customers">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Packages">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Products">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Suppliers">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Settings">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Label fx:id="lblClock" text="DATE TIME CLOCK" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
-      <VBox layoutX="211.0" layoutY="57.0" prefHeight="156.0" prefWidth="165.0" spacing="14.0">
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" stylesheets="@../css/style.css">
          <children>
-            <TextField fx:id="txtCustId" maxWidth="-Infinity" prefWidth="60.0" />
-            <TextField fx:id="txtFirstName" />
-            <TextField fx:id="txtLastName" />
-            <TextField fx:id="txtAddress" />
+            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <children>
+                              <Label text="Customers" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="select a customer to update." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Pick a customer:" textFill="WHITE" />
+                              <ComboBox fx:id="cbUpdateCustomer" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="241.0" prefWidth="793.0" spacing="25.0">
+                           <children>
+                              <VBox prefHeight="427.0" prefWidth="75.0" spacing="36.0">
+                                 <children>
+                                    <Label text="First Name:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Last Name:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="27.0" text="Address:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="44.0" text="City:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="61.0" text="Province:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="358.0" prefWidth="253.0" spacing="24.0">
+                                 <children>
+                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="10.0" promptText="Enter last name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateAddress" layoutX="10.0" layoutY="71.0" promptText="Enter address" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateCity" layoutX="10.0" layoutY="132.0" promptText="Enter city" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateProv" layoutX="10.0" layoutY="193.0" promptText="Enter province" stylesheets="@../css/style.css" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="258.0" prefWidth="75.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Postal:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Country:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="27.0" text="Phone (H):" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="44.0" text="Phone (B):" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="61.0" text="Email:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="280.0" layoutY="10.0" prefHeight="311.0" prefWidth="253.0" spacing="24.0">
+                                 <children>
+                                    <TextField fx:id="txtUpdatePostal" promptText="Enter postal code" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateCountry" layoutX="10.0" layoutY="10.0" promptText="Enter country" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateHomePhone" layoutX="10.0" layoutY="71.0" promptText="Enter home phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateBusPhone" layoutX="10.0" layoutY="132.0" promptText="Enter business phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Select an Agent:" textFill="WHITE" />
+                              <ComboBox fx:id="cbAgentId" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnUpdateCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Update" />
+                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="paneDelete" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2C2F33;" stylesheets="@../css/style.css">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <children>
+                              <Label text="Customers" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Select a customer to delete." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Pick a customer:" textFill="WHITE" />
+                              <ComboBox fx:id="cbDeleteCustomer" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="317.0" prefWidth="793.0" spacing="25.0">
+                           <children>
+                              <VBox prefHeight="427.0" prefWidth="75.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Customer Id:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="First Name:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="27.0" text="Last Name:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="44.0" text="Address:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="61.0" text="City:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="222.0" text="Province:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="319.0" layoutY="10.0" prefHeight="241.0" prefWidth="200.0" spacing="36.0">
+                                 <children>
+                                    <Label fx:id="lblDeleteCustomerId" layoutX="10.0" layoutY="222.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteFirstName" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteLastName" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteAddress" layoutX="10.0" layoutY="27.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteCity" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteProv" layoutX="10.0" layoutY="61.0" textFill="WHITE" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="258.0" prefWidth="75.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Postal:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Country:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="27.0" text="Phone (H):" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="44.0" text="Phone (B):" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="61.0" text="Email:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="222.0" text="Agent:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="469.0" layoutY="10.0" prefHeight="241.0" prefWidth="200.0" spacing="36.0">
+                                 <children>
+                                    <Label fx:id="lblDeletePostal" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteCountry" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteHomePhone" layoutX="10.0" layoutY="27.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteBusPhone" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteEmail" layoutX="10.0" layoutY="61.0" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteAgent" layoutX="10.0" layoutY="222.0" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnDeleteCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Delete" />
+                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #2C2F33;" visible="false">
+               <children>
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="57.0" layoutY="25.0" text="Customers" textFill="#e7e5e5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="45.0" layoutY="89.0" prefHeight="57.0" prefWidth="661.0" spacing="80.0">
+                     <children>
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Update" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Delete" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableCustomers" layoutX="34.0" layoutY="169.0" prefHeight="379.0" prefWidth="727.0" stylesheets="@../css/style.css">
+                    <columns>
+                      <TableColumn fx:id="colID" prefWidth="50.0" text="ID" />
+                      <TableColumn fx:id="colFirstName" prefWidth="90.0" text="First Name" />
+                        <TableColumn fx:id="colLastName" prefWidth="90.0" text="Last Name" />
+                        <TableColumn fx:id="colAddress" prefWidth="125.0" text="Address" />
+                        <TableColumn fx:id="colCity" text="City" />
+                        <TableColumn fx:id="colProv" prefWidth="50.0" text="Prov" />
+                        <TableColumn fx:id="colPostal" prefWidth="75.0" text="Postal" />
+                        <TableColumn fx:id="colCountry" prefWidth="85.0" text="Country" />
+                        <TableColumn fx:id="colHomePhone" prefWidth="90.0" text="Phone (H)" />
+                        <TableColumn fx:id="colBusPhone" prefWidth="90.0" text="Phone (B)" />
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="colAgentId" text="Agent's ID" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
          </children>
-      </VBox>
-      <VBox layoutX="396.0" layoutY="63.0" prefHeight="150.0" prefWidth="69.0" spacing="22.0">
-         <children>
-            <Label text="City" />
-            <Label text="Prov" />
-            <Label text="Postal" />
-            <Label text="Country" />
-         </children>
-      </VBox>
-      <VBox layoutX="466.0" layoutY="57.0" prefHeight="156.0" prefWidth="100.0" spacing="14.0">
-         <children>
-            <TextField fx:id="txtCity" />
-            <TextField fx:id="txtProv" />
-            <TextField fx:id="txtPostal" />
-            <TextField fx:id="txtCountry" />
-         </children>
-      </VBox>
-      <VBox layoutX="588.0" layoutY="60.0" prefHeight="150.0" prefWidth="69.0" spacing="22.0">
-         <children>
-            <Label text="Phone (H):" />
-            <Label text="Phone (B):" />
-            <Label text="Email:" />
-            <Label text="Agent's ID:" />
-         </children>
-      </VBox>
-      <VBox layoutX="668.0" layoutY="60.0" prefHeight="156.0" prefWidth="141.0" spacing="14.0">
-         <children>
-            <TextField fx:id="txtHomePhone" />
-            <TextField fx:id="txtBusPhone" />
-            <TextField fx:id="txtEmail" />
-            <TextField fx:id="txtAgentId" maxWidth="-Infinity" prefWidth="60.0" />
-         </children>
-      </VBox>
+      </StackPane>
    </children>
-</Pane>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+</AnchorPane>

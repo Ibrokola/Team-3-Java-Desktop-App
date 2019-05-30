@@ -28,8 +28,8 @@ import java.time.format.DateTimeFormatter;
 
 public class AgentController {
     /*
-     * Purpose: Controller for the Agent viewpage.
-     * Author: Brent Ward - starting template found at k33ptoo.
+     * Purpose: Controller for the Agent view page.
+     * Author: Brent Ward
      * Module: PROJ-207-OSD
      * Date: May 15, 2019
      * */
@@ -330,11 +330,11 @@ public class AgentController {
 
         //sets up combo boxes
         cbAddPosition.getSelectionModel().clearSelection();
-        cbAddPosition.getItems().removeAll(cbAddPosition.getItems());
+        cbAddPosition.getItems().removeAll();
         cbAddPosition.getItems().addAll("Junior Agent", "Intermediate Agent", "Senior Agent");
 
         cbAddAgency.getSelectionModel().clearSelection();
-        cbAddAgency.getItems().removeAll(cbAddAgency.getItems());
+        cbAddAgency.getItems().removeAll();
         cbAddAgency.getItems().addAll("Calgary", "Okotoks");
 
         //clear text fields
@@ -355,16 +355,16 @@ public class AgentController {
         paneOverview.setVisible(false);
 
         //combobox setup
-        cbUpdateAgent.getItems().removeAll(cbDeleteAgent.getItems());
+        cbUpdateAgent.getItems().removeAll();
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         cbUpdateAgent.setItems(agents);
 
         cbUpdatePosition.getSelectionModel().clearSelection();
-        cbUpdatePosition.getItems().removeAll(cbUpdatePosition.getItems());
+        cbUpdatePosition.getItems().removeAll();
         cbUpdatePosition.getItems().addAll("Junior Agent", "Intermediate Agent", "Senior Agent");
 
         cbUpdateAgency.getSelectionModel().clearSelection();
-        cbUpdateAgency.getItems().removeAll(cbUpdateAgency.getItems());
+        cbUpdateAgency.getItems().removeAll();
         cbUpdateAgency.getItems().addAll("Calgary", "Okotoks");
 
         //clears text fields
@@ -384,7 +384,8 @@ public class AgentController {
         paneOverview.setVisible(false);
 
         //combobox setup
-        cbDeleteAgent.getItems().removeAll(cbDeleteAgent.getItems());
+        cbDeleteAgent.getSelectionModel().clearSelection();
+        cbDeleteAgent.getItems().removeAll();
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         cbDeleteAgent.setItems(agents);
 

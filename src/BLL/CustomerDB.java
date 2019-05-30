@@ -148,7 +148,7 @@ public class CustomerDB {
         try{
             //connection built
             Connection connect = DBConnect.getConnection();
-            String deleteQuery = "delete all from Customers where CustomerId=?";
+            String deleteQuery = "delete from Customers where CustomerId=?";
 
             PreparedStatement stmt = connect.prepareStatement(deleteQuery);
             stmt.setInt(1, customer.getId());

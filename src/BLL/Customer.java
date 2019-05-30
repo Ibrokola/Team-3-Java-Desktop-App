@@ -98,4 +98,11 @@ public class Customer {
     public void setBusPhone(String phone) { busPhone.set(phone); }
     public void setEmail(String eml) { email.set(eml); }
     public void setAgent(int id) { agent.set(id); }
+
+    //to string override
+
+    @Override
+    public String toString() {
+        return lastName.get() + ", " + firstName.get();
+    }
 }
