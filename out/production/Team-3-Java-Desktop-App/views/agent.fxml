@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -199,21 +200,21 @@
                               </VBox>
                               <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
                                  <children>
-                                    <TextField fx:id="txtAddFirstName" promptText="Enter first name" />
-                                    <TextField fx:id="txtAddMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" />
-                                    <TextField fx:id="txtAddLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" />
-                                    <TextField fx:id="txtAddPhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" />
-                                    <TextField fx:id="txtAddEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" />
-                                    <ComboBox fx:id="cbAddPosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" />
-                                    <ComboBox fx:id="cbAddAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" />
+                                    <TextField fx:id="txtAddFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddPhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtAddEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbAddPosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbAddAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" stylesheets="@../css/style.css" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnAddAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
-                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnAddAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Add" />
+                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
@@ -236,7 +237,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick an agent:" textFill="WHITE" />
-                              <ComboBox fx:id="cbUpdateAgent" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbUpdateAgent" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">
@@ -254,27 +255,27 @@
                               </VBox>
                               <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
                                  <children>
-                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" />
-                                    <TextField fx:id="txtUpdateMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" />
-                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" />
-                                    <TextField fx:id="txtUpdatePhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" />
-                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" />
-                                    <ComboBox fx:id="cbUpdatePosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" />
-                                    <ComboBox fx:id="cbUpdateAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" />
+                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateMiddleInitial" layoutX="10.0" layoutY="10.0" promptText="Enter middle initial" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="71.0" promptText="Enter last name" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdatePhone" layoutX="10.0" layoutY="132.0" promptText="Enter phone number" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbUpdatePosition" prefHeight="25.0" prefWidth="351.0" promptText="Select agent position" stylesheets="@../css/style.css" />
+                                    <ComboBox fx:id="cbUpdateAgency" prefHeight="25.0" prefWidth="361.0" promptText="Select an agency" stylesheets="@../css/style.css" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnUpdateAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
-                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnUpdateAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Update" />
+                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -291,7 +292,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick an agent:" textFill="WHITE" />
-                              <ComboBox fx:id="cbDeleteAgent" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbDeleteAgent" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0">
@@ -322,17 +323,22 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnDeleteAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Delete" />
-                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                              <Button fx:id="btnDeleteAgent" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Delete" />
+                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" visible="false">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@../css/style.css">
                <children>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" stylesheets="@../css/style.css" />
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
                   <Label layoutX="57.0" layoutY="25.0" text="Agents" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
@@ -345,20 +351,18 @@
                         <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Delete" />
                      </children>
                   </HBox>
-                  <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="398.0" prefWidth="746.0" stylesheets="@../css/style.css">
-                     <content>
-                        <VBox prefHeight="398.0" prefWidth="746.0" spacing="5.0" style="-fx-background-color: #02030A;">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Search_52px.png" />
-                     </image>
-                  </ImageView>
+                  <TableView fx:id="tableAgents" layoutX="30.0" layoutY="186.0" prefHeight="358.0" prefWidth="733.0" stylesheets="@../css/style.css">
+                     <columns>
+                        <TableColumn fx:id="colID" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="colFirstName" prefWidth="100.0" text="First Name" />
+                        <TableColumn fx:id="colMiddleInitial" prefWidth="100.0" text="Middle Initial" />
+                        <TableColumn fx:id="colLastName" prefWidth="100.0" text="Last Name" />
+                        <TableColumn fx:id="colPhone" prefWidth="100.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="colPosition" prefWidth="150.0" text="Position" />
+                        <TableColumn fx:id="colAgency" prefWidth="75.0" text="Agency" />
+                     </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>

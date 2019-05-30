@@ -17,10 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -100,6 +97,17 @@ public class AgentController {
     @FXML private Label lblDeleteEmail;
     @FXML private Label lblDeletePosition;
     @FXML private Label lblDeleteAgency;
+
+    //Table
+    @FXML private TableView<Agent> tableAgents;
+    @FXML private TableColumn<Agent, Integer> colID;
+    @FXML private TableColumn<Agent, String> colFirstName;
+    @FXML private TableColumn<Agent, String> colMiddleInitial;
+    @FXML private TableColumn<Agent, String> colLastName;
+    @FXML private TableColumn<Agent, String> colPhone;
+    @FXML private TableColumn<Agent, String> colEmail;
+    @FXML private TableColumn<Agent, String> colPosition;
+    @FXML private TableColumn<Agent, Integer> colAgency;
 
 
 
@@ -280,7 +288,8 @@ public class AgentController {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                                 String oldValue, String newValue) {
-                //ADD CODE HERE
+                ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.searchAgents(txtSearch.getText()));
+                tableAgents.setItems(agents);
             }
         });
     }
@@ -295,6 +304,20 @@ public class AgentController {
         paneUpdate.setVisible(false);
         paneDelete.setVisible(false);
         paneOverview.setVisible(true);
+
+
+        //builds table
+        colID.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asObject());
+        colFirstName.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
+        colMiddleInitial.setCellValueFactory(cellData -> cellData.getValue().getMiddleInitialProperty());
+        colLastName.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
+        colPhone.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
+        colEmail.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
+        colPosition.setCellValueFactory(cellData -> cellData.getValue().getPositionProperty());
+        colAgency.setCellValueFactory(cellData -> cellData.getValue().getAgencyProperty().asObject());
+
+        ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
+        tableAgents.setItems(agents);
     }
     private void loadAddPane(){
         paneAdd.toFront();
