@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -51,6 +52,7 @@ public class GUIController {
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
     @FXML private TextField txtSearch;
+    @FXML private AnchorPane mainWindow;
 
 
     //handles all button clocks
@@ -105,7 +107,11 @@ public class GUIController {
         }
         //settings button
         if(event.getSource() == btnSettings){
-
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/settings.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
         //log out
         if(event.getSource() == btnSignout){
@@ -146,5 +152,11 @@ public class GUIController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        //loads users color setting
+        String mode = SettingsController.getColorMode();
+        mainWindow.getStylesheets().clear();
+        mainWindow.getStylesheets().add("css/" + mode + ".css");
+
     }
 }

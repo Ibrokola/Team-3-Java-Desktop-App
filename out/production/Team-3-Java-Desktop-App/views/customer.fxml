@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #23272A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CustomerController">
+<AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" styleClass="mainWindow" stylesheets="@../css/darkmode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CustomerController">
    <children>
-      <VBox id="sidebar" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
                <children>
@@ -57,7 +57,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Dashboard" textFill="#e7e5e5">
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +75,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Agents">
+            <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Agents">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +87,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Customers">
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Customers">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -99,7 +99,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Packages">
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Packages">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -111,7 +111,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Products">
+            <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Products">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -123,7 +123,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Suppliers">
+            <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Suppliers">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -135,7 +135,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Settings">
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Settings">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -147,7 +147,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Sign Out">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Sign Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -166,9 +166,9 @@
             </Label>
          </children>
       </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" stylesheets="@../css/style.css">
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
          <children>
-            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
+            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -185,7 +185,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick a customer:" textFill="WHITE" />
-                              <ComboBox fx:id="cbUpdateCustomer" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                              <ComboBox fx:id="cbUpdateCustomer" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="241.0" prefWidth="793.0" spacing="25.0">
@@ -201,11 +201,11 @@
                               </VBox>
                               <VBox prefHeight="358.0" prefWidth="253.0" spacing="24.0">
                                  <children>
-                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="10.0" promptText="Enter last name" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateAddress" layoutX="10.0" layoutY="71.0" promptText="Enter address" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateCity" layoutX="10.0" layoutY="132.0" promptText="Enter city" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateProv" layoutX="10.0" layoutY="193.0" promptText="Enter province" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdateFirstName" promptText="Enter first name" />
+                                    <TextField fx:id="txtUpdateLastName" layoutX="10.0" layoutY="10.0" promptText="Enter last name" />
+                                    <TextField fx:id="txtUpdateAddress" layoutX="10.0" layoutY="71.0" promptText="Enter address" />
+                                    <TextField fx:id="txtUpdateCity" layoutX="10.0" layoutY="132.0" promptText="Enter city" />
+                                    <TextField fx:id="txtUpdateProv" layoutX="10.0" layoutY="193.0" promptText="Enter province" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="258.0" prefWidth="75.0" spacing="36.0">
@@ -219,11 +219,11 @@
                               </VBox>
                               <VBox layoutX="280.0" layoutY="10.0" prefHeight="311.0" prefWidth="253.0" spacing="24.0">
                                  <children>
-                                    <TextField fx:id="txtUpdatePostal" promptText="Enter postal code" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateCountry" layoutX="10.0" layoutY="10.0" promptText="Enter country" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateHomePhone" layoutX="10.0" layoutY="71.0" promptText="Enter home phone number" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateBusPhone" layoutX="10.0" layoutY="132.0" promptText="Enter business phone number" stylesheets="@../css/style.css" />
-                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" stylesheets="@../css/style.css" />
+                                    <TextField fx:id="txtUpdatePostal" promptText="Enter postal code" />
+                                    <TextField fx:id="txtUpdateCountry" layoutX="10.0" layoutY="10.0" promptText="Enter country" />
+                                    <TextField fx:id="txtUpdateHomePhone" layoutX="10.0" layoutY="71.0" promptText="Enter home phone number" />
+                                    <TextField fx:id="txtUpdateBusPhone" layoutX="10.0" layoutY="132.0" promptText="Enter business phone number" />
+                                    <TextField fx:id="txtUpdateEmail" layoutX="10.0" layoutY="193.0" promptText="Enter email address" />
                                  </children>
                               </VBox>
                            </children>
@@ -234,19 +234,19 @@
                         <HBox alignment="CENTER" prefHeight="47.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Select an Agent:" textFill="WHITE" />
-                              <ComboBox fx:id="cbAgentId" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                              <ComboBox fx:id="cbAgentId" prefWidth="150.0" promptText="Choose" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnUpdateCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Update" />
-                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
+                              <Button fx:id="btnUpdateCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
+                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneDelete" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
+            <Pane fx:id="paneDelete" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -263,7 +263,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick a customer:" textFill="WHITE" />
-                              <ComboBox fx:id="cbDeleteCustomer" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" stylesheets="@../css/style.css" />
+                              <ComboBox fx:id="cbDeleteCustomer" onAction="#cbDeleteSelection" prefWidth="150.0" promptText="Choose" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="317.0" prefWidth="793.0" spacing="25.0">
@@ -318,16 +318,16 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
                            <children>
-                              <Button fx:id="btnDeleteCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Delete" />
-                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" stylesheets="@../css/style.css" text="Go Back" />
+                              <Button fx:id="btnDeleteCustomer" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Delete" />
+                              <Button fx:id="btnDeleteGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" stylesheets="@../css/style.css">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane">
                <children>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="searchBar" stylesheets="@../css/style.css" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="searchBar"  />
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8_Search_52px.png" />
@@ -340,11 +340,11 @@
                   </Label>
                   <HBox alignment="CENTER" layoutX="45.0" layoutY="89.0" prefHeight="57.0" prefWidth="661.0" spacing="80.0">
                      <children>
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Update" />
-                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Delete" />
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0"  />
                      </children>
                   </HBox>
-                  <TableView fx:id="tableCustomers" layoutX="34.0" layoutY="169.0" prefHeight="379.0" prefWidth="727.0" stylesheets="@../css/style.css">
+                  <TableView fx:id="tableCustomers" layoutX="34.0" layoutY="169.0" prefHeight="379.0" prefWidth="727.0">
                     <columns>
                       <TableColumn fx:id="colID" prefWidth="50.0" text="ID" />
                       <TableColumn fx:id="colFirstName" prefWidth="90.0" text="First Name" />

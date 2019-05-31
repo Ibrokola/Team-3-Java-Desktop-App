@@ -4,27 +4,25 @@
     button hover color: #2C2F33
     sidebar background color: #23272A
     main pane background color: #2C2F33
-    table row even color: #99AAB5
-    table row odd color: #7289DA
  */
 
 /* Button Styling */
 .button {
--fx-background-color : #23272A;
--fx-text-fill : white;
+    -fx-background-color : #23272A;
+    -fx-text-fill : white;
 }
 .button:hover {
--fx-background-color : #30363a;
+    -fx-background-color : #30363a;
 }
 .button:pressed {
--fx-background-color : #2C2F20;
+    -fx-background-color : #2C2F20;
 }
 .increment-button, .decrement-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
-.sidebar{
+.mainSidebar{
     -fx-background-color: #23272A;
 }
 
@@ -53,6 +51,9 @@
 /* Pane Styling */
 .mainPane {
     -fx-background-color:  #2C2F33;
+}
+.mainWindow {
+    -fx-background-color: #23272A;
 }
 
 /* Table Styling */
@@ -95,11 +96,6 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
-.table-view .column-header-background .filler {
-    -fx-background-color: rgba(1, 11, 12, 1);
-    -fx-padding: 1em;
-}
-
 
 
 /* Scroll bar styling */

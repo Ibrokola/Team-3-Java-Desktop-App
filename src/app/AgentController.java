@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -109,6 +110,7 @@ public class AgentController {
     @FXML private TableColumn<Agent, String> colPosition;
     @FXML private TableColumn<Agent, Integer> colAgency;
 
+    @FXML private AnchorPane mainWindow;
 
 
     //handles all button clocks
@@ -163,7 +165,11 @@ public class AgentController {
         }
         //settings button
         if(event.getSource() == btnSettings){
-
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/settings.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
         //log out
         if(event.getSource() == btnSignout){
@@ -271,6 +277,11 @@ public class AgentController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        //loads users color setting
+        String mode = SettingsController.getColorMode();
+        mainWindow.getStylesheets().clear();
+        mainWindow.getStylesheets().add("css/" + mode + ".css");
 
         //layout setup
         paneAdd.setVisible(false);

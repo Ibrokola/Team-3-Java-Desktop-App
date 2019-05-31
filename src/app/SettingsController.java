@@ -1,18 +1,21 @@
 package app;
 
 import BLL.Administrator;
+import BLL.Validation;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -20,12 +23,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DashboardController {
+public class SettingsController {
     /*
-     * Purpose: Controller for dashboard/home page for the desktop app.
-     * Author: Brent Ward - starting template found at k33ptoo.
+     * Purpose: Controller for the settings page. Allows user to switch css/change password
+     * Author: Brent Ward
      * Module: PROJ-207-OSD
-     * Date: May 15, 2019
+     * Date: May 31, 2019
      * */
 
     //buttons
@@ -38,11 +41,22 @@ public class DashboardController {
     @FXML private Button btnSettings;
     @FXML private Button btnSignout;
 
+    @FXML private Button btnSave;
 
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
+
+    @FXML private PasswordField txtPassword;
+    @FXML private PasswordField txtPasswordConfirm;
+
+    @FXML private RadioButton rbLightMode;
+    @FXML private RadioButton rbDarkMode;
+    @FXML private ToggleGroup colorMode;
+    private static String currentMode = "darkmode";
+
     @FXML private AnchorPane mainWindow;
+
 
 
     //handles all button clocks
@@ -111,6 +125,19 @@ public class DashboardController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
             stage.setScene(scene);
         }
+
+        if(event.getSource() == btnSave){
+            if(txtPassword.getText() != "" && txtPasswordConfirm.getText() !=""){
+                if(txtPassword.getText().equals(txtPasswordConfirm.getText())){
+
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Passwords don't match. Please try again.");
+                    alert.show();
+                }
+            }
+        }
+
     }
 
     //Widget Code
@@ -131,9 +158,26 @@ public class DashboardController {
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
 
-        //loads users color setting
-        String mode = SettingsController.getColorMode();
-        mainWindow.getStylesheets().clear();
-        mainWindow.getStylesheets().add("css/" + mode + ".css");
+        //assigns radio buttons to a group - will be used to listener
+        rbLightMode.setToggleGroup(colorMode);
+        rbDarkMode.setToggleGroup(colorMode);
+
+        colorMode.selectedToggleProperty().addListener((ob, o, n) -> {
+            if(rbLightMode.isSelected()){
+                currentMode = "lightmode";
+                mainWindow.getStylesheets().clear();
+                mainWindow.getStylesheets().add("css/lightmode.css");
+            }
+            if((rbDarkMode.isSelected())){
+                currentMode = "darkmode";
+                mainWindow.getStylesheets().clear();
+                mainWindow.getStylesheets().add("css/darkmode.css");
+            }
+        });
+    }
+
+    //used to set the color mode in other scenes
+    public static String getColorMode(){
+        return currentMode;
     }
 }
