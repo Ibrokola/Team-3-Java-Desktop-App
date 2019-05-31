@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -42,7 +43,6 @@ public class SettingsController {
 
     @FXML private Button btnSave;
 
-
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
@@ -53,7 +53,9 @@ public class SettingsController {
     @FXML private RadioButton rbLightMode;
     @FXML private RadioButton rbDarkMode;
     @FXML private ToggleGroup colorMode;
-    private String currentMode = "lightmode";
+    private static String currentMode = "darkmode";
+
+    @FXML private AnchorPane mainWindow;
 
 
 
@@ -163,15 +165,19 @@ public class SettingsController {
         colorMode.selectedToggleProperty().addListener((ob, o, n) -> {
             if(rbLightMode.isSelected()){
                 currentMode = "lightmode";
+                mainWindow.getStylesheets().clear();
+                mainWindow.getStylesheets().add("css/lightmode.css");
             }
             if((rbDarkMode.isSelected())){
                 currentMode = "darkmode";
+                mainWindow.getStylesheets().clear();
+                mainWindow.getStylesheets().add("css/darkmode.css");
             }
         });
     }
 
     //used to set the color mode in other scenes
-    public String getColorMode(){
+    public static String getColorMode(){
         return currentMode;
     }
 }

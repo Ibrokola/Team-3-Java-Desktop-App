@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -106,6 +107,7 @@ public class CustomerController {
     @FXML private Label lblDeleteEmail;
     @FXML private Label lblDeleteAgent;
 
+    @FXML private AnchorPane mainWindow;
 
 
     //handles all button clocks
@@ -160,7 +162,11 @@ public class CustomerController {
         }
         //settings button
         if(event.getSource() == btnSettings){
-
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/settings.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
         //log out
         if(event.getSource() == btnSignout){
@@ -232,6 +238,11 @@ public class CustomerController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        //loads users color setting
+        String mode = SettingsController.getColorMode();
+        mainWindow.getStylesheets().clear();
+        mainWindow.getStylesheets().add("css/" + mode + ".css");
 
         loadOverview();
 
@@ -313,7 +324,7 @@ public class CustomerController {
         Customer tempCustomer = cbUpdateCustomer.getSelectionModel().getSelectedItem();
 
         txtUpdateFirstName.setText(tempCustomer.getFirstName());
-        txtUpdateLastName.setText(tempCustomer.getFirstName());
+        txtUpdateLastName.setText(tempCustomer.getLastName());
         txtUpdateAddress.setText(tempCustomer.getAddress());
         txtUpdateCity.setText(tempCustomer.getCity());
         txtUpdateProv.setText(tempCustomer.getProv());

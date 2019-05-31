@@ -1,0 +1,126 @@
+/*
+    Color Legend:
+    Main button/item color: #d3cfcf
+    button hover color: #2C2F33
+    sidebar background color: #d3cfcf
+    main pane background color: #f2f2f2
+ */
+
+.label{
+    -fx-text-fill: black;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color : #d3cfcf;
+    -fx-text-fill : black;
+}
+.button:hover {
+    -fx-background-color : #e8e3e3;
+}
+.button:pressed {
+    -fx-background-color : #f1f1f1;
+}
+
+.mainSidebar{
+    -fx-background-color: #d3cfcf;
+}
+
+/* Text field Styling */
+.text-field{
+    -fx-background-color:  #f2f2f2;
+    -fx-border-color:  #B7C3D7;
+    -fx-border-radius:  2em;
+    -fx-text-fill: black;
+}
+.searchBar{
+    -fx-background-color:  #f2f2f2;
+    -fx-border-color:  #B7C3D7;
+    -fx-border-radius:  2em;
+    -fx-text-fill: black;
+}
+
+
+/* Combo box Styling */
+.combo-box {
+    -fx-background-color : #d3cfcf;
+    -fx-text-fill : black;
+}
+.combo-box .list-cell {
+    -fx-background-color : #d3cfcf;
+    -fx-text-fill : black;
+}
+
+/* Pane Styling */
+.mainPane {
+    -fx-background-color:  #f2f2f2;
+}
+.mainWindow {
+    -fx-background-color: #f2f2f2;
+}
+
+/* Table Styling */
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #c4bcbc;
+    -fx-stroke: transparent;
+    -fx-size:40;
+    -fx-alignment: CENTER ;
+    -fx-text-alignment: center;
+}
+.table-row-cell:filled:hover {
+    -fx-size:40;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-fixed-cell-size: 50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+.table-view .table-column{
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER
+}
+.table-row-cell{
+    -fx-background-color: #e8e8e8;
+}
+.table-row-cell:odd{
+    -fx-background-color: #d3cfcf;
+}
+.table-cell{
+    -fx-text-fill: black;
+}
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.radio-button {
+    -fx-text-fill: black;
+}
+
+/* Scroll bar styling */
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #c4bcbc;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #c4bcbc;
+}
+
