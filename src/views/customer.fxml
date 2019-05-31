@@ -246,7 +246,7 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneDelete" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css">
+            <Pane fx:id="paneDelete" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -325,9 +325,9 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" stylesheets="@../css/style.css">
                <children>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="searchBar" stylesheets="@../css/style.css" />
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8_Search_52px.png" />
@@ -356,7 +356,7 @@
                         <TableColumn fx:id="colCountry" prefWidth="85.0" text="Country" />
                         <TableColumn fx:id="colHomePhone" prefWidth="90.0" text="Phone (H)" />
                         <TableColumn fx:id="colBusPhone" prefWidth="90.0" text="Phone (B)" />
-                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="colEmail" prefWidth="165.0" text="Email" />
                         <TableColumn fx:id="colAgentId" text="Agent's ID" />
                     </columns>
                   </TableView>

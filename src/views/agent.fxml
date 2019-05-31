@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.AgentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #23272A;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.AgentController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="sidebar" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
                <children>
@@ -166,9 +166,9 @@
             </Label>
          </children>
       </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" stylesheets="@../css/style.css">
          <children>
-            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="29.0" layoutY="22.0" prefHeight="527.0" prefWidth="733.0">
                      <children>
@@ -220,7 +220,7 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -275,7 +275,7 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="paneDelete" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/style.css" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -331,9 +331,9 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@../css/style.css">
+            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" stylesheets="@../css/style.css">
                <children>
-                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" stylesheets="@../css/style.css" />
+                  <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="searchBar" stylesheets="@../css/style.css" />
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8_Search_52px.png" />
@@ -358,8 +358,8 @@
                         <TableColumn fx:id="colMiddleInitial" prefWidth="100.0" text="Middle Initial" />
                         <TableColumn fx:id="colLastName" prefWidth="100.0" text="Last Name" />
                         <TableColumn fx:id="colPhone" prefWidth="100.0" text="Phone" />
-                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
-                        <TableColumn fx:id="colPosition" prefWidth="150.0" text="Position" />
+                        <TableColumn fx:id="colEmail" prefWidth="165.0" text="Email" />
+                        <TableColumn fx:id="colPosition" prefWidth="140.0" text="Position" />
                         <TableColumn fx:id="colAgency" prefWidth="75.0" text="Agency" />
                      </columns>
                   </TableView>
