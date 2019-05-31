@@ -163,7 +163,11 @@ public class AgentController {
         }
         //settings button
         if(event.getSource() == btnSettings){
-
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/settings.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
         //log out
         if(event.getSource() == btnSignout){

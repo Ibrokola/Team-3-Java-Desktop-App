@@ -1,18 +1,19 @@
 package app;
 
 import BLL.Administrator;
+import BLL.Validation;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,13 +22,13 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class GUIController {
+public class SettingsController {
     /*
-    * Purpose: To act as a base Controller for all other pages to branch from.
-    * Author: Brent Ward - starting template found at k33ptoo.
-    * Module: PROJ-207-OSD
-    * Date: May 28, 2019
-    * */
+     * Purpose: Controller for the settings page. Allows user to switch css/change password
+     * Author: Brent Ward
+     * Module: PROJ-207-OSD
+     * Date: May 31, 2019
+     * */
 
     //buttons
     @FXML private Button btnDashboard;
@@ -38,19 +39,22 @@ public class GUIController {
     @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
     @FXML private Button btnSignout;
-    @FXML private Button btnAdd;
-    @FXML private Button btnUpdate;
-    @FXML private Button btnDelete;
 
-    //panes
-    @FXML private Pane paneAdd;
-    @FXML private Pane paneUpdate;
-    @FXML private Pane paneOverview;
+    @FXML private Button btnSave;
+
 
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
-    @FXML private TextField txtSearch;
+
+    @FXML private PasswordField txtPassword;
+    @FXML private PasswordField txtPasswordConfirm;
+
+    @FXML private RadioButton rbLightMode;
+    @FXML private RadioButton rbDarkMode;
+    @FXML private ToggleGroup colorMode;
+    private String currentMode = "lightmode";
+
 
 
     //handles all button clocks
@@ -120,16 +124,17 @@ public class GUIController {
             stage.setScene(scene);
         }
 
-        /*** Pane switching buttons ***/
-        if(event.getSource() == btnAdd){
-            paneAdd.toFront();
-        }
-        if(event.getSource() == btnUpdate){
-            paneUpdate.toFront();
-        }
+        if(event.getSource() == btnSave){
+            if(txtPassword.getText() != "" && txtPasswordConfirm.getText() !=""){
+                if(txtPassword.getText().equals(txtPasswordConfirm.getText())){
 
-        /*** Operational buttons ***/
-        if(event.getSource() == btnDelete){ }
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Passwords don't match. Please try again.");
+                    alert.show();
+                }
+            }
+        }
 
     }
 
@@ -150,5 +155,23 @@ public class GUIController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        //assigns radio buttons to a group - will be used to listener
+        rbLightMode.setToggleGroup(colorMode);
+        rbDarkMode.setToggleGroup(colorMode);
+
+        colorMode.selectedToggleProperty().addListener((ob, o, n) -> {
+            if(rbLightMode.isSelected()){
+                currentMode = "lightmode";
+            }
+            if((rbDarkMode.isSelected())){
+                currentMode = "darkmode";
+            }
+        });
+    }
+
+    //used to set the color mode in other scenes
+    public String getColorMode(){
+        return currentMode;
     }
 }
