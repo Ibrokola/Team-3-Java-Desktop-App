@@ -6,6 +6,10 @@
     main pane background color: #2C2F33
  */
 
+.label {
+    -fx-text-fill: white;
+}
+
 /* Button styling */
 .button {
     -fx-background-color : #23272A;
@@ -15,7 +19,7 @@
     -fx-background-color : #30363a;
 }
 .button:pressed {
-    -fx-background-color : #2C2F20;
+    -fx-background-color : #3d464c;
 }
 
 /* sidebar button Styling */
@@ -27,7 +31,7 @@
     -fx-background-color : #30363a;
 }
 .sideButton:pressed {
-    -fx-background-color : #2C2F20;
+    -fx-background-color : #3d464c;
 }
 
 
@@ -56,7 +60,8 @@
     -fx-background-color : #23272A;
     -fx-text-fill : white;
 }
-.combo-box-base .text {
+.combo-box .list-cell {
+    -fx-background-color : #23272A;
     -fx-text-fill : white;
 }
 

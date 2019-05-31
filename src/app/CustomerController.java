@@ -162,7 +162,11 @@ public class CustomerController {
         }
         //settings button
         if(event.getSource() == btnSettings){
-
+            //Changes the scene, fetches the stage
+            Parent root = FXMLLoader.load(getClass().getResource("../views/settings.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+            stage.setScene(scene);
         }
         //log out
         if(event.getSource() == btnSignout){
@@ -320,7 +324,7 @@ public class CustomerController {
         Customer tempCustomer = cbUpdateCustomer.getSelectionModel().getSelectedItem();
 
         txtUpdateFirstName.setText(tempCustomer.getFirstName());
-        txtUpdateLastName.setText(tempCustomer.getFirstName());
+        txtUpdateLastName.setText(tempCustomer.getLastName());
         txtUpdateAddress.setText(tempCustomer.getAddress());
         txtUpdateCity.setText(tempCustomer.getCity());
         txtUpdateProv.setText(tempCustomer.getProv());
