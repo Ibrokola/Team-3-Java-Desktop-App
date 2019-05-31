@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #2C2F33;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SettingsController">
+<AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" styleClass="mainWindow" stylesheets="@../css/darkmode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SettingsController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="sidebar" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="mainSidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="256.0">
                     <children>
@@ -55,7 +55,7 @@
                         <Insets bottom="20.0" />
                     </VBox.margin>
                 </Label>
-                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Dashboard" textFill="#e7e5e5">
+                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#e7e5e5">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -73,7 +73,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Agents">
+                <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Agents">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -85,7 +85,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Customers">
+                <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Customers">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -97,7 +97,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Packages">
+                <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Packages">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -109,7 +109,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Products">
+                <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Products">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -121,7 +121,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Suppliers">
+                <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Suppliers">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -133,7 +133,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Settings">
+                <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Settings">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -145,7 +145,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../css/style.css" text="Sign Out">
+                <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Sign Out">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -164,7 +164,7 @@
                 </Label>
             </children>
         </VBox>
-      <Pane layoutX="256.0" prefHeight="576.0" prefWidth="794.0" stylesheets="@../css/style.css">
+      <Pane layoutX="256.0" prefHeight="576.0" prefWidth="794.0" styleClass="mainPane">
          <children>
             <VBox alignment="TOP_CENTER" layoutX="82.0" layoutY="15.0" prefHeight="547.0" prefWidth="631.0">
                <children>

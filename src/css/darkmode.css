@@ -6,10 +6,10 @@
     main pane background color: #2C2F33
  */
 
-/* Button Styling */
+/* Button styling */
 .button {
     -fx-background-color : #23272A;
-    -fx-text-fill : white;
+    -fx-text-fill: white;
 }
 .button:hover {
     -fx-background-color : #30363a;
@@ -17,12 +17,21 @@
 .button:pressed {
     -fx-background-color : #2C2F20;
 }
-.increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+
+/* sidebar button Styling */
+.sideButton {
+    -fx-background-color : #23272A;
+    -fx-text-fill : white;
+}
+.sideButton:hover {
+    -fx-background-color : #30363a;
+}
+.sideButton:pressed {
+    -fx-background-color : #2C2F20;
 }
 
-.sidebar{
+
+.mainSidebar{
     -fx-background-color: #23272A;
 }
 
@@ -47,10 +56,16 @@
     -fx-background-color : #23272A;
     -fx-text-fill : white;
 }
+.combo-box-base .text {
+    -fx-text-fill : white;
+}
 
 /* Pane Styling */
 .mainPane {
     -fx-background-color:  #2C2F33;
+}
+.mainWindow {
+    -fx-background-color: #23272A;
 }
 
 /* Table Styling */
