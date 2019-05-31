@@ -203,9 +203,7 @@ public class PackageController {
 
     /*** Methods for Buttons ****/
      //method for Add button
-    void btnAddPackage(){
 
-    }
 
 
 
