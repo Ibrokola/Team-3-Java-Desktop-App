@@ -1,12 +1,10 @@
 package app;
 
 import BLL.Administrator;
-import BLL.Validation;
+import BLL.AdministratorDB;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +12,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,10 +43,12 @@ public class SettingsController {
     @FXML private Button btnSignout;
 
     @FXML private Button btnSave;
+    @FXML private Button btnAvatar;
 
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
+    private Stage tempStage;
 
     @FXML private PasswordField txtPassword;
     @FXML private PasswordField txtPasswordConfirm;
@@ -53,9 +56,14 @@ public class SettingsController {
     @FXML private RadioButton rbLightMode;
     @FXML private RadioButton rbDarkMode;
     @FXML private ToggleGroup colorMode;
+
     private static String currentMode = "darkmode";
 
     @FXML private AnchorPane mainWindow;
+    @FXML private ImageView imgProfileDemo;
+    @FXML private ImageView imgProfilePicture;
+    @FXML private Label lblPreview;
+    private static Image imageHolder; //used to pass the profile pic to other controllers
 
 
 
@@ -124,17 +132,43 @@ public class SettingsController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
             stage.setScene(scene);
+            tempStage = stage;
         }
 
         if(event.getSource() == btnSave){
-            if(txtPassword.getText() != "" && txtPasswordConfirm.getText() !=""){
-                if(txtPassword.getText().equals(txtPasswordConfirm.getText())){
+            if(!txtPassword.getText().equals("") && !txtPasswordConfirm.getText().equals("")) {
+                if (txtPassword.getText().equals(txtPasswordConfirm.getText())) {
+                    Administrator tempAdmin = LoginController.userLoggedIn();
+                    AdministratorDB.changePassword(tempAdmin, txtPassword.getText());
 
-                }
-                else{
+                    txtPassword.clear();
+                    txtPasswordConfirm.clear();
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Passwords don't match. Please try again.");
                     alert.show();
                 }
+            }
+            if(imgProfileDemo.getImage() != null){
+                imgProfilePicture.setImage(imgProfileDemo.getImage());
+            }
+        }
+        if(event.getSource() == btnAvatar){
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Choose a picture");
+            chooser.setInitialDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Pictures")); //redirects to the picture directory
+
+            //locks user choice to image files
+            FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Image files", "*.png", "*jpg");
+            chooser.getExtensionFilters().add(fileExtensions);
+
+            //users image
+            File profilePicture = chooser.showOpenDialog(tempStage);
+
+            if(profilePicture != null){
+                Image image = new Image(profilePicture.toURI().toString());
+                imageHolder = new Image(profilePicture.toURI().toString());
+                imgProfileDemo.setImage(image);
+                lblPreview.setVisible(true);
             }
         }
 
@@ -157,10 +191,19 @@ public class SettingsController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+        lblPreview.setVisible(false);
 
         //assigns radio buttons to a group - will be used to listener
         rbLightMode.setToggleGroup(colorMode);
         rbDarkMode.setToggleGroup(colorMode);
+
+        //loads users color setting and profile picture
+        String mode = SettingsController.getColorMode();
+        mainWindow.getStylesheets().clear();
+        mainWindow.getStylesheets().add("css/" + mode + ".css");
+        if(SettingsController.getProfilePicture() != null){
+            imgProfilePicture.setImage(SettingsController.getProfilePicture());
+        }
 
         colorMode.selectedToggleProperty().addListener((ob, o, n) -> {
             if(rbLightMode.isSelected()){
@@ -180,4 +223,7 @@ public class SettingsController {
     public static String getColorMode(){
         return currentMode;
     }
+    //used to set the profile picture in other scenes
+    public static Image getProfilePicture() { return imageHolder; }
+
 }

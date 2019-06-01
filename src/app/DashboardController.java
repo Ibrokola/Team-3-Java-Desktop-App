@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,6 +44,7 @@ public class DashboardController {
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
     @FXML private AnchorPane mainWindow;
+    @FXML private ImageView imgProfilePicture;
 
 
     //handles all button clocks
@@ -131,9 +133,12 @@ public class DashboardController {
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
 
-        //loads users color setting
+        //loads users color setting and profile picture
         String mode = SettingsController.getColorMode();
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add("css/" + mode + ".css");
+        if(SettingsController.getProfilePicture() != null){
+            imgProfilePicture.setImage(SettingsController.getProfilePicture());
+        }
     }
 }

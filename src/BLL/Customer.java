@@ -60,7 +60,7 @@ public class Customer {
     //Get methods
     public int getId(){ return id.get(); }
     public String getFirstName(){ return firstName.get(); }
-    public String getLastName(){ return firstName.get(); }
+    public String getLastName(){ return lastName.get(); }
     public String getAddress(){ return address.get(); }
     public String getCity(){ return city.get(); }
     public String getProv(){ return province.get(); }

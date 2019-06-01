@@ -44,7 +44,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
-            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgProfilePicture" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/userAvatar.png" />
                </image>
@@ -341,7 +341,7 @@
                   </ImageView>
                   <Label layoutX="57.0" layoutY="25.0" text="Agents" textFill="#e7e5e5">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <HBox alignment="CENTER" layoutX="45.0" layoutY="89.0" prefHeight="57.0" prefWidth="661.0" spacing="80.0">
