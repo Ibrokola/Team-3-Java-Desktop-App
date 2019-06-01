@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -111,6 +112,7 @@ public class AgentController {
     @FXML private TableColumn<Agent, Integer> colAgency;
 
     @FXML private AnchorPane mainWindow;
+    @FXML private ImageView imgProfilePicture;
 
 
     //handles all button clocks
@@ -282,6 +284,9 @@ public class AgentController {
         String mode = SettingsController.getColorMode();
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add("css/" + mode + ".css");
+        if(SettingsController.getProfilePicture() != null){
+            imgProfilePicture.setImage(SettingsController.getProfilePicture());
+        }
 
         //layout setup
         paneAdd.setVisible(false);

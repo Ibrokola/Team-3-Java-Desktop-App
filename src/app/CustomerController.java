@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -108,6 +109,7 @@ public class CustomerController {
     @FXML private Label lblDeleteAgent;
 
     @FXML private AnchorPane mainWindow;
+    @FXML private ImageView imgProfilePicture;
 
 
     //handles all button clocks
@@ -243,6 +245,9 @@ public class CustomerController {
         String mode = SettingsController.getColorMode();
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add("css/" + mode + ".css");
+        if(SettingsController.getProfilePicture() != null){
+            imgProfilePicture.setImage(SettingsController.getProfilePicture());
+        }
 
         loadOverview();
 
