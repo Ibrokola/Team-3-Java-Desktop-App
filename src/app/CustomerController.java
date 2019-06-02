@@ -224,7 +224,7 @@ public class CustomerController {
     }
 
     //Widget Code
-    private void startClock() {
+    public void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a   -   dd/MM/YYYY");
             lblClock.setText(LocalDateTime.now().format(formatter));

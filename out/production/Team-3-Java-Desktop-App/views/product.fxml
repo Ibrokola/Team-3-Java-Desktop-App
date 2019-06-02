@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,12 +9,192 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="579.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ProductController">
+<AnchorPane fx:id="mainWindow" prefHeight="576.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ProductController">
    <children>
-      <TabPane layoutY="43.0" prefHeight="521.0" prefWidth="760.0" tabClosingPolicy="UNAVAILABLE">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="mainSidebar">
+         <children>
+            <HBox prefHeight="48.0" prefWidth="256.0">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" top="4.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/TravelSiteLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="TRAVEL EXPERTS">
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Malayalam MN" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fx:id="imgProfilePicture" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@../images/userAvatar.png" />
+               </image>
+            </ImageView>
+            <Label text="Welcome">
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUserName" text="USER NAME">
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAgents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Agents">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Customers">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Packages">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnProducts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Products">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSuppliers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Suppliers">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Settings">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Sign Out">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblClock" text="DATE TIME CLOCK">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Malayalam MN" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <TabPane layoutX="256.0" prefHeight="576.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Products">
             <content>
@@ -157,10 +338,5 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="btnHome" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#btnHomeAction" prefHeight="35.0" prefWidth="76.0" text="Home">
-         <font>
-            <Font name="Malayalam MN" size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
