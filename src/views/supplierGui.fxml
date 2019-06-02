@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -167,9 +168,142 @@
       </VBox>
       <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
          <children>
-            <Pane fx:id="paneAdd" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false" />
-            <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false" />
-            <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane">
+            <Pane fx:id="paneAddSupplier" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="29.0" layoutY="22.0" prefHeight="527.0" prefWidth="733.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label text="Suppliers" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Add a Supplier." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">
+                           <children>
+                              <VBox prefHeight="358.0" prefWidth="102.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Supplier Id" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Supplier Name" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
+                                 <children>
+                                    <TextField fx:id="txtAddSupplierId" promptText="Enter supplier Id" />
+                                    <TextField fx:id="txtAddSupplierName" layoutX="10.0" layoutY="10.0" promptText="Enter supplier name" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnAddSupplier" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
+                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="paneUpdateSupplier" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <children>
+                              <Label text="Suppliers" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="select a supplier to update." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Pick a supplier:" textFill="WHITE" />
+                              <ComboBox fx:id="cbUpdateSupplier" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">
+                           <children>
+                              <VBox prefHeight="358.0" prefWidth="122.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Supplier Id:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Supplier Name:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
+                                 <children>
+                                    <TextField fx:id="txtUpdateSupplierId" promptText="Enter supplier Id" />
+                                    <TextField fx:id="txtUpdateSupplierName" layoutX="10.0" layoutY="10.0" promptText="Enter supplier name" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnUpdateSupplier" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
+                              <Button fx:id="btnUpdateGoBackSupplier" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="paneDeleteSupplier" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <children>
+                              <Label text="Suppliers" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="select a supplier to delete." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Pick a supplier:" textFill="WHITE" />
+                              <ComboBox fx:id="cbDeleteSupplier" onAction="#cbDeleteSelectionSupplier" prefWidth="150.0" promptText="Choose" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0">
+                           <children>
+                              <VBox prefHeight="335.0" prefWidth="122.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Supplier Id:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Supplier name:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="335.0" prefWidth="248.0" spacing="36.0">
+                                 <children>
+                                    <Label fx:id="lblDeleteSupplierId" textFill="WHITE" />
+                                    <Label fx:id="lblDeleteSupplierName" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnDeleteSupplier" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Delete" />
+                              <Button fx:id="btnDeleteGoBackSupplier" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="paneOverviewSupplier" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" visible="false">
                <children>
                   <Label layoutX="57.0" layoutY="25.0" text="SUPPLIERS" textFill="#e7e5e5">
                      <font>
