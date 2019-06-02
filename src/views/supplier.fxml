@@ -318,9 +318,9 @@
                   </ImageView>
                   <HBox alignment="CENTER" layoutX="45.0" layoutY="89.0" prefHeight="57.0" prefWidth="661.0" spacing="80.0">
                      <children>
-                        <Button fx:id="btnAddSupplier" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnAddSupplierAction" prefHeight="35.0" prefWidth="120.0" text="Add" />
-                        <Button fx:id="btnEditSupplier" mnemonicParsing="false" onAction="#btnEditSupplierAction" prefHeight="35.0" prefWidth="120.0" text="Update" />
-                        <Button fx:id="btnDeleteSupplier" mnemonicParsing="false" onAction="#btnDeleteSupplierAction" prefHeight="35.0" prefWidth="120.0" text="Delete" />
+                        <Button fx:id="btnAddS" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" text="Add" />
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" text="Update" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" text="Delete" />
                      </children>
                   </HBox>
                   <TableView fx:id="tvSupplierList" layoutX="187.0" layoutY="218.0" prefHeight="262.0" prefWidth="403.0">

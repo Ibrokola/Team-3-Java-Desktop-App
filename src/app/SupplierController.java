@@ -46,7 +46,7 @@ public class SupplierController {
     @FXML private Button btnSignout;
 
     //buttons - top selections, overview pane - takes user to the appropriate pane
-    @FXML private Button btnAdd;
+    @FXML private Button btnAddS;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
 
@@ -292,14 +292,26 @@ public class SupplierController {
         }
 
         /*** Pane switching buttons ***/
-        if(event.getSource() == btnAdd){
+        if(event.getSource() == btnAddS){
             paneAddSupplier.toFront();
+            paneAddSupplier.setVisible(true);
+            paneUpdateSupplier.setVisible(false);
+            paneDeleteSupplier.setVisible(false);
+            paneOverviewSupplier.setVisible(false);
         }
         if(event.getSource() == btnUpdate){
             paneUpdateSupplier.toFront();
+            paneAddSupplier.setVisible(false);
+            paneUpdateSupplier.setVisible(true);
+            paneDeleteSupplier.setVisible(false);
+            paneOverviewSupplier.setVisible(false);
         }
         if(event.getSource() == btnDelete){
             paneDeleteSupplier.toFront();
+            paneAddSupplier.setVisible(false);
+            paneUpdateSupplier.setVisible(false);
+            paneDeleteSupplier.setVisible(true);
+            paneOverviewSupplier.setVisible(false);
         }
 
 
