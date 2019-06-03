@@ -314,7 +314,6 @@ public class SupplierController {
             paneOverviewSupplier.setVisible(false);
         }
 
-
     }
 
 }
