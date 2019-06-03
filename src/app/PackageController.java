@@ -2,9 +2,12 @@ package app;
 
 import BLL.Administrator;
 import BLL.Package;
+import BLL.PackageDB;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +54,29 @@ public class PackageController {
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
     @FXML private TextField txtSearch;
+
+    //Table view for Packages data
+    @FXML
+    private TableView<Package> tblPackages;
+
+    //Columns to display data from packages table
+    @FXML private TableColumn<Package, Integer> colPkgId;
+    @FXML private TableColumn<Package, String> colPkgName;
+    @FXML private TableColumn<Package, Date> colPkgStrartDate;
+    @FXML private TableColumn<Package, Date> colPkgEndDate;
+    @FXML private TableColumn<Package, Double> colPkgBasePrice;
+    @FXML private TableColumn<Package, String> colPkgDescription;
+
+    //@FXML
+    //private Pane paneAdd;
+
+    //Form's fields to be filled in order to add a Package to "packages" table
+    @FXML private TextField txtAddPkgName;
+    @FXML private DatePicker dpPkgStartDate;
+    @FXML private DatePicker dpPkgEndDate;
+    @FXML private TextField txtPkgDescription;
+    @FXML private TextField txtPkgBasePrice;
+
 
 
     //handles all button clocks
@@ -152,43 +178,36 @@ public class PackageController {
         lblUserName.setWrapText(true);
     }
 
-    //Table view for Packages data
-    @FXML
-    private TableView<Package> tblPackages;
+    //Load Packages overview panel
+    private void loadOverviewPane() {
+        paneOverview.toFront();
 
-    //Columns to display data from packages table
-    @FXML
-    private TableColumn<Package, Integer> colPkgId;
-    @FXML
-    private TableColumn<Package, String> colPkgName;
-    @FXML
-    private TableColumn<Package, Date> colPkgStrartDate;
-    @FXML
-    private TableColumn<Package, Date> colPkgEndDate;
-    @FXML
-    private TableColumn<Package, Double> colPkgBasePrice;
-    @FXML
-    private TableColumn<Package, String> colPkgDescription;
+        //returns to overview pane
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
+
+        //Packages table
+       // colPkgId.setCellValueFactory(cellData -> cellData.getValue().getPackageId().asObject());
+        colPkgName.setCellValueFactory(cellData -> cellData.getValue().pkgNameProperty());
+        colPkgStrartDate.setCellValueFactory(cellData -> cellData.getValue().pkgStartDateProperty());
+        colPkgEndDate.setCellValueFactory(cellData -> cellData.getValue().pkgEndDateProperty());
+        colPkgDescription.setCellValueFactory(cellData -> cellData.getValue().pkgDescProperty());
+        //colPkgBasePrice.setCellValueFactory(cellData -> cellData.getValue().getPkgBasePrice().asObject);
+
+        ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
+                tblPackages.setItems(packages);
+
+    }
+
 
     //Header for Packages Panel
     @FXML
     private Label lblHeadPackages;
 
 
-    //@FXML
-    //private Pane paneAdd;
 
-    //Form's fields to be filled in order to add a Package to "packages" table
-    @FXML
-    private TextField txtAddPkgName;
-    @FXML
-    private DatePicker dpPkgStartDate;
-    @FXML
-    private DatePicker dpPkgEndDate;
-    @FXML
-    private TextField txtPkgDescription;
-    @FXML
-    private TextField txtPkgBasePrice;
 
 
     /*** Buttons ****/
