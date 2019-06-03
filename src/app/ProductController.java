@@ -693,8 +693,8 @@ public class ProductController {
         panePckSupDelete.setVisible(false);
         panePckSupList.setVisible(true);
 
+        loadPaneProdList();
 
-//        loadProducts();
 
         //Changes the table items based off text in search bar
         txtProdSearch.textProperty().addListener(new ChangeListener<String>() {
