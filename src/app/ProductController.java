@@ -363,56 +363,6 @@ public class ProductController {
     // From SceneBuilder ------ START ------!!!!
 
 
-    @FXML
-    void cbPckProdAddSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbPckProdSupAddSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbPckProdSupUpdateSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbPckProdUpdateSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdAddSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdDeleteSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdSupAddSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdSupUpdateSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdSUpdateSelect(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cbProdUpdateSelect(ActionEvent event) {
-
-    }
-
     // From SceneBuilder ------- END -------!!!!
 
 
@@ -1007,7 +957,7 @@ public class ProductController {
 
         cbProdSupAdd.getSelectionModel().clearSelection();
         cbProdSupAdd.getItems().removeAll();
-        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers);
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers());
         cbProdSupAdd.setItems(suppliers);
 
         txtProdNameAdd.clear();
@@ -1038,7 +988,7 @@ public class ProductController {
 
         cbProdSupUpdate.getSelectionModel().clearSelection();
         cbProdSupUpdate.getItems().removeAll();
-        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers);
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers());
         cbProdSupUpdate.setItems(suppliers);
 
         txtProdSupUpdate.clear();
@@ -1118,5 +1068,63 @@ public class ProductController {
     /*** Package Products Suppliers Tab START ***/
 
     private void loadPanePckProdDelete() {}
+
+    /**** Combo box Events ****/
+    /**** Products TAB START ****/
+    @FXML
+    void cbProdUpdateSelect(ActionEvent event) {
+
+    }
+    /**** Products TAB END ****/
+
+    /**** Products Suppliers TAB START ****/
+    @FXML
+    void cbProdAddSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbProdDeleteSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbProdSupAddSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbProdSupUpdateSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbProdSUpdateSelect(ActionEvent event) {
+
+    }
+    /**** Products Suppliers TAB END ****/
+
+    /**** Package Products Suppliers TAB START ****/
+    @FXML
+    void cbPckProdAddSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbPckProdSupAddSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbPckProdSupUpdateSelect(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cbPckProdUpdateSelect(ActionEvent event) {
+
+    }
+    /**** Package Products Suppliers TAB END ****/
+
 }
 
