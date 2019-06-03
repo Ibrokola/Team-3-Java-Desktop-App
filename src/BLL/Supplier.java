@@ -36,4 +36,9 @@ public class Supplier {
     public void setSupName(String supName) {
         this.supName.set(supName);
     }
+
+    @Override
+    public String toString() {
+        return getSupName();
+    }
 }

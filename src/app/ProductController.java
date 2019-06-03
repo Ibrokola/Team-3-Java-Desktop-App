@@ -323,48 +323,7 @@ public class ProductController {
     //---------------------------------------------//
     // Package Products Suppliers Tab ----END----!!!
 
-
-    // TextField attributes
-    // @FXML
-    // private TextField txtSearchSup;
-    // @FXML
-    // private TextField txtSearchPck;
-
-    // Button attributes
-    // @FXML
-    // private Button btnAdd;
-    // @FXML
-    // private Button btnClear;
-
-    // @FXML
-    // private Button btnHome;
-
-    // @FXML
-    // private Button btnUpdate;
-    // @FXML
-    // private Button btnRemove;
-    // @FXML
-    // private Button btnSupAdd;
-    //
-    // @FXML
-    // private Button btnSupUpdate;
-    // @FXML
-    // private Button btnSupClear;
-    // @FXML
-    // private Button btnPckClear;
-    // @FXML
-    // private Button btnPckAdd;
-    // @FXML
-    // private Button btnPckUpdate;
-
     private int prodId;
-
-
-    // From SceneBuilder ------ START ------!!!!
-
-
-    // From SceneBuilder ------- END -------!!!!
-
 
 
     // Button methods
@@ -396,10 +355,10 @@ public class ProductController {
         }
     }
 
-    @FXML
-    void btnRemoveAction(ActionEvent event) {
-        // Remove or deactivate the product from table view but don't delete
-    }
+//    @FXML
+//    void btnRemoveAction(ActionEvent event) {
+//        // Remove or deactivate the product from table view but don't delete
+//    }
 
     @FXML
     void btnUpdateAction(ActionEvent event) {
@@ -420,38 +379,6 @@ public class ProductController {
         }
     }
 
-
-
-//    @FXML
-//    void btnPckAddAction(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void btnPckClearAction(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void btnPckUpdateAction(ActionEvent event) {
-//
-//    }
-//
-//
-//    @FXML
-//    void btnSupAddAction(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void btnSupClearAction(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void btnSupUpdateAction(ActionEvent event) {
-//
-//    }
 
     @FXML
     void handleButtonClicks(ActionEvent event) throws IOException {
@@ -720,21 +647,6 @@ public class ProductController {
 
     }
 
-//    @FXML
-//    void btnHomeAction(ActionEvent event){
-//        Parent root = null;
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Scene scene = new Scene(root);
-//
-//        //gets the stage  -- gets the window
-//        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//        stage.setScene(scene);
-//    }
-
     //Widget Code
     private void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -810,22 +722,25 @@ public class ProductController {
 //
 //        });
 
-        txtProdName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+
+        txtSupSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-//                btnAdd.setDisable(false);
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                        ProductSupplierDB.searchProductsSuppliers(txtSupSearch.getText()));
+
+                tvProdSup.setItems(productsSuppliers);
             }
         });
 
-//        txtSearchSup.textProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-//                ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
-//                        ProductSupplierDB.searchProductsSuppliers(txtSearchSup.getText()));
-//
-//                tvProdSup.setItems(productsSuppliers);
-//            }
-//        });
+        txtPckSupSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                ObservableList<PackageProductSupplier> pckProductsSuppliers = FXCollections.observableArrayList(
+                        PackageProductSupplierDB.searchPckgProductsSuppliers(txtPckSupSearch.getText()));
+                tvPckProd.setItems(pckProductsSuppliers);
+            }
+        });
 
 //        loadProductsSuppliers();
 
@@ -1073,7 +988,14 @@ public class ProductController {
     /**** Products TAB START ****/
     @FXML
     void cbProdUpdateSelect(ActionEvent event) {
+        Product product = cbProdUpdate.getSelectionModel().getSelectedItem();
+        txtProdUpdate.setText(product.getProdName());
+    }
 
+    @FXML
+    void cbProdDeleteSelect(ActionEvent event) {
+        Product product = cbProdUpdate.getSelectionModel().getSelectedItem();
+        txtProdDelete.setText(product.getProdName());
     }
     /**** Products TAB END ****/
 
@@ -1081,25 +1003,40 @@ public class ProductController {
     @FXML
     void cbProdAddSelect(ActionEvent event) {
 
-    }
-
-    @FXML
-    void cbProdDeleteSelect(ActionEvent event) {
-
+        Product product = cbProdAdd.getSelectionModel().getSelectedItem();
+        txtProdNameAdd.setText(product.getProdName());
     }
 
     @FXML
     void cbProdSupAddSelect(ActionEvent event) {
-
+        Supplier supplier = cbProdSupAdd.getSelectionModel().getSelectedItem();
+        txtProdSupAdd.setText(supplier.getSupName());
     }
 
     @FXML
     void cbProdSupUpdateSelect(ActionEvent event) {
 
+        Supplier supplier = cbProdSupUpdate.getSelectionModel().getSelectedItem();
+        txtProdSupUpdate.setText(supplier.getSupName());
+
     }
 
     @FXML
     void cbProdSUpdateSelect(ActionEvent event) {
+        Product product = cbProdSUpdate.getSelectionModel().getSelectedItem();
+        txtProdNameUpdate.setText(product.getProdName());
+    }
+
+
+    @FXML
+    void cbProSupSelect(ActionEvent event) {
+
+        ProductSupplier prodSup = cbProSup.getSelectionModel().getSelectedItem();
+
+        txtProdNameUpdate.setText(prodSup.getProdName());
+        txtProdSupUpdate.setText(prodSup.getSupName());
+        cbProdSUpdate.setValue(ProductDB.getProduct(prodSup.getProductId()));
+        cbProdSupUpdate.setValue(SupplierDB.getSupplier(prodSup.getSupplierId()));
 
     }
     /**** Products Suppliers TAB END ****/
@@ -1107,24 +1044,28 @@ public class ProductController {
     /**** Package Products Suppliers TAB START ****/
     @FXML
     void cbPckProdAddSelect(ActionEvent event) {
-
+        Package prodPck = cbPckProdAdd.getSelectionModel().getSelectedItem();
+        txtPckProdNameAdd.setText(prodPck.getPkgName());
     }
 
     @FXML
     void cbPckProdSupAddSelect(ActionEvent event) {
-
+        ProductSupplier prodSup = cbPckProdSupAdd.getSelectionModel().getSelectedItem();
+        txtPckProdSupAdd.setText(prodSup.getSupName());
     }
 
     @FXML
     void cbPckProdSupUpdateSelect(ActionEvent event) {
+        ProductSupplier prodSup = cbPckProdSupUpdate.getSelectionModel().getSelectedItem();
+        txtPckProdSupUpdate.setText(prodSup.getSupName());
 
     }
 
     @FXML
     void cbPckProdUpdateSelect(ActionEvent event) {
-
+        Package prodPck = cbPckProdUpdate.getSelectionModel().getSelectedItem();
+        txtPckProdUpdate.setText(prodPck.getPkgName());
     }
     /**** Package Products Suppliers TAB END ****/
 
 }
-
