@@ -270,7 +270,7 @@
                                     </VBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="paneProdUpdate" prefHeight="200.0" prefWidth="200.0">
+                              <Pane fx:id="paneProdUpdate" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
                                     <HBox alignment="CENTER" layoutY="84.0" prefHeight="57.0" prefWidth="799.0" spacing="30.0">
                                        <children>
@@ -310,7 +310,7 @@
                                     </VBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="paneProdDelete" prefHeight="200.0" prefWidth="200.0" visible="false">
+                              <Pane fx:id="paneProdDelete" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutY="101.0" prefHeight="57.0" prefWidth="799.0" spacing="30.0">
                                        <children>
@@ -443,13 +443,13 @@
                               </Pane>
                               <Pane fx:id="paneSupUpdate" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="txtProdNameUpdate" editable="false" layoutX="177.0" layoutY="207.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected product" />
-                                    <Label layoutX="100.0" layoutY="211.0" text="Product:">
+                                    <TextField fx:id="txtProdNameUpdate" editable="false" layoutX="177.0" layoutY="272.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected product" />
+                                    <Label layoutX="100.0" layoutY="276.0" text="Product:">
                                        <font>
                                           <Font name="Malayalam MN" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="btnUpdateProdSup" layoutX="231.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
+                                    <Button fx:id="btnUpdateProdSup" layoutX="231.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
                                     <VBox alignment="CENTER" layoutY="-1.0" prefHeight="83.0" prefWidth="733.0">
                                        <children>
                                           <Label text="Products Suppliers">
@@ -464,19 +464,20 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <HBox alignment="CENTER" layoutY="117.0" prefHeight="81.0" prefWidth="733.0" spacing="30.0">
+                                    <HBox alignment="CENTER" layoutY="153.0" prefHeight="81.0" prefWidth="799.0" spacing="30.0">
                                        <children>
                                           <ComboBox fx:id="cbProdSUpdate" onAction="#cbProdSUpdateSelect" prefHeight="27.0" prefWidth="225.0" promptText="choose product" />
                                           <ComboBox fx:id="cbProdSupUpdate" onAction="#cbProdSupUpdateSelect" prefHeight="27.0" prefWidth="230.0" promptText=" choose supplier" />
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="txtProdSupUpdate" editable="false" layoutX="454.0" layoutY="207.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected supplier" />
-                                    <Label layoutX="377.0" layoutY="211.0" text="Supplier:">
+                                    <TextField fx:id="txtProdSupUpdate" editable="false" layoutX="454.0" layoutY="272.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected supplier" />
+                                    <Label layoutX="377.0" layoutY="276.0" text="Supplier:">
                                        <font>
                                           <Font name="Malayalam MN" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="btnUpdateProdSupGoBack" layoutX="387.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                                    <Button fx:id="btnUpdateProdSupGoBack" layoutX="387.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                                    <ComboBox fx:id="cbProSup" layoutX="262.0" layoutY="107.0" onAction="#cbProSupSelect" prefHeight="27.0" prefWidth="225.0" promptText="select product supplier" />
                                  </children>
                               </Pane>
                               <Pane fx:id="paneSupDelete" prefHeight="200.0" prefWidth="200.0" visible="false" />
@@ -492,7 +493,7 @@
                      <children>
                         <StackPane prefHeight="543.0" prefWidth="799.0">
                            <children>
-                              <Pane fx:id="panePckSupList" prefHeight="544.0" prefWidth="799.0" visible="false">
+                              <Pane fx:id="panePckSupList" prefHeight="544.0" prefWidth="799.0">
                                  <children>
                                     <TableView fx:id="tvPckProd" layoutX="50.0" layoutY="208.0" prefHeight="299.0" prefWidth="540.0">
                                       <columns>
@@ -570,7 +571,7 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane fx:id="panePckSupUpdate" prefHeight="200.0" prefWidth="200.0">
+                              <Pane fx:id="panePckSupUpdate" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
                                     <TextField fx:id="txtPckProdUpdate" editable="false" layoutX="177.0" layoutY="207.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected package" />
                                     <Label layoutX="100.0" layoutY="211.0" text="Package:">

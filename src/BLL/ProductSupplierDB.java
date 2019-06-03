@@ -58,61 +58,64 @@ public class ProductSupplierDB {
         return productSuppliers;
     }
 
-//    public static void addProductSupplier(ProductSupplier prodSupplier){
-//        try{
-//            // instantiate DB connection
-//            Connection conn = DBConnect.getConnection();
-//
-//            // call prepared statement
-//            PreparedStatement stmt = conn.prepareStatement("Insert into Products values(?, ?)");
-//
-//            stmt.setString(1, null);
-//            stmt.setInt(2, prodSupplier.getProductSupplierId());
-//
-//            // checks if the data was inserted
-//
-//            int numInserts = stmt.executeUpdate();
-//
-//            if (numInserts == 0)
-//            {
-//                Alert alert = new Alert(Alert.AlertType.ERROR,
-//                        "Product not added. Try again or contact Tech Support.");
-//                alert.showAndWait();
-//            }
-//            stmt.close();
-//            conn.close();
-//
-//        }catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void addProductSupplier(ProductSupplier prodSupplier){
+        try{
+            // instantiate DB connection
+            Connection conn = DBConnect.getConnection();
 
-//    public static void updateProduct(Product product){
-//        try{
-//            // instantiate DB connection
-//            Connection conn = DBConnect.getConnection();
-//
-//            // call prepared statement
-//            PreparedStatement stmt = conn.prepareStatement(
-//                    "update Products set ProdName=? where ProductId=?");
-//
-//            stmt.setString(1, product.getProdName());
-//            stmt.setInt(2, product.getProductId());
-//
-//            //checks if the data was inserted
-//            int numInserts = stmt.executeUpdate();
-//            if (numInserts == 0)
-//            {
-//                Alert alert = new Alert(Alert.AlertType.ERROR,
-//                        "Product update failed. Please try again or contact Tech Support.");
-//                alert.showAndWait();
-//            }
-//            stmt.close();
-//            conn.close();
-//
-//        }catch(Exception e) { e.printStackTrace(); }
-//    }
+            // call prepared statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "Insert into products_suppliers values(?, ?, ?)");
+
+            stmt.setString(1, null);
+            stmt.setInt(2, prodSupplier.getProductId());
+            stmt.setInt(3, prodSupplier.getSupplierId());
+
+            // checks if the data was inserted
+
+            int numInserts = stmt.executeUpdate();
+
+            if (numInserts == 0)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Products Supplier not added. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+            stmt.close();
+            conn.close();
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateProductSupplier(ProductSupplier prodSupplier){
+        try{
+            // instantiate DB connection
+            Connection conn = DBConnect.getConnection();
+
+            // call prepared statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "update products_suppliers set ProductId=?, SupplierId=? where ProductSupplierId=?");
+
+            stmt.setInt(1, prodSupplier.getProductId());
+            stmt.setInt(2, prodSupplier.getSupplierId());
+            stmt.setInt(3, prodSupplier.getProductSupplierId());
+
+            //checks if the data was inserted
+            int numInserts = stmt.executeUpdate();
+            if (numInserts == 0)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Product supplier update failed. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+            stmt.close();
+            conn.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+    }
 
     //Searches product suppliers in response to text input
     public static List<ProductSupplier> searchProductsSuppliers(String para) {

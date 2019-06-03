@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import BLL.*;
+import BLL.Package;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -113,7 +114,7 @@ public class ProductController {
 
     // ComboBox attribute
     @FXML
-    private ComboBox<?> cbProdUpdate;
+    private ComboBox<Product> cbProdUpdate;
 
     // TextField attribute
     @FXML
@@ -132,7 +133,7 @@ public class ProductController {
 
     // ComboBox attribute
     @FXML
-    private ComboBox<?> cbProdDelete;
+    private ComboBox<Product> cbProdDelete;
 
     // TextField attribute
     @FXML
@@ -195,10 +196,11 @@ public class ProductController {
 
     // ComboBox attributes
     @FXML
-    private ComboBox<?> cbProdAdd;
+    private ComboBox<Product> cbProdAdd;
     @FXML
-    private ComboBox<?> cbProdSupAdd;
+    private ComboBox<Supplier> cbProdSupAdd;
     // Products Suppliers Add Pane /!END!/
+
 
     // Products Suppliers Update Pane /!START!/
 
@@ -219,9 +221,11 @@ public class ProductController {
 
     // ComboBox attributes
     @FXML
-    private ComboBox<?> cbProdSUpdate;
+    private ComboBox<ProductSupplier> cbProSup;
     @FXML
-    private ComboBox<?> cbProdSupUpdate;
+    private ComboBox<Product> cbProdSUpdate;
+    @FXML
+    private ComboBox<Supplier> cbProdSupUpdate;
 
     //ComboBox Actions
 
@@ -275,9 +279,9 @@ public class ProductController {
 
     // ComboBox attributes
     @FXML
-    private ComboBox<?> cbPckProdAdd;
+    private ComboBox<Package> cbPckProdAdd;
     @FXML
-    private ComboBox<?> cbPckProdSupAdd;
+    private ComboBox<ProductSupplier> cbPckProdSupAdd;
 
     // Buttons
     @FXML
@@ -301,9 +305,9 @@ public class ProductController {
 
     // ComboBox attributes
     @FXML
-    private ComboBox<?> cbPckProdUpdate;
+    private ComboBox<Package> cbPckProdUpdate;
     @FXML
-    private ComboBox<?> cbPckProdSupUpdate;
+    private ComboBox<ProductSupplier> cbPckProdSupUpdate;
 
     // Buttons
     @FXML
@@ -437,8 +441,8 @@ public class ProductController {
             txtProdName.setText("");
             txtProdSearch.setText("");
             txtProdName.setFocusTraversable(false);
-            btnAdd.setDisable(true);
-            btnUpdate.setDisable(true);
+//            btnAdd.setDisable(true);
+//            btnUpdate.setDisable(true);
         }
     }
 
@@ -461,43 +465,43 @@ public class ProductController {
             // Refresh products list
             loadProducts();
 
-            btnUpdate.setDisable(true);
-            btnAdd.setDisable(true);
+//            btnUpdate.setDisable(true);
+//            btnAdd.setDisable(true);
         }
     }
 
 
 
-    @FXML
-    void btnPckAddAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPckClearAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPckUpdateAction(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void btnSupAddAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSupClearAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSupUpdateAction(ActionEvent event) {
-
-    }
+//    @FXML
+//    void btnPckAddAction(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void btnPckClearAction(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void btnPckUpdateAction(ActionEvent event) {
+//
+//    }
+//
+//
+//    @FXML
+//    void btnSupAddAction(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void btnSupClearAction(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void btnSupUpdateAction(ActionEvent event) {
+//
+//    }
 
     @FXML
     void handleButtonClicks(ActionEvent event) throws IOException {
@@ -567,6 +571,202 @@ public class ProductController {
             stage.setScene(scene);
         }
 
+        /*** Products Tab ***/
+        /*** Pane switching buttons ***/
+        if(event.getSource() == btnAddProducts){
+            loadPaneProdAdd();
+        }
+        if(event.getSource() == btnUpdateProducts){
+            loadPaneProdUpdate();
+        }
+        if(event.getSource() == btnDeleteProducts){
+            loadPaneProdDelete();
+        }
+
+        if(event.getSource() == btnAddProductGoBack ||
+                event.getSource() == btnProdUpdateGoBack ||
+                event.getSource() == btnProdDeleteGoBack){
+            loadPaneProdList();
+        }
+
+
+        /*** Products Suppliers Tab ***/
+        /*** Pane switching buttons ***/
+        if(event.getSource() == btnAddProductSuppliers){
+            loadPaneProdSupAdd();
+        }
+        if(event.getSource() == btnUpdateProductSuppliers){
+            loadPaneProdSupUpdate();
+        }
+        if(event.getSource() == btnUpdateProdSupGoBack ||
+                event.getSource() == btnAddProdSupGoBack){
+            loadPaneProdSupList();
+        }
+
+        /*** Package Products Suppliers Tab ***/
+        /*** Pane switching buttons ***/
+        if(event.getSource() == btnAddPackageSuppliers){
+            loadPanePckProdAdd();
+        }
+        if(event.getSource() == btnUpdatePackageSuppliers){
+            loadPanePckProdUpdate();
+        }
+        if(event.getSource() == btnPckProdSupUpdateGoBack ||
+                event.getSource() == btnAddPckProdSupGoBack){
+            loadPanePckProdList();
+        }
+
+        /*** PANE OPERATIONS ***/
+        /*** Products Tab  Start ***/
+
+        /*** Add Pane ***/
+        if(event.getSource() == btnAddProduct){
+
+            if(Validation.isProvided(txtProdName, "Product name"))
+            {
+                Product product = new Product(txtProdName.getText());
+                ProductDB.addProduct(product);
+                loadPaneProdList();
+            }
+        }
+
+        /*** Update Pane ***/
+        if(event.getSource() == btnProdUpdate){
+            if(Validation.isProvided(txtProdUpdate, "Product name"))
+            {
+                Product prod = cbProdUpdate.getSelectionModel().getSelectedItem();
+                Product product = new Product(prod.getProductId(), txtProdName.getText());
+                ProductDB.updateProduct(product);
+                loadPaneProdList();
+            }
+        }
+
+        /*** Delete Pane ***/
+        if(event.getSource() == btnProdDelete){
+            if(Validation.isProvided(txtProdDelete, "Product name"))
+            {
+                Product prod = cbProdDelete.getSelectionModel().getSelectedItem();
+                Product product = new Product(prod.getProductId(), txtProdDelete.getText());
+                ProductDB.deleteProduct(product);
+                loadPaneProdList();
+            }
+        }
+        /*** Products Tab End ***/
+        /*** PANE OPERATIONS ***/
+
+
+        /*** PANE OPERATIONS ***/
+        /*** Products Suppliers Tab Start ***/
+
+        /*** Add Pane ***/
+        if(event.getSource() == btnAddProdSup){
+
+            if(
+                    Validation.isProvided(txtProdNameAdd, "Product name") &&
+                    Validation.isProvided(txtProdSupAdd, "Product supplier") &&
+                            Validation.hasSelection(cbProdAdd, "product id") &&
+                    Validation.hasSelection(cbProdSupAdd, "supplier id"))
+            {
+                Product prod = cbProdAdd.getSelectionModel().getSelectedItem();
+                Supplier sup = cbProdSupAdd.getSelectionModel().getSelectedItem();
+                ProductSupplier prodSup = new ProductSupplier(
+                        prod.getProductId(),
+                        sup.getSupplierId());
+
+                ProductSupplierDB.addProductSupplier(prodSup);
+                loadPaneProdSupList();
+            }
+        }
+
+
+
+        /*** Update Pane ***/
+        if(event.getSource() == btnUpdateProdSup){
+            if(Validation.isProvided(txtProdNameUpdate, "Product name") &&
+                    Validation.isProvided(txtProdSupUpdate, "Product supplier") &&
+                    Validation.hasSelection(cbProdSUpdate, "product id") &&
+                    Validation.hasSelection(cbProdSupUpdate, "supplier id"))
+
+            {
+
+                ProductSupplier proSup = cbProSup.getSelectionModel().getSelectedItem();
+                Product prod = cbProdSUpdate.getSelectionModel().getSelectedItem();
+                Supplier sup = cbProdSupUpdate.getSelectionModel().getSelectedItem();
+
+                ProductSupplier prodSup = new ProductSupplier(
+                        proSup.getProductSupplierId(),
+                        prod.getProductId(),
+                        prod.getProdName(),
+                        sup.getSupplierId(),
+                        sup.getSupName());
+
+                ProductSupplierDB.updateProductSupplier(prodSup);
+                loadPaneProdSupList();
+            }
+        }
+
+        /*** Delete Pane ***/
+        // if(event.getSource() == btnProdDelete){
+        //   if(Validation.isProvided(txtProdDelete, "Product name"))
+        //     {
+        //       Product prod = cbProdDelete.getSelectionModel().getSelectedItem();
+        //       Product product = new Product(prod.getProductId(), txtProdDelete.getText());
+        //       ProductDB.deleteProduct(product);
+        //       loadPaneProdList();
+        //     }
+        // }
+        /*** Products Suppliers Tab End ***/
+        /*** PANE OPERATIONS ***/
+
+
+        /*** PANE OPERATIONS ***/
+        /*** Package Products Suppliers Tab Start ***/
+
+        /*** Add Pane ***/
+        if(event.getSource() == btnAddPckProdSup){
+
+            if(
+                    Validation.isProvided(txtPckProdNameAdd, "package name") &&
+                            Validation.isProvided(txtPckProdSupAdd, "product supplier") &&
+                            Validation.hasSelection(cbPckProdAdd, "package id") &&
+                            Validation.hasSelection(cbPckProdSupAdd, "supplier id")
+            )
+            {
+                Package pck = cbPckProdAdd.getSelectionModel().getSelectedItem();
+                ProductSupplier sup = cbPckProdSupAdd.getSelectionModel().getSelectedItem();
+                PackageProductSupplier pckProdSup = new PackageProductSupplier(
+                        pck.getPackageId(),
+                        sup.getProductSupplierId());
+
+                PackageProductSupplierDB.addPackageProductSupplier(pckProdSup);
+                loadPanePckProdList();
+            }
+        }
+
+        /*** Update Pane ***/
+        if(event.getSource() == btnPckProdSupUpdate){
+            if(Validation.isProvided(txtPckProdUpdate, "Package name") &&
+                    Validation.isProvided(txtPckProdSupUpdate, "Product supplier") &&
+                    Validation.hasSelection(cbPckProdUpdate, "product id") &&
+                    Validation.hasSelection(cbPckProdSupUpdate, "product id"))
+
+            {
+                Package pck = cbPckProdUpdate.getSelectionModel().getSelectedItem();
+                ProductSupplier prodSup = cbPckProdSupUpdate.getSelectionModel().getSelectedItem();
+
+                PackageProductSupplier pckProdSup = new PackageProductSupplier(
+                        pck.getPackageId(),
+                        pck.getPkgName(),
+                        prodSup.getProductSupplierId(),
+                        prodSup.getSupName());
+
+                PackageProductSupplierDB.updatePackageProductSupplier(pckProdSup);
+                loadPanePckProdList();
+            }
+        }
+
+        /*** Package Products Suppliers Tab End ***/
+        /*** PANE OPERATIONS ***/
 
     }
 
@@ -612,11 +812,27 @@ public class ProductController {
             imgProfilePicture.setImage(SettingsController.getProfilePicture());
         }
 
-        // Prepare table columns products
-        clProdId.setCellValueFactory(cellData -> cellData.getValue().productIdProperty().asObject());
-        clProdName.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
 
-        loadProducts();
+        //layout setup products tab
+        paneProdAdd.setVisible(false);
+        paneProdUpdate.setVisible(false);
+        paneProdDelete.setVisible(false);
+        paneProdList.setVisible(true);
+
+        //layout setup products suppliers tab
+        paneSupAdd.setVisible(false);
+        paneSupUpdate.setVisible(false);
+        paneSupDelete.setVisible(false);
+        paneSupList.setVisible(true);
+
+        //layout setup package products suppliers tab
+        panePckSupAdd.setVisible(false);
+        panePckSupUpdate.setVisible(false);
+        panePckSupDelete.setVisible(false);
+        panePckSupList.setVisible(true);
+
+
+//        loadProducts();
 
         //Changes the table items based off text in search bar
         txtProdSearch.textProperty().addListener(new ChangeListener<String>() {
@@ -631,53 +847,48 @@ public class ProductController {
             }
         });
 
-        tvProducts.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                int index = tvProducts.getSelectionModel().getSelectedIndex();
-                Product product = tvProducts.getItems().get(index);
-
-                prodId = product.getProductId();
-                txtProdName.setText(product.getProdName());
-
-                btnUpdate.setDisable(false);
-            }
-
-        });
+//        tvProducts.setOnMouseClicked((MouseEvent event) -> {
+//            if (event.getButton().equals(MouseButton.PRIMARY)) {
+//                int index = tvProducts.getSelectionModel().getSelectedIndex();
+//                Product product = tvProducts.getItems().get(index);
+//
+//                prodId = product.getProductId();
+//                txtProdName.setText(product.getProdName());
+//
+////                btnUpdate.setDisable(false);
+//            }
+//
+//        });
 
         txtProdName.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                btnAdd.setDisable(false);
+//                btnAdd.setDisable(false);
             }
         });
 
+//        txtSearchSup.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+//                ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+//                        ProductSupplierDB.searchProductsSuppliers(txtSearchSup.getText()));
+//
+//                tvProdSup.setItems(productsSuppliers);
+//            }
+//        });
 
-        // Prepare table columns products suppliers
-        clProdSupId.setCellValueFactory(cellData -> cellData.getValue().productSupplierIdProperty().asObject());
-        clProdSupProd.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
-        clProdSupSup.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
+//        loadProductsSuppliers();
 
-        txtSearchSup.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
-                        ProductSupplierDB.searchProductsSuppliers(txtSearchSup.getText()));
-
-                tvProdSup.setItems(productsSuppliers);
-            }
-        });
-
-        loadProductsSuppliers();
-
-        btnAdd.setDisable(true);
-        btnUpdate.setDisable(true);
-        btnRemove.setDisable(true);
+//        btnAdd.setDisable(true);
+//        btnUpdate.setDisable(true);
+//        btnRemove.setDisable(true);
     }
 
     private void loadProducts(){
 
         //Adds the data to the table
-        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        ObservableList<Product> products = FXCollections.observableArrayList(
+                ProductDB.getProducts());
         tvProducts.setItems(products);
 
     }
@@ -688,5 +899,224 @@ public class ProductController {
         tvProdSup.setItems(productsSuppliers);
     }
 
+    /*** Load Panes ***/
+
+    /*** Products Tab START ***/
+    private void loadPaneProdList(){
+
+        paneProdList.toFront();
+
+        //layout
+        paneProdAdd.setVisible(false);
+        paneProdUpdate.setVisible(false);
+        paneProdDelete.setVisible(false);
+        paneProdList.setVisible(true);
+
+        // Prepare table columns products
+        clProdId.setCellValueFactory(cellData -> cellData.getValue().productIdProperty().asObject());
+        clProdName.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
+
+        ObservableList<Product> products = FXCollections.observableArrayList(
+                ProductDB.getProducts());
+        tvProducts.setItems(products);
+
+    }
+
+    private void loadPaneProdAdd(){
+        paneProdAdd.toFront();
+
+        //layout
+        paneProdAdd.setVisible(true);
+        paneProdUpdate.setVisible(false);
+        paneProdDelete.setVisible(false);
+        paneProdList.setVisible(false);
+
+        txtProdName.clear();
+    }
+
+    private void loadPaneProdUpdate(){
+        paneProdUpdate.toFront();
+
+        //layout
+        paneProdAdd.setVisible(false);
+        paneProdUpdate.setVisible(true);
+        paneProdDelete.setVisible(false);
+        paneProdList.setVisible(false);
+
+        cbProdUpdate.getItems().removeAll();
+        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        cbProdUpdate.setItems(products);
+
+        txtProdUpdate.clear();
+    }
+
+    private void loadPaneProdDelete(){
+        paneProdDelete.toFront();
+
+        //layout
+        paneProdAdd.setVisible(false);
+        paneProdUpdate.setVisible(false);
+        paneProdDelete.setVisible(true);
+        paneProdList.setVisible(false);
+
+        cbProdDelete.getSelectionModel().clearSelection();
+        cbProdDelete.getItems().removeAll();
+        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        cbProdDelete.setItems(products);
+
+        txtProdUpdate.clear();
+    }
+    /*** Products Tab END ***/
+
+
+    /*** Products Suppliers Tab START ***/
+    private void loadPaneProdSupList(){
+        paneSupList.toFront();
+
+        //layout
+        paneSupAdd.setVisible(false);
+        paneSupUpdate.setVisible(false);
+        paneSupDelete.setVisible(false);
+        paneSupList.setVisible(true);
+
+        // Prepare table columns products suppliers
+        clProdSupId.setCellValueFactory(cellData -> cellData.getValue().productSupplierIdProperty().asObject());
+        clProdSupProd.setCellValueFactory(cellData -> cellData.getValue().prodNameProperty());
+        clProdSupSup.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
+
+        ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        tvProdSup.setItems(productsSuppliers);
+    }
+
+    private void loadPaneProdSupAdd(){
+
+        paneSupAdd.toFront();
+
+        // layout
+        paneSupAdd.setVisible(true);
+        paneSupUpdate.setVisible(false);
+        paneSupDelete.setVisible(false);
+        paneSupList.setVisible(false);
+
+        // combo box
+        cbProdAdd.getSelectionModel().clearSelection();
+        cbProdAdd.getItems().removeAll();
+        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        cbProdAdd.setItems(products);
+
+        cbProdSupAdd.getSelectionModel().clearSelection();
+        cbProdSupAdd.getItems().removeAll();
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers);
+        cbProdSupAdd.setItems(suppliers);
+
+        txtProdNameAdd.clear();
+        txtProdSupAdd.clear();
+    }
+
+    private void loadPaneProdSupUpdate(){
+
+        paneSupUpdate.toFront();
+
+        // layout
+        paneSupAdd.setVisible(false);
+        paneSupUpdate.setVisible(true);
+        paneSupDelete.setVisible(false);
+        paneSupList.setVisible(false);
+
+        // combo box setup
+        cbProSup.getSelectionModel().clearSelection();
+        cbProSup.getItems().removeAll();
+        ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        cbProSup.setItems(productsSuppliers);
+
+        cbProdSUpdate.getSelectionModel().clearSelection();
+        cbProdSUpdate.getItems().removeAll();
+        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        cbProdSUpdate.setItems(products);
+
+        cbProdSupUpdate.getSelectionModel().clearSelection();
+        cbProdSupUpdate.getItems().removeAll();
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers);
+        cbProdSupUpdate.setItems(suppliers);
+
+        txtProdSupUpdate.clear();
+        txtProdNameUpdate.clear();
+
+    }
+    /*** Products Suppliers Tab END ***/
+
+    /*** Package Products Suppliers Tab START ***/
+    private void loadPanePckProdList() {
+        panePckSupList.toFront();
+
+        //layout
+        panePckSupAdd.setVisible(false);
+        panePckSupUpdate.setVisible(false);
+        panePckSupDelete.setVisible(false);
+        panePckSupList.setVisible(true);
+
+        // Prepare table columns products suppliers
+        clProdPck.setCellValueFactory(cellData -> cellData.getValue().pkgNameProperty());
+        clProdPckSup.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
+
+        ObservableList<PackageProductSupplier> pckProdSuppliers = FXCollections.observableArrayList(
+                PackageProductSupplierDB.getPckgProductSuppliers());
+        tvPckProd.setItems(pckProdSuppliers);
+    }
+
+    private void loadPanePckProdAdd() {
+        panePckSupAdd.toFront();
+
+        // layout
+        panePckSupAdd.setVisible(true);
+        panePckSupUpdate.setVisible(false);
+        panePckSupDelete.setVisible(false);
+        panePckSupList.setVisible(false);
+
+        // combo box
+        cbPckProdAdd.getSelectionModel().clearSelection();
+        cbPckProdAdd.getItems().removeAll();
+        ObservableList<Package> pckg = FXCollections.observableArrayList(
+                PackageDB.getPackages());
+        cbPckProdAdd.setItems(pckg);
+
+        cbPckProdSupAdd.getSelectionModel().clearSelection();
+        cbPckProdSupAdd.getItems().removeAll();
+        ObservableList<ProductSupplier> prodSups = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        cbPckProdSupAdd.setItems(prodSups);
+
+        txtPckProdNameAdd.clear();
+        txtPckProdSupAdd.clear();
+    }
+
+    private void loadPanePckProdUpdate() {
+        panePckSupUpdate.toFront();
+
+        // layout
+        panePckSupAdd.setVisible(false);
+        panePckSupUpdate.setVisible(true);
+        panePckSupDelete.setVisible(false);
+        panePckSupList.setVisible(false);
+
+        cbPckProdUpdate.getSelectionModel().clearSelection();
+        cbPckProdUpdate.getItems().removeAll();
+        ObservableList<Package> pckgs = FXCollections.observableArrayList(PackageDB.getPackages());
+        cbPckProdUpdate.setItems(pckgs);
+
+        cbPckProdSupUpdate.getSelectionModel().clearSelection();
+        cbPckProdSupUpdate.getItems().removeAll();
+        ObservableList<ProductSupplier> prodSuppliers = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        cbPckProdSupUpdate.setItems(prodSuppliers);
+
+        txtPckProdUpdate.clear();
+        txtPckProdSupUpdate.clear();
+    }
+    /*** Package Products Suppliers Tab START ***/
+
+    private void loadPanePckProdDelete() {}
 }
 

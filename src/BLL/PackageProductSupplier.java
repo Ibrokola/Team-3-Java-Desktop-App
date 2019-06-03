@@ -9,6 +9,13 @@ public class PackageProductSupplier {
     private SimpleIntegerProperty productSupplierId;
     private SimpleStringProperty supName;
 
+
+    public PackageProductSupplier(int packageId, int productSupplierId)
+    {
+        this.packageId = new SimpleIntegerProperty(packageId);
+        this.productSupplierId = new SimpleIntegerProperty(productSupplierId);
+    }
+
     public PackageProductSupplier(int packageId, String pkgName, int productSupplierId, String supName) {
         this.packageId = new SimpleIntegerProperty(packageId);
         this.pkgName = new SimpleStringProperty(pkgName);
