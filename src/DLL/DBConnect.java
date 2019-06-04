@@ -11,7 +11,7 @@ public class DBConnect {
         try {
             //gets driver
             // mysql8 driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             // mysql5 driver
             //  Class.forName("com.mysql.jdbc.Driver");
 
