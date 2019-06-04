@@ -3,6 +3,7 @@ package app;
 import BLL.Administrator;
 import BLL.Package;
 import BLL.PackageDB;
+import BLL.Validation;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -44,6 +45,10 @@ public class PackageController {
     @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
+    //Button for adding input into "packages" table
+    @FXML
+    private Button btnAddPackage;
+
 
     //panes
     @FXML private Pane paneAdd;
@@ -157,6 +162,30 @@ public class PackageController {
         /*** Operational buttons ***/
         if(event.getSource() == btnDelete){ }
 
+        /*** "Add package" Button ****/
+
+        if(event.getSource() == btnAddPackage){
+            if(Validation.isProvided(txtAddPkgName, "package name") &&
+                    Validation.isProvided(dpPkgStartDate, "start date") &&
+                    Validation.isProvided(dpPkgEndDate, "end date") &&
+                    Validation.isProvided(txtPkgDescription, "description") &&
+                    Validation.hasSelection(txtPkgBasePrice, "base price")){
+
+
+                Package packages = new Package(txtAddPkgName.getText(),
+                        dpPkgStartDate.getText(),
+                        dpPkgEndDate.getText(),
+                        txtPkgDescription.getText(),
+                        txtPkgBasePrice.getText()
+                );
+
+                //Adds the agent to the database
+                PackageDB.addPackages(packages);
+
+                loadOverviewPane();
+            }
+        }
+
     }
 
     //Widget Code
@@ -202,18 +231,8 @@ public class PackageController {
     }
 
 
-    //Header for Packages Panel
-    @FXML
-    private Label lblHeadPackages;
+    
 
-
-
-
-
-    /*** Buttons ****/
-    //Button for adding input into "packages" table
-    @FXML
-    private Button btnAddPackage;
 
     //button to go back to main panel
     @FXML
