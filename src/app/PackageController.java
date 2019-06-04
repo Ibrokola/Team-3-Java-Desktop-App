@@ -154,13 +154,25 @@ public class PackageController {
         /*** Pane switching buttons ***/
         if(event.getSource() == btnAdd){
             paneAdd.toFront();
+            paneAdd.setVisible(true);
+            paneUpdate.setVisible(false);
+            //paneDelete.setVisible(false);
+            paneOverview.setVisible(false);
         }
         if(event.getSource() == btnUpdate){
             paneUpdate.toFront();
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(true);
+            //paneDelete.setVisible(false);
+            paneOverview.setVisible(false);
         }
 
         /*** Operational buttons ***/
         if(event.getSource() == btnDelete){ }
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
 
         /*** "Add package" Button ****/
 
@@ -205,6 +217,7 @@ public class PackageController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+        loadOverviewPane();
     }
 
     //Load Packages overview panel
@@ -218,12 +231,12 @@ public class PackageController {
         paneOverview.setVisible(true);
 
         //Packages table
-       // colPkgId.setCellValueFactory(cellData -> cellData.getValue().getPackageId().asObject());
+       colPkgId.setCellValueFactory(cellData -> cellData.getValue().packageIdProperty().asObject());
         colPkgName.setCellValueFactory(cellData -> cellData.getValue().pkgNameProperty());
         colPkgStrartDate.setCellValueFactory(cellData -> cellData.getValue().pkgStartDateProperty());
         colPkgEndDate.setCellValueFactory(cellData -> cellData.getValue().pkgEndDateProperty());
         colPkgDescription.setCellValueFactory(cellData -> cellData.getValue().pkgDescProperty());
-        //colPkgBasePrice.setCellValueFactory(cellData -> cellData.getValue().getPkgBasePrice().asObject);
+        colPkgBasePrice.setCellValueFactory(cellData -> cellData.getValue().pkgBasePriceProperty().asObject());
 
         ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
                 tblPackages.setItems(packages);
