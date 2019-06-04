@@ -4,11 +4,48 @@ package BLL;
 import DLL.DBConnect;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SupplierDB {
+
+    public static List<Supplier> getSuppliers() {
+        ArrayList<Supplier> suppliers = null;
+
+
+        try{
+            // instantiate DB connection
+            Connection conn = DBConnect.getConnection();
+
+            // instantiate query
+            Statement query = conn.createStatement();
+
+            // execute statement
+            ResultSet rs = query.executeQuery("select * from suppliers");
+
+            // assign products arrayList
+            suppliers = new ArrayList<Supplier>();
+
+            // retrieve result set and add to product arrays
+            while(rs.next()){
+                suppliers.add(new Supplier(
+                        rs.getInt(1),
+                        rs.getString(2)));
+            }
+
+            rs.close();
+            conn.close();
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return suppliers;
+    }
 
     public static void addSupplier(Supplier supplier){
 
@@ -105,5 +142,29 @@ public class SupplierDB {
 
     }
 
+    // Retrieve a single supplier
+    public static Supplier getSupplier(int id){
+        Supplier supplier = null;
+
+        try {
+            //connection built
+            Connection conn = DBConnect.getConnection();
+
+            //makes a sql statement
+            PreparedStatement stmt = conn.prepareStatement("select * from suppliers where SupplierId=?");
+            stmt.setInt(1, id);
+
+            //assigns and executes statement
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                supplier = new Supplier(rs.getInt("SupplierId"),
+                        rs.getString("SupName"));
+            }
+            conn.close();
+
+        }catch(Exception e){ e.printStackTrace(); }
+
+        return supplier;
+    }
 
 }

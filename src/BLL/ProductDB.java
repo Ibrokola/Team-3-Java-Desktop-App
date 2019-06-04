@@ -139,4 +139,53 @@ public class ProductDB {
 
         return products;
     }
+
+    // Deletes a Product (Not advisable, due to database inconsistencies)
+    public static void deleteProduct(Product product){
+        try
+        {
+            //connection built
+            Connection conn = DBConnect.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("delete from Products where ProductId=?");
+            stmt.setInt(1, product.getProductId());
+
+            //checks if agent is deleted
+            int numRows = stmt.executeUpdate();
+            if(numRows == 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Product failed to delete. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+
+            conn.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+    }
+
+    // Retrieve a single product
+    public static Product getProduct(int id){
+        Product product = null;
+
+        try {
+            //connection built
+            Connection conn = DBConnect.getConnection();
+
+            //makes a sql statement
+            PreparedStatement stmt = conn.prepareStatement("select * from products where ProductId=?");
+            stmt.setInt(1, id);
+
+            //assigns and executes statement
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                product = new Product(rs.getInt("ProductId"),
+                        rs.getString("ProdName"));
+            }
+            conn.close();
+
+        }catch(Exception e){ e.printStackTrace(); }
+
+        return product;
+    }
+
 }

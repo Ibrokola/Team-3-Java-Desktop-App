@@ -14,6 +14,12 @@ public class ProductSupplier {
     // private SimpleStringProperty productId;
     // private SimpleStringProperty supplierId;
 
+    // For auto-increment
+    public ProductSupplier(int productId, int supplierId) {
+        this.productId = new SimpleIntegerProperty(productId);
+        this.supplierId = new SimpleIntegerProperty(supplierId);
+    }
+
 
     public ProductSupplier(int productSupplierId, int productId, String prodName, int supplierId, String supName) {
         this.productSupplierId = new SimpleIntegerProperty(productSupplierId);

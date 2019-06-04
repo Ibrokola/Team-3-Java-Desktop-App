@@ -1,6 +1,7 @@
 package BLL;
 
 import DLL.DBConnect;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,6 +57,70 @@ public class PackageProductSupplierDB {
         return pckgProductSuppliers;
     }
 
+    public static void addPackageProductSupplier(PackageProductSupplier pckProdSupplier){
+        try{
+            // instantiate DB connection
+            Connection conn = DBConnect.getConnection();
+
+            // call prepared statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "Insert into packages_products_suppliers values(?, ?)");
+
+            stmt.setInt(1, pckProdSupplier.getPackageId());
+            stmt.setInt(2, pckProdSupplier.getProductSupplierId());
+
+            // checks if the data was inserted
+
+            int numInserts = stmt.executeUpdate();
+
+            if (numInserts == 0)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Package Product Supplier not added. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+            stmt.close();
+            conn.close();
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void updatePackageProductSupplier(PackageProductSupplier pckProdSupplier){
+        try
+        {
+            // instantiate DB connection
+            Connection conn = DBConnect.getConnection();
+
+            // call prepared statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "update packages_products_suppliers set PackageId=?, ProductSupplierId=? where PackageId=?");
+
+            stmt.setInt(1, pckProdSupplier.getPackageId());
+            stmt.setInt(2, pckProdSupplier.getProductSupplierId());
+            stmt.setInt(3, pckProdSupplier.getPackageId());
+
+            //checks if the data was inserted
+            int numInserts = stmt.executeUpdate();
+            if (numInserts == 0)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Package product supplier update failed. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+            stmt.close();
+            conn.close();
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
     //Searches package product suppliers in response to text input
     public static List<PackageProductSupplier> searchPckgProductsSuppliers(String para) {
@@ -65,7 +130,6 @@ public class PackageProductSupplierDB {
 
             //Instantiate DB connection
             Connection conn = DBConnect.getConnection();
-
 
 
             String q = "select PackageId, PkgName, ProductSupplierId, SupName from packages_products_suppliers " +
