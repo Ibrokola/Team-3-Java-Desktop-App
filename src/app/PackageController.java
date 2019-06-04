@@ -166,15 +166,15 @@ public class PackageController {
 
         if(event.getSource() == btnAddPackage){
             if(Validation.isProvided(txtAddPkgName, "package name") &&
-                    Validation.isProvided(dpPkgStartDate, "start date") &&
-                    Validation.isProvided(dpPkgEndDate, "end date") &&
+                   // Validation.isProvided(dpPkgStartDate, "start date") &&
+                    //Validation.isProvided(dpPkgEndDate, "end date") &&
                     Validation.isProvided(txtPkgDescription, "description") &&
-                    Validation.hasSelection(txtPkgBasePrice, "base price")){
+                    Validation.isProvided(txtPkgBasePrice, "base price")){
 
 
                 Package packages = new Package(txtAddPkgName.getText(),
-                        dpPkgStartDate.getText(),
-                        dpPkgEndDate.getText(),
+                        dpPkgStartDate.getValue(),
+                        dpPkgEndDate.getValue(),
                         txtPkgDescription.getText(),
                         txtPkgBasePrice.getText()
                 );
@@ -231,7 +231,7 @@ public class PackageController {
     }
 
 
-    
+
 
 
     //button to go back to main panel

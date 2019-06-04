@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Package {
@@ -29,6 +30,9 @@ public class Package {
         this.PkgDesc = new SimpleStringProperty (PkgDesc);
         this.PkgBasePrice = new SimpleDoubleProperty (PkgBasePrice);
         this.PkgAgencyCommission = new SimpleDoubleProperty (PkgAgencyCommission);
+    }
+
+    public Package(String text, LocalDate value, LocalDate value1, String text1, String text2) {
     }
 
 
