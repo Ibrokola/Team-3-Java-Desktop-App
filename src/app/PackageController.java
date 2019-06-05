@@ -84,7 +84,7 @@ public class PackageController {
 
 
 
-    //handles all button clocks
+    //handles all button clicks
     @FXML void handleButtonClicks(ActionEvent event) throws IOException {
         //dashboard button
         if(event.getSource() == btnDashboard){
@@ -151,6 +151,8 @@ public class PackageController {
             stage.setScene(scene);
         }
 
+
+
         /*** Pane switching buttons ***/
         if(event.getSource() == btnAdd){
             paneAdd.toFront();
@@ -194,7 +196,7 @@ public class PackageController {
                 //Adds the agent to the database
                 PackageDB.addPackages(packages);
 
-                loadOverviewPane();
+                loadAddPane();
             }
         }
 
@@ -240,6 +242,18 @@ public class PackageController {
 
         ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
                 tblPackages.setItems(packages);
+
+    }
+
+    //Loads "Add Packages" panel
+    private void loadAddPane(){
+        paneAdd.toFront();
+
+        paneAdd.toFront();
+        paneAdd.setVisible(true);
+        paneUpdate.setVisible(false);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(false);
 
     }
 
