@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Package {
@@ -31,15 +32,16 @@ public class Package {
         this.PkgAgencyCommission = new SimpleDoubleProperty (PkgAgencyCommission);
     }
 
+    public Package(String text, LocalDate value, LocalDate value1, String text1, String text2) {
+    }
+
 
     public int getPackageId() {
         return PackageId.get();
     }
-
     public SimpleIntegerProperty packageIdProperty() {
         return PackageId;
     }
-
     public void setPackageId(int packageId) {
         this.PackageId.set(packageId);
     }
@@ -47,11 +49,9 @@ public class Package {
     public String getPkgName() {
         return PkgName.get();
     }
-
     public SimpleStringProperty pkgNameProperty() {
         return PkgName;
     }
-
     public void setPkgName(String pkgName) {
         this.PkgName.set(pkgName);
     }
@@ -59,11 +59,9 @@ public class Package {
     public Date getPkgStartDate() {
         return PkgStartDate.get();
     }
-
     public ObjectProperty<Date> pkgStartDateProperty() {
         return PkgStartDate;
     }
-
     public void setPkgStartDate(Date pkgStartDate) {
         this.PkgStartDate.set(pkgStartDate);
     }
@@ -71,11 +69,9 @@ public class Package {
     public Date getPkgEndDate() {
         return PkgEndDate.get();
     }
-
     public ObjectProperty<Date> pkgEndDateProperty() {
         return PkgEndDate;
     }
-
     public void setPkgEndDate(Date pkgEndDate) {
         this.PkgEndDate.set(pkgEndDate);
     }
@@ -83,11 +79,9 @@ public class Package {
     public String getPkgDesc() {
         return PkgDesc.get();
     }
-
     public SimpleStringProperty pkgDescProperty() {
         return PkgDesc;
     }
-
     public void setPkgDesc(String pkgDesc) {
         this.PkgDesc.set(pkgDesc);
     }
@@ -95,11 +89,9 @@ public class Package {
     public double getPkgBasePrice() {
         return PkgBasePrice.get();
     }
-
     public SimpleDoubleProperty pkgBasePriceProperty() {
         return PkgBasePrice;
     }
-
     public void setPkgBasePrice(double pkgBasePrice) {
         this.PkgBasePrice.set(pkgBasePrice);
     }
@@ -107,11 +99,9 @@ public class Package {
     public double getPkgAgencyCommission() {
         return PkgAgencyCommission.get();
     }
-
     public SimpleDoubleProperty pkgAgencyCommissionProperty() {
         return PkgAgencyCommission;
     }
-
     public void setPkgAgencyCommission(double pkgAgencyCommission) {
         this.PkgAgencyCommission.set(pkgAgencyCommission);
     }

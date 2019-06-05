@@ -17,6 +17,7 @@ public class AdministratorDB {
      * Date May 24, 2019
      * */
 
+    //checks the admin is in the database
     public static Administrator checkAdmin(String username, String password){
         Administrator admin = null;
 
@@ -26,7 +27,7 @@ public class AdministratorDB {
 
             //query
             String selectQuery = "select adminFirstName, adminLastName from administrators where " +
-                                "adminUsername = ? and adminPassword = ?";
+                    "adminUsername = ? and adminPassword = ?";
 
             //makes a sql statement
             PreparedStatement stmt = connect.prepareStatement(selectQuery);
@@ -49,5 +50,32 @@ public class AdministratorDB {
         }catch(Exception e) { e.printStackTrace(); }
 
         return admin;
+    }
+
+    //updates the admins password
+    public static void changePassword(Administrator admin, String newPassword){
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "update Administrators set adminPassword=? where adminFirstName=? and adminLastName=?";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+            stmt.setString(1, newPassword);
+            stmt.setString(2, admin.getFirstName());
+            stmt.setString(3, admin.getLastName());
+
+            //checks if the data was inserted
+            int numRows = stmt.executeUpdate();
+            if (numRows == 0)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Password failed to update. Contact Tech Support.");
+                alert.showAndWait();
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
     }
 }

@@ -40,7 +40,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
-            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgProfilePicture" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/userAvatar.png" />
                </image>

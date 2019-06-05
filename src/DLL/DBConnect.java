@@ -13,7 +13,7 @@ public class DBConnect {
             // mysql8 driver
             Class.forName("com.mysql.jdbc.Driver");
             // mysql5 driver
-//             Class.forName("com.mysql.jdbc.Driver");
+            //  Class.forName("com.mysql.jdbc.Driver");
 
             //connection string properties
             // different connection strings for mysql8...
