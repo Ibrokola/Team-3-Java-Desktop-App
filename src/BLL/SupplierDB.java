@@ -74,7 +74,6 @@ public class SupplierDB {
                 SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 

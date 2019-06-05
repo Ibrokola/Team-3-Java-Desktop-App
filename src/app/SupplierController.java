@@ -46,23 +46,24 @@ public class SupplierController {
     @FXML private Button btnSignout;
 
     //buttons - top selections, overview pane - takes user to the appropriate pane
-    @FXML private Button btnAddS;
+    @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
 
     //panes
-    @FXML private Pane paneAddSupplier;
-    @FXML private Pane paneUpdateSupplier;
-    @FXML private Pane paneDeleteSupplier;
-    @FXML private Pane paneOverviewSupplier;
+    @FXML private Pane paneAdd;
+    @FXML private Pane paneUpdate;
+    @FXML private Pane paneDelete;
+    @FXML private Pane paneOverview;
 
-
+    // buttons along the bottom
     @FXML private Button btnAddSupplier;
-    @FXML private Button btnAddGoBackSupplier;
+    @FXML private Button btnAddGoBack;
     @FXML private Button btnUpdateSupplier;
-    @FXML private Button btnUpdateGoBackSupplier;
+    @FXML private Button btnUpdateGoBack;
     @FXML private Button btnDeleteSupplier;
-    @FXML private Button btnDeleteGoBackSupplier;
+    @FXML private Button btnDeleteGoBack;
+
 
     //Other properties
     @FXML private Label lblUserName;
@@ -70,95 +71,52 @@ public class SupplierController {
     @FXML private TextField txtSearch;
     @FXML private AnchorPane mainWindow;
 
-    //////////////////////////////////////////////////////////
+    //---------------------------------------------------------------
     //Table view to show all suppliers
     @FXML private TableView<Supplier> tvSupplierList;
     @FXML private TableColumn<Supplier, Integer> colSupplierId;
     @FXML private TableColumn<Supplier, String> colSupplierName;
 
-    /////////////////////////////////////////////////////////////
+    //---------------------------------------------------------------
     //Buttons & text fields
-    @FXML private TextField tfSupplierId;
-    @FXML private TextField tfSupplierName;
-
-   // @FXML private Button btnClearSupplier;
-   // @FXML private Button btnEditSupplier;
-    //@FXML private Button btnSaveSupplier;
-
-   // @FXML private Button btnHomeSupplier;
+    @FXML private TextField txtSupplierId;
+    @FXML private TextField txtSupplierName;
+    @FXML private TextField txtAddSupplierId;
+    @FXML private TextField txtAddSupplierName;
+    @FXML private TextField txtUpdateSupplierId;
+    @FXML private TextField txtUpdateSupplierName;
 
 
-    //////////////////////////////////////////////////////////
-    //add supplier to database
-    @FXML
-    void btnAddSupplierAction(ActionEvent event) {
-        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
-        SupplierDB.addSupplier(supplier);
-        loadSuppliers();
-        clearSupplierTextFields();
 
-    }
-
-    //////////////////////////////////////////////////////////
+    //---------------------------------------------------------------
     //delete supplier from database
     @FXML
     void btnDeleteSupplierAction(ActionEvent event) {
-        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
+        Supplier supplier = new Supplier(Integer.parseInt(txtSupplierId.getText()),txtSupplierName.getText());
         SupplierDB.deleteSupplier(supplier);
         loadSuppliers();
-        clearSupplierTextFields();
+        //clearSupplierTextFields();
     }
 
 
-    /////////////////////////////////////////////////////////////////
-    //update(Save edits) supplier in the database
-    @FXML
-    void btnSaveSupplierAction(ActionEvent event) {
-        Supplier supplier = new Supplier(Integer.parseInt(tfSupplierId.getText()),tfSupplierName.getText());
-        SupplierDB.updateSupplier(supplier);
-        loadSuppliers();
-        clearSupplierTextFields();
-    }
-    /////////////////////////////////////////////////////////////////////////
-    //clear contents of text fields
-    @FXML
-    void btnClearSupplierAction(ActionEvent event) {
-        clearSupplierTextFields();
-    }
 
-    void clearSupplierTextFields(){
-        tfSupplierId.clear();
-        tfSupplierName.clear();
-    }
-
-    /////////////////////////////////////////////////////////////////////
-    // Brent's code
-    // Takes the user back to the home page.
-   @FXML
-   void btnHomeAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-        Scene scene = new Scene(root);
-
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    /////////////////////////////////////////////////////////////////////////
+    //---------------------------------------------------------------
     //Uses the selection from the Tableview to populate the text fields
-    @FXML
+/*    @FXML
     void btnEditSupplierAction(ActionEvent event) throws IOException {
         Supplier s = tvSupplierList.getSelectionModel().getSelectedItem();
         if (s != null) {
            // btnSaveSupplier.setDisable(false);
-            btnDeleteSupplier.setDisable(false);
-            tfSupplierId.setText(s.getSupplierId() + "");
-            tfSupplierName.setText(s.getSupName() + "");
+            btnDelete.setDisable(false);
+            txtSupplierId.setText(s.getSupplierId() + "");
+            txtSupplierName.setText(s.getSupName() + "");
         } else {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Please select supplier");
             alert2.showAndWait();
         }
-    }
-    //Widget Code
+    }*/
+    //---------------------------------------------------------------
+    //Widget Code -- yeah Brent!
     private void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss a   -   dd/MM/YYYY");
@@ -168,7 +126,7 @@ public class SupplierController {
         clock.play();
     }
 
-    ////////////////////////////////////////////////////////////////////////
+    //---------------------------------------------------------------
     @FXML void initialize() {
 
             startClock(); //runs the clock
@@ -183,21 +141,30 @@ public class SupplierController {
             mainWindow.getStylesheets().add("css/" + mode + ".css");
 
             //layout setup
-            paneAddSupplier.setVisible(false);
-            paneUpdateSupplier.setVisible(false);
-            paneDeleteSupplier.setVisible(false);
-            paneOverviewSupplier.setVisible(true);
+            refreshOverviewPane();
 
-        btnDeleteSupplier.setDisable(true);
-       // btnSaveSupplier.setDisable(true);
+            //populate the tableview list of suppliers
+            colSupplierId.setCellValueFactory(cellData -> cellData.getValue().supplierIdProperty().asObject());
+            colSupplierName.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
 
-        //populate the tableview list of suppliers
-        colSupplierId.setCellValueFactory(cellData -> cellData.getValue().supplierIdProperty().asObject());
-        colSupplierName.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
-
-       loadSuppliers();
     }
 
+    //---------------------------------------------------------------
+    //method to refresh supplier table, take user back to the overview pane and clear contents of input fields
+    public void refreshOverviewPane() {
+        loadSuppliers();
+        paneOverview.toFront();
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
+        txtAddSupplierId.clear();
+        txtAddSupplierName.clear();
+        txtUpdateSupplierId.clear();
+        txtUpdateSupplierName.clear();
+    }
+
+    //---------------------------------------------------------------
     //create tableview of suppliers
     public void loadSuppliers() {
 
@@ -223,7 +190,7 @@ public class SupplierController {
             e.printStackTrace();
         }
     }
-
+    //---------------------------------------------------------------
     //handles all button clicks
     @FXML void handleButtonClicks(ActionEvent event) throws IOException {
         //dashboard button
@@ -292,29 +259,45 @@ public class SupplierController {
         }
 
         /*** Pane switching buttons ***/
-        if(event.getSource() == btnAddS){
-            paneAddSupplier.toFront();
-            paneAddSupplier.setVisible(true);
-            paneUpdateSupplier.setVisible(false);
-            paneDeleteSupplier.setVisible(false);
-            paneOverviewSupplier.setVisible(false);
+        if(event.getSource() == btnAdd){
+            paneAdd.toFront();
+            paneAdd.setVisible(true);
+            paneUpdate.setVisible(false);
+            paneDelete.setVisible(false);
+            paneOverview.setVisible(false);
         }
         if(event.getSource() == btnUpdate){
-            paneUpdateSupplier.toFront();
-            paneAddSupplier.setVisible(false);
-            paneUpdateSupplier.setVisible(true);
-            paneDeleteSupplier.setVisible(false);
-            paneOverviewSupplier.setVisible(false);
+            paneUpdate.toFront();
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(true);
+            paneDelete.setVisible(false);
+            paneOverview.setVisible(false);
         }
         if(event.getSource() == btnDelete){
-            paneDeleteSupplier.toFront();
-            paneAddSupplier.setVisible(false);
-            paneUpdateSupplier.setVisible(false);
-            paneDeleteSupplier.setVisible(true);
-            paneOverviewSupplier.setVisible(false);
+            paneDelete.toFront();
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(false);
+            paneDelete.setVisible(true);
+            paneOverview.setVisible(false);
+        }
+        if(event.getSource() == btnDeleteGoBack ||
+                event.getSource() == btnAddGoBack ||
+                event.getSource() == btnUpdateGoBack){
+            refreshOverviewPane();
         }
 
+        // Add a supplier button
+        if(event.getSource() == btnAddSupplier){
+            Supplier supplier = new Supplier(Integer.parseInt(txtAddSupplierId.getText()),txtAddSupplierName.getText());
+            SupplierDB.addSupplier(supplier);
+            refreshOverviewPane();
+        }
 
+        // Update a supplier button
+        if(event.getSource() == btnUpdateSupplier){
+            Supplier supplier = new Supplier(Integer.parseInt(txtUpdateSupplierId.getText()),txtUpdateSupplierName.getText());
+            SupplierDB.updateSupplier(supplier);
+            refreshOverviewPane();
+        }
     }
-
 }
