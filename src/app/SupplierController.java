@@ -30,7 +30,7 @@ import javafx.util.Duration;
 
 public class SupplierController {
 
-    ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
+  //  ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -64,6 +64,10 @@ public class SupplierController {
     @FXML private Button btnDeleteSupplier;
     @FXML private Button btnDeleteGoBack;
 
+    @FXML private ComboBox<Supplier> cbDeleteSupplier;
+    @FXML private Label lblDeleteSupplierId;
+    @FXML private Label lblDeleteSupplierName;
+
 
     //Other properties
     @FXML private Label lblUserName;
@@ -86,7 +90,11 @@ public class SupplierController {
     @FXML private TextField txtUpdateSupplierId;
     @FXML private TextField txtUpdateSupplierName;
 
-
+    //combobox setup
+ /*   cbDeleteSupplier.getSelectionModel().clearSelection();
+    cbDeleteSupplier.getItems().removeAll();
+    ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers());
+    cbDeleteSupplier.setItems(suppliers);*/
 
     //---------------------------------------------------------------
     //delete supplier from database
@@ -97,7 +105,6 @@ public class SupplierController {
         loadSuppliers();
         //clearSupplierTextFields();
     }
-
 
 
     //---------------------------------------------------------------
@@ -146,7 +153,6 @@ public class SupplierController {
             //populate the tableview list of suppliers
             colSupplierId.setCellValueFactory(cellData -> cellData.getValue().supplierIdProperty().asObject());
             colSupplierName.setCellValueFactory(cellData -> cellData.getValue().supNameProperty());
-
     }
 
     //---------------------------------------------------------------
@@ -167,7 +173,7 @@ public class SupplierController {
     //---------------------------------------------------------------
     //create tableview of suppliers
     public void loadSuppliers() {
-
+        ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
         try {
             Connection conn = DBConnect.getConnection();
             supplierList.clear();
