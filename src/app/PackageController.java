@@ -87,7 +87,7 @@ public class PackageController {
     @FXML private Button btnAddGoBack;
 
     //Update package form fields
-   // @FXML private ComboBox<?> cbUpdatePackage;
+    @FXML private ComboBox<Package> cbUpdatePackage;
     @FXML private TextField txtUpdatePkgName;
     @FXML private DatePicker dpUpdatePkgStartDate;
     @FXML private DatePicker dpUpdatePkgEndDate;
@@ -207,17 +207,66 @@ public class PackageController {
                         txtPkgBasePrice.getText()
                 );
 
-                //Adds the agent to the database
+                //Adds package to the database
                 PackageDB.addPackages(packages);
 
                 loadOverviewPane();
             }
         }
 
-        /*** "Update" button on update package pane ****/
+        /****"update" button on update package pane***/
+        /*
+        if(Validation.isProvided(txtUpdatePkgName,"package name")&&
+                Validation.isProvided(txtPkgDescription,"package description")&&
+                //Validation.isProvided(dpUpdatePkgStartDate,"Start date")&&
+                //Validation.isProvided(dpUpdatePkgEndDate,"end date")&&
+                Validation.isProvided(txtUpdatePkgBasePrice, "base price"))
+        {
+           Package packages = new Package(
+                   txtAddPkgName.getText(),
+                   dpPkgStartDate.getValue(),
+                   dpPkgEndDate.getValue(),
+                   txtPkgDescription.getText(),
+                   txtPkgBasePrice.getText()
+           );
+
+           //updates package to the database
+            PackageDB.updatePackages(packages);
+
+            loadOverviewPane();
+        }
+
+         */
+
+
+
+        /*** go back buttons ****/
+        if(event.getSource() == btnAddGoBack || event.getSource() == btnUpdateGoBack
+               // || event.getSource() == btnDeleteGoBack
+          )
+        {
+            loadOverviewPane();
+        }
+
+
+
+
+
 
 
     }
+
+    //"choose" combo box event on "update package" pane
+    @FXML void cbUpdatePkgSelection(ActionEvent event) {
+        Package tempPackage = cbUpdatePackage.getSelectionModel().getSelectedItem();
+
+        txtUpdatePkgName.setText(tempPackage.getPkgName());
+        txtUpdatePkgDescription.setText(tempPackage.getPkgDesc());
+        //txtPkgBasePrice.setText(tempPackage.getPkgBasePrice());
+        //dpUpdatePkgStartDate.setChronology(tempPackage.getPkgStartDate());
+        //        dpUpdatePkgEndDate.setChronology(tempPackage.getPkgEndDate());
+    }
+
 
     //Widget Code
     private void startClock() {
@@ -262,7 +311,7 @@ public class PackageController {
 
     }
 
-    //Loads "Add Packages" panel
+    //Loads "Add Packages" pane
     private void loadAddPane(){
         paneAdd.toFront();
 
@@ -272,6 +321,23 @@ public class PackageController {
         paneOverview.setVisible(false);
 
     }
+
+    //Loads "Update Packages" pane
+    private void loadUpdatePane(){
+        paneUpdate.toFront();
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(true);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(false);
+
+        //combo box setup
+        cbUpdatePackage.getSelectionModel().clearSelection();
+        cbUpdatePackage.getItems().removeAll();
+        ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
+        cbUpdatePackage.setItems(packages);
+
+    }
+
 
 
 

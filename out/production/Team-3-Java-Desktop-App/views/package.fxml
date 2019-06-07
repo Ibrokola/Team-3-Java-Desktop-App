@@ -186,7 +186,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick a Package:" textFill="WHITE" />
-                              <ComboBox fx:id="cbUpdatePackage" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbUpdatePackage" onAction="#cbUpdatePkgSelection" prefWidth="150.0" promptText="Choose" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">

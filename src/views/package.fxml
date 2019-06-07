@@ -169,7 +169,7 @@
         </VBox>
         <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
             <children>
-                <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" visible="false">
+                <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane">
                <children>
                   <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
                      <children>
@@ -186,7 +186,7 @@
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
                            <children>
                               <Label text="Pick a Package:" textFill="WHITE" />
-                              <ComboBox fx:id="cbUpdatePackage" onAction="#cbUpdateSelection" prefWidth="150.0" promptText="Choose" />
+                              <ComboBox fx:id="cbUpdatePackage" onAction="#cbUpdatePkgSelection" prefWidth="150.0" promptText="Choose" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0">
@@ -220,7 +220,7 @@
                      </children>
                   </VBox>
                </children></Pane>
-                <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane">
+                <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" visible="false">
                     <children>
                   <TableView fx:id="tblPackages" layoutX="96.0" layoutY="196.0" prefHeight="329.0" prefWidth="669.0">
                     <columns>
