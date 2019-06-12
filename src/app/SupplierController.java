@@ -32,7 +32,7 @@ import javafx.util.Duration;
 public class SupplierController {
 
     /*
-     * Purpose: Controller for the Supplier view page.
+     * Purpose: code for supplier page
      * Author: Linda Wallace
      * Module: PROJ-207-OSD
      * Date: June 12, 2019
@@ -281,16 +281,22 @@ public class SupplierController {
 
         // Update a supplier button
         if(event.getSource() == btnUpdateSupplier){
+            if( Validation.isProvided(txtUpdateSupplierId,"supplier id") &&
+                    ( Validation.isProvided(txtUpdateSupplierName,"supplier name"))){
             Supplier supplier = new Supplier(Integer.parseInt(txtUpdateSupplierId.getText()),txtUpdateSupplierName.getText());
             SupplierDB.updateSupplier(supplier);
             refreshOverviewPane();
+            }
         }
 
        // Delete a supplier button
         if(event.getSource() == btnDeleteSupplier) {
-            Supplier supplier = new Supplier(Integer.parseInt(txtDeleteSupplierId.getText()),txtDeleteSupplierName.getText());
-            SupplierDB.deleteSupplier(supplier);
-            refreshOverviewPane();
+            if (Validation.isProvided(txtDeleteSupplierId, "supplier id") &&
+                    (Validation.isProvided(txtDeleteSupplierId, "supplier name"))) {
+                Supplier supplier = new Supplier(Integer.parseInt(txtDeleteSupplierId.getText()), txtDeleteSupplierName.getText());
+                SupplierDB.deleteSupplier(supplier);
+                refreshOverviewPane();
+            }
         }
     }
 }
