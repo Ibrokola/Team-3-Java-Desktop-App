@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import BLL.Administrator;
 import BLL.Supplier;
 import BLL.SupplierDB;
+import BLL.Validation;
 import DLL.DBConnect;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -30,7 +31,12 @@ import javafx.util.Duration;
 
 public class SupplierController {
 
-  //  ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
+    /*
+     * Purpose: Controller for the Supplier view page.
+     * Author: Linda Wallace
+     * Module: PROJ-207-OSD
+     * Date: June 12, 2019
+     * */
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -64,10 +70,6 @@ public class SupplierController {
     @FXML private Button btnDeleteSupplier;
     @FXML private Button btnDeleteGoBack;
 
-    @FXML private ComboBox<Supplier> cbDeleteSupplier;
-    @FXML private Label lblDeleteSupplierId;
-    @FXML private Label lblDeleteSupplierName;
-
 
     //Other properties
     @FXML private Label lblUserName;
@@ -76,7 +78,7 @@ public class SupplierController {
     @FXML private AnchorPane mainWindow;
 
     //---------------------------------------------------------------
-    //Table view to show all suppliers
+    //Table view properties
     @FXML private TableView<Supplier> tvSupplierList;
     @FXML private TableColumn<Supplier, Integer> colSupplierId;
     @FXML private TableColumn<Supplier, String> colSupplierName;
@@ -89,39 +91,10 @@ public class SupplierController {
     @FXML private TextField txtAddSupplierName;
     @FXML private TextField txtUpdateSupplierId;
     @FXML private TextField txtUpdateSupplierName;
-
-    //combobox setup
- /*   cbDeleteSupplier.getSelectionModel().clearSelection();
-    cbDeleteSupplier.getItems().removeAll();
-    ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers());
-    cbDeleteSupplier.setItems(suppliers);*/
-
-    //---------------------------------------------------------------
-    //delete supplier from database
-    @FXML
-    void btnDeleteSupplierAction(ActionEvent event) {
-        Supplier supplier = new Supplier(Integer.parseInt(txtSupplierId.getText()),txtSupplierName.getText());
-        SupplierDB.deleteSupplier(supplier);
-        loadSuppliers();
-        //clearSupplierTextFields();
-    }
+    @FXML private TextField txtDeleteSupplierId;
+    @FXML private TextField txtDeleteSupplierName;
 
 
-    //---------------------------------------------------------------
-    //Uses the selection from the Tableview to populate the text fields
-/*    @FXML
-    void btnEditSupplierAction(ActionEvent event) throws IOException {
-        Supplier s = tvSupplierList.getSelectionModel().getSelectedItem();
-        if (s != null) {
-           // btnSaveSupplier.setDisable(false);
-            btnDelete.setDisable(false);
-            txtSupplierId.setText(s.getSupplierId() + "");
-            txtSupplierName.setText(s.getSupName() + "");
-        } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Please select supplier");
-            alert2.showAndWait();
-        }
-    }*/
     //---------------------------------------------------------------
     //Widget Code -- yeah Brent!
     private void startClock() {
@@ -168,6 +141,8 @@ public class SupplierController {
         txtAddSupplierName.clear();
         txtUpdateSupplierId.clear();
         txtUpdateSupplierName.clear();
+        txtDeleteSupplierId.clear();
+        txtDeleteSupplierName.clear();
     }
 
     //---------------------------------------------------------------
@@ -294,15 +269,27 @@ public class SupplierController {
 
         // Add a supplier button
         if(event.getSource() == btnAddSupplier){
-            Supplier supplier = new Supplier(Integer.parseInt(txtAddSupplierId.getText()),txtAddSupplierName.getText());
-            SupplierDB.addSupplier(supplier);
-            refreshOverviewPane();
+            if( Validation.isProvided(txtAddSupplierId,"supplier id") &&
+                    ( Validation.isProvided(txtAddSupplierName,"supplier name"))){
+                Supplier supplier = new Supplier(Integer.parseInt(txtAddSupplierId.getText()), txtAddSupplierName.getText());
+                SupplierDB.addSupplier(supplier);
+                refreshOverviewPane();
+            }
+
+
         }
 
         // Update a supplier button
         if(event.getSource() == btnUpdateSupplier){
             Supplier supplier = new Supplier(Integer.parseInt(txtUpdateSupplierId.getText()),txtUpdateSupplierName.getText());
             SupplierDB.updateSupplier(supplier);
+            refreshOverviewPane();
+        }
+
+       // Delete a supplier button
+        if(event.getSource() == btnDeleteSupplier) {
+            Supplier supplier = new Supplier(Integer.parseInt(txtDeleteSupplierId.getText()),txtDeleteSupplierName.getText());
+            SupplierDB.deleteSupplier(supplier);
             refreshOverviewPane();
         }
     }
