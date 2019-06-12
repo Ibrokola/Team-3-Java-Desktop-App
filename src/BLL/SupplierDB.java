@@ -9,6 +9,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Purpose: code for supplier database functions
+ * Author: Linda Wallace
+ * Module: PROJ-207-OSD
+ * Date: June 12, 2019
+ * */
+
 public class SupplierDB {
 
     public static List<Supplier> getSuppliers() {
@@ -74,7 +81,6 @@ public class SupplierDB {
                 SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 
