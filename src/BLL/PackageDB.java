@@ -151,6 +151,8 @@ public class PackageDB {
         //connection built
         Connection con = DBConnect.getConnection();
 
+        // What's happening here ?????
+
         //query "delete all from Agents where AgentId=?";
         String updatePackages =
                 "DELETE ALL FROM Packages where (?,?,?,?,?,?,?)";

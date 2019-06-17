@@ -88,4 +88,9 @@ public class ProductSupplier {
     public void setSupName(String supName) {
         this.supName.set(supName);
     }
+
+    @Override
+    public String toString() {
+        return getProdName() + ": " + getSupName();
+    }
 }

@@ -270,7 +270,7 @@
                                     </VBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="paneProdUpdate" prefHeight="200.0" prefWidth="200.0" visible="false">
+                              <Pane fx:id="paneProdUpdate" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutY="84.0" prefHeight="57.0" prefWidth="799.0" spacing="30.0">
                                        <children>
@@ -310,7 +310,7 @@
                                     </VBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="paneProdDelete" prefHeight="200.0" prefWidth="200.0">
+                              <Pane fx:id="paneProdDelete" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
                                     <HBox alignment="CENTER" layoutY="101.0" prefHeight="57.0" prefWidth="799.0" spacing="30.0">
                                        <children>
@@ -389,7 +389,7 @@
                                                 <Font name="Kefa Regular" size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteProductSuppliers" mnemonicParsing="false" onAction="#btnRemoveAction" prefHeight="35.0" prefWidth="120.0" text="Delete" visible="false">
+                                          <Button fx:id="btnDeleteProductSuppliers" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" text="Delete" visible="false">
                                              <font>
                                                 <Font name="Kefa Regular" size="14.0" />
                                              </font>
@@ -493,7 +493,7 @@
                      <children>
                         <StackPane prefHeight="543.0" prefWidth="799.0">
                            <children>
-                              <Pane fx:id="panePckSupList" prefHeight="544.0" prefWidth="799.0">
+                              <Pane fx:id="panePckSupList" prefHeight="544.0" prefWidth="799.0" visible="false">
                                  <children>
                                     <TableView fx:id="tvPckProd" layoutX="50.0" layoutY="208.0" prefHeight="299.0" prefWidth="540.0">
                                       <columns>
@@ -519,7 +519,7 @@
                                                 <Font name="Kefa Regular" size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDelete1" mnemonicParsing="false" onAction="#btnRemoveAction" prefHeight="35.0" prefWidth="120.0" text="Delete" visible="false">
+                                          <Button fx:id="btnDelete1" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="35.0" prefWidth="120.0" text="Delete" visible="false">
                                              <font>
                                                 <Font name="Kefa Regular" size="14.0" />
                                              </font>
@@ -571,7 +571,7 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane fx:id="panePckSupUpdate" prefHeight="200.0" prefWidth="200.0" visible="false">
+                              <Pane fx:id="panePckSupUpdate" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <TextField fx:id="txtPckProdUpdate" editable="false" layoutX="177.0" layoutY="207.0" prefHeight="29.0" prefWidth="154.0" promptText="Selected package" />
                                     <Label layoutX="100.0" layoutY="211.0" text="Package:">
@@ -579,7 +579,7 @@
                                           <Font name="Malayalam MN" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="btnPckProdSupUpdate" layoutX="231.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
+                                    <Button fx:id="btnPckProdSupUpdate" layoutX="231.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
                                     <VBox alignment="CENTER" layoutY="-1.0" prefHeight="83.0" prefWidth="733.0">
                                        <children>
                                           <Label text="Package Products Suppliers">

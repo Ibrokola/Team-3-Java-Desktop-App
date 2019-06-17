@@ -46,9 +46,11 @@ public class PackageController {
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
     //Button for adding input into "packages" table
+
     @FXML
     private Button btnAddPackage;
-
+    @FXML
+    private Button btnAddGoBack;
 
     //panes
     @FXML private Pane paneAdd;
@@ -152,21 +154,24 @@ public class PackageController {
         }
 
 
-
         /*** Pane switching buttons ***/
         if(event.getSource() == btnAdd){
-            paneAdd.toFront();
-            paneAdd.setVisible(true);
-            paneUpdate.setVisible(false);
-            //paneDelete.setVisible(false);
-            paneOverview.setVisible(false);
+//            paneAdd.toFront();
+//            paneAdd.setVisible(true);
+//            paneUpdate.setVisible(false);
+//            //paneDelete.setVisible(false);
+//            paneOverview.setVisible(false);
+            loadAddPane();
+
+
         }
         if(event.getSource() == btnUpdate){
-            paneUpdate.toFront();
-            paneAdd.setVisible(false);
-            paneUpdate.setVisible(true);
-            //paneDelete.setVisible(false);
-            paneOverview.setVisible(false);
+//            paneUpdate.toFront();
+//            paneAdd.setVisible(false);
+//            paneUpdate.setVisible(true);
+//            //paneDelete.setVisible(false);
+//            paneOverview.setVisible(false);
+            loadUpdatePane();
         }
 
         /*** Operational buttons ***/
@@ -202,6 +207,7 @@ public class PackageController {
 
     }
 
+
     //Widget Code
     private void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -219,6 +225,12 @@ public class PackageController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
+
         loadOverviewPane();
     }
 
@@ -233,7 +245,7 @@ public class PackageController {
         paneOverview.setVisible(true);
 
         //Packages table
-       colPkgId.setCellValueFactory(cellData -> cellData.getValue().packageIdProperty().asObject());
+        colPkgId.setCellValueFactory(cellData -> cellData.getValue().packageIdProperty().asObject());
         colPkgName.setCellValueFactory(cellData -> cellData.getValue().pkgNameProperty());
         colPkgStrartDate.setCellValueFactory(cellData -> cellData.getValue().pkgStartDateProperty());
         colPkgEndDate.setCellValueFactory(cellData -> cellData.getValue().pkgEndDateProperty());
@@ -257,13 +269,9 @@ public class PackageController {
 
     }
 
+    private void loadUpdatePane() {
+    }
 
-
-
-
-    //button to go back to main panel
-    @FXML
-    private Button btnAddGoBack;
 
 
     /*** Methods for Buttons ****/

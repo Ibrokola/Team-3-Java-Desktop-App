@@ -32,6 +32,7 @@ public class Package {
         this.PkgAgencyCommission = new SimpleDoubleProperty (PkgAgencyCommission);
     }
 
+    // Don't understand what's going on here...???
     public Package(String text, LocalDate value, LocalDate value1, String text1, String text2) {
     }
 
@@ -102,7 +103,10 @@ public class Package {
     public SimpleDoubleProperty pkgAgencyCommissionProperty() {
         return PkgAgencyCommission;
     }
-    public void setPkgAgencyCommission(double pkgAgencyCommission) {
-        this.PkgAgencyCommission.set(pkgAgencyCommission);
+    public void setPkgAgencyCommission(double pkgAgencyCommission) { this.PkgAgencyCommission.set(pkgAgencyCommission); }
+
+    @Override
+    public String toString() {
+        return getPkgName();
     }
 }

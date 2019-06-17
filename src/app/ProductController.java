@@ -355,10 +355,6 @@ public class ProductController {
         }
     }
 
-//    @FXML
-//    void btnRemoveAction(ActionEvent event) {
-//        // Remove or deactivate the product from table view but don't delete
-//    }
 
     @FXML
     void btnUpdateAction(ActionEvent event) {
@@ -694,6 +690,10 @@ public class ProductController {
         panePckSupList.setVisible(true);
 
         loadPaneProdList();
+
+        loadPaneProdSupList();
+
+        loadPanePckProdList();
 
 
         //Changes the table items based off text in search bar
@@ -1067,5 +1067,4 @@ public class ProductController {
         txtPckProdUpdate.setText(prodPck.getPkgName());
     }
     /**** Package Products Suppliers TAB END ****/
-
 }
