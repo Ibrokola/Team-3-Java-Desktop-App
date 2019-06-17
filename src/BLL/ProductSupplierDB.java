@@ -12,6 +12,13 @@ import java.util.List;
 
 public class ProductSupplierDB {
 
+    /*
+     * Purpose: Handles the product supplier connection to database
+     * Author: Ibraheem Kolawole
+     * Module: PROJ-207-OSD
+     * Date May 24, 2019
+     * */
+
     public static List<ProductSupplier> getProductSuppliers() {
         ArrayList<ProductSupplier> productSuppliers = null;
 
