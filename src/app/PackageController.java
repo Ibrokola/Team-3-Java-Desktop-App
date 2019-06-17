@@ -26,14 +26,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class PackageController {
+
     /*
      * Purpose: To act as a base Controller for all other pages to branch from.
-     * Author: Brent Ward - starting template found at k33ptoo.
+     * Author: Brent Ward, Guido Amaya- starting template found at k33ptoo.
      * Module: PROJ-207-OSD
      * Date: May 28, 2019
      * */
 
-    //buttons
+    //buttons (right menu)
     @FXML private Button btnDashboard;
     @FXML private Button btnAgents;
     @FXML private Button btnCustomers;
@@ -42,15 +43,18 @@ public class PackageController {
     @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
     @FXML private Button btnSignout;
+
+    //buttons for managing packages data (upper side overview pane)
     @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
     //Button for adding input into "packages" table
 
-    @FXML
-    private Button btnAddPackage;
-    @FXML
-    private Button btnAddGoBack;
+    // @FXML
+    // private Button btnAddPackage;
+    // @FXML
+    // private Button btnAddGoBack;
+
 
     //panes
     @FXML private Pane paneAdd;
@@ -74,15 +78,29 @@ public class PackageController {
     @FXML private TableColumn<Package, Double> colPkgBasePrice;
     @FXML private TableColumn<Package, String> colPkgDescription;
 
-    //@FXML
-    //private Pane paneAdd;
 
-    //Form's fields to be filled in order to add a Package to "packages" table
+    // Add package Form fields
     @FXML private TextField txtAddPkgName;
     @FXML private DatePicker dpPkgStartDate;
     @FXML private DatePicker dpPkgEndDate;
     @FXML private TextField txtPkgDescription;
     @FXML private TextField txtPkgBasePrice;
+    //Button for adding input into "packages" table
+    @FXML  private Button btnAddPackage;
+    //button to go back to main panel
+    @FXML private Button btnAddGoBack;
+
+    //Update package form fields
+    @FXML private ComboBox<Package> cbUpdatePackage;
+    @FXML private TextField txtUpdatePkgName;
+    @FXML private DatePicker dpUpdatePkgStartDate;
+    @FXML private DatePicker dpUpdatePkgEndDate;
+    @FXML private TextField txtUpdatePkgDescription;
+    @FXML private TextField txtUpdatePkgBasePrice;
+    //Button for updating package table
+    @FXML private Button btnUpdatePackage;
+    //button to go back to overview pane
+    @FXML private Button btnUpdateGoBack;
 
 
 
@@ -161,9 +179,11 @@ public class PackageController {
 //            paneUpdate.setVisible(false);
 //            //paneDelete.setVisible(false);
 //            paneOverview.setVisible(false);
+            // loadAddPane();
+
+
+
             loadAddPane();
-
-
         }
         if(event.getSource() == btnUpdate){
 //            paneUpdate.toFront();
@@ -175,19 +195,21 @@ public class PackageController {
         }
 
         /*** Operational buttons ***/
-        if(event.getSource() == btnDelete){ }
-        paneAdd.setVisible(false);
-        paneUpdate.setVisible(false);
-        //paneDelete.setVisible(false);
-        paneOverview.setVisible(true);
+        if(event.getSource() == btnDelete){
+            paneAdd.setVisible(false);
+            paneUpdate.setVisible(false);
+            //paneDelete.setVisible(false);
+            paneOverview.setVisible(true);
+        }
 
-        /*** "Add package" Button ****/
+
+        /*** "Add" button on add package pane ****/
 
         if(event.getSource() == btnAddPackage){
             if(Validation.isProvided(txtAddPkgName, "package name") &&
-                   // Validation.isProvided(dpPkgStartDate, "start date") &&
+                    // Validation.isProvided(dpPkgStartDate, "start date") &&
                     //Validation.isProvided(dpPkgEndDate, "end date") &&
-                    Validation.isProvided(txtPkgDescription, "description") &&
+                    // Validation.isProvided(txtPkgDescription, "description") &&
                     Validation.isProvided(txtPkgBasePrice, "base price")){
 
 
@@ -198,13 +220,64 @@ public class PackageController {
                         txtPkgBasePrice.getText()
                 );
 
-                //Adds the agent to the database
+                //Adds package to the database
                 PackageDB.addPackages(packages);
 
-                loadAddPane();
+                loadOverviewPane();
             }
         }
 
+        /****"update" button on update package pane***/
+        /*
+        if(Validation.isProvided(txtUpdatePkgName,"package name")&&
+                Validation.isProvided(txtPkgDescription,"package description")&&
+                //Validation.isProvided(dpUpdatePkgStartDate,"Start date")&&
+                //Validation.isProvided(dpUpdatePkgEndDate,"end date")&&
+                Validation.isProvided(txtUpdatePkgBasePrice, "base price"))
+        {
+           Package packages = new Package(
+                   txtAddPkgName.getText(),
+                   dpPkgStartDate.getValue(),
+                   dpPkgEndDate.getValue(),
+                   txtPkgDescription.getText(),
+                   txtPkgBasePrice.getText()
+           );
+
+           //updates package to the database
+            PackageDB.updatePackages(packages);
+
+            loadOverviewPane();
+        }
+
+         */
+
+
+
+        /*** go back buttons ****/
+        if(event.getSource() == btnAddGoBack || event.getSource() == btnUpdateGoBack
+               // || event.getSource() == btnDeleteGoBack
+          )
+        {
+            loadOverviewPane();
+        }
+
+
+
+
+
+
+
+    }
+
+    //"choose" combo box event on "update package" pane
+    @FXML void cbUpdatePkgSelection(ActionEvent event) {
+        Package tempPackage = cbUpdatePackage.getSelectionModel().getSelectedItem();
+
+        txtUpdatePkgName.setText(tempPackage.getPkgName());
+        txtUpdatePkgDescription.setText(tempPackage.getPkgDesc());
+        //txtPkgBasePrice.setText(tempPackage.getPkgBasePrice());
+        //dpUpdatePkgStartDate.setChronology(tempPackage.getPkgStartDate());
+        //        dpUpdatePkgEndDate.setChronology(tempPackage.getPkgEndDate());
     }
 
 
@@ -253,15 +326,14 @@ public class PackageController {
         colPkgBasePrice.setCellValueFactory(cellData -> cellData.getValue().pkgBasePriceProperty().asObject());
 
         ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
-                tblPackages.setItems(packages);
+        tblPackages.setItems(packages);
 
     }
 
-    //Loads "Add Packages" panel
+    //Loads "Add Packages" pane
     private void loadAddPane(){
         paneAdd.toFront();
 
-        paneAdd.toFront();
         paneAdd.setVisible(true);
         paneUpdate.setVisible(false);
         //paneDelete.setVisible(false);
@@ -269,13 +341,38 @@ public class PackageController {
 
     }
 
-    private void loadUpdatePane() {
+
+    // private void loadUpdatePane() {
+    // }
+
+
+
+
+    //Loads "Update Packages" pane
+    private void loadUpdatePane(){
+        paneUpdate.toFront();
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(true);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(false);
+
+        //combo box setup
+        cbUpdatePackage.getSelectionModel().clearSelection();
+        cbUpdatePackage.getItems().removeAll();
+        ObservableList<Package> packages = FXCollections.observableArrayList(PackageDB.getPackages());
+        cbUpdatePackage.setItems(packages);
+
     }
 
 
 
+
+
+
+
+
     /*** Methods for Buttons ****/
-     //method for Add button
+    //method for Add button
 
 
 

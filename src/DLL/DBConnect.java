@@ -19,19 +19,19 @@ public class DBConnect {
 
             //connection string properties
             // different connection strings for mysql8...
-            String url = "jdbc:mysql://localhost:3306/travelexperts?serverTimezone=UTC";
-            String username = "admin";
-            String password = "P@ssw0rd";
+           // String url = "jdbc:mysql://localhost:3306/travelexperts?serverTimezone=UTC";
+           // String username = "admin";
+            //String password = "P@ssw0rd";
 
             // connection strings mysql5...
             //String url = "jdbc:mysql://localhost:3306/travelexperts";
-            //String username = "admin";
-            //String password = "P@ssw0rd";
+            String username = "admin";
+            String password = "P@ssw0rd";
 
             //connection strings for mysql5, root user...
-            // String url = "jdbc:mysql://localhost:3306/travelexperts";
-            // String username = "root";
-            // String password = "";
+             String url = "jdbc:mysql://localhost:3306/travelexperts";
+             //String username = "root";
+             //String password = "";
 
 
             //returns connection

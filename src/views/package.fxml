@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #2C2F33;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PackageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" styleClass="mainWindow" stylesheets="@../css/darkmode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PackageController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" styleClass="mainSidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -57,7 +58,9 @@
                         <Insets bottom="20.0" />
                     </VBox.margin>
                 </Label>
-                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#282727">
+                <!-- <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#282727"> -->
+
+                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#e7e5e5">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -147,7 +150,9 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButtonside" text="Sign Out">
+                <!-- <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButtonside" text="Sign Out"> -->
+
+                <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Sign Out">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -168,8 +173,60 @@
         </VBox>
         <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
             <children>
-                <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="" visible="false" />
-                <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane">
+                <!-- <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="" visible="false" />
+                <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane"> -->
+                <Pane fx:id="paneUpdate" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="576.0" prefWidth="793.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="733.0">
+                           <children>
+                              <Label text="Packages" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label text="select a package to update." textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="793.0" spacing="30.0">
+                           <children>
+                              <Label text="Pick a Package:" textFill="WHITE" />
+                              <ComboBox fx:id="cbUpdatePackage" onAction="#cbUpdatePkgSelection" prefWidth="150.0" promptText="Choose" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="358.0" prefWidth="733.0" spacing="60.0" styleClass="mainPane">
+                           <children>
+                              <VBox prefHeight="358.0" prefWidth="97.0" spacing="36.0">
+                                 <children>
+                                    <Label text="Package Name:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Start date:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="27.0" text="End Date:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="44.0" text="Description:" textFill="WHITE" />
+                                    <Label layoutX="10.0" layoutY="61.0" text="Base price:" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="356.0" prefWidth="340.0" spacing="28.0">
+                                 <children>
+                                    <TextField fx:id="txtUpdatePkgName" promptText="Enter Package Name" />
+                                    <DatePicker fx:id="dpUpdatePkgStartDate" promptText="Choose Start Date" />
+                                    <DatePicker fx:id="dpUpdatePkgEndDate" promptText="Choose End Date" />
+                                    <TextField fx:id="txtUpdatePkgDescription" layoutX="10.0" layoutY="132.0" promptText="Enter Package Description" />
+                                    <TextField fx:id="txtUpdatePkgBasePrice" layoutX="10.0" layoutY="193.0" promptText="Enter Base Price" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnUpdatePackage" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Update" />
+                              <Button fx:id="btnUpdateGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children></Pane>
+                <Pane fx:id="paneOverview" prefHeight="554.0" prefWidth="793.0" styleClass="mainPane" visible="false">
                     <children>
                   <TableView fx:id="tblPackages" layoutX="96.0" layoutY="196.0" prefHeight="329.0" prefWidth="669.0">
                     <columns>
@@ -240,6 +297,13 @@
                               </VBox>
                            </children>
                         </HBox>
+
+                        <!-- <HBox alignment="CENTER" prefHeight="63.0" prefWidth="733.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnAddPackage" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Add" />
+                              <Button fx:id="btnAddGoBack" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="30.0" prefWidth="100.0" text="Go Back" />
+                           </children>
+                        </HBox> -->
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" layoutY="446.0" prefHeight="132.0" prefWidth="793.0" spacing="30.0">
