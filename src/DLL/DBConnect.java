@@ -23,13 +23,13 @@ public class DBConnect {
 
             // connection strings mysql5...
             //String url = "jdbc:mysql://localhost:3306/travelexperts";
-            //String username = "admin";
-            //String password = "P@ssw0rd";
+            String username = "admin";
+            String password = "P@ssw0rd";
 
             //connection strings for mysql5, root user...
              String url = "jdbc:mysql://localhost:3306/travelexperts";
-             String username = "root";
-             String password = "";
+             //String username = "root";
+             //String password = "";
 
 
             //returns connection
