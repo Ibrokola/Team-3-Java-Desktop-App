@@ -5,6 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class ProductSupplier {
 
+    /*
+     * Purpose: Product object used to store product data database
+     * Author: Ibraheem Kolawole
+     * Module: PROJ-207-OSD
+     * Date May 24, 2019
+     * */
+
     private SimpleIntegerProperty productSupplierId;
     private SimpleIntegerProperty productId;
     private SimpleStringProperty prodName;

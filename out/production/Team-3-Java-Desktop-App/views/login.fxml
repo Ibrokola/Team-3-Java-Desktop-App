@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -11,10 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="677.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
    <children>
-      <Pane prefHeight="430.0" prefWidth="333.0" style="-fx-background-color: #23272A;" styleClass="logoPane">
+      <Pane prefHeight="430.0" prefWidth="333.0" styleClass="logoPane">
          <children>
             <ImageView fitHeight="95.0" fitWidth="89.0" layoutX="121.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,29 +35,29 @@
             <Label layoutX="130.0" layoutY="273.0" text="v 1.038.41.22" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="333.0" prefHeight="430.0" prefWidth="346.0" style="-fx-background-color: #2C2F33;" styleClass="infoPane">
+      <Pane layoutX="333.0" prefHeight="430.0" prefWidth="346.0" styleClass="infoPane">
          <children>
             <HBox alignment="CENTER" layoutX="35.0" layoutY="169.0" prefHeight="54.0" prefWidth="277.0" spacing="20.0">
                <children>
-                  <Label text="Username:" textFill="WHITE" />
+                  <Label text="Username:" />
                   <TextField fx:id="txtUsername" prefHeight="27.0" prefWidth="170.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="35.0" layoutY="223.0" prefHeight="54.0" prefWidth="277.0" spacing="20.0">
                <children>
-                  <Label text="Password:" textFill="WHITE" />
+                  <Label text="Password:" />
                   <PasswordField fx:id="txtPassword" prefHeight="27.0" prefWidth="170.0" />
                </children>
             </HBox>
             <Button fx:id="btnLogin" layoutX="113.0" layoutY="292.0" mnemonicParsing="false" onAction="#btnLoginAction" prefHeight="30.0" prefWidth="121.0" text="Login" textAlignment="CENTER" textFill="WHITE" />
-            <Label layoutX="113.0" layoutY="376.0" text="Forgot your password?" textFill="WHITE" underline="true" />
-            <Label layoutX="65.0" layoutY="399.0" text="Contact Support: 1-800-474-391 Ext. 644" textFill="WHITE" />
+            <Label layoutX="113.0" layoutY="376.0" text="Forgot your password?" underline="true" />
+            <Label layoutX="65.0" layoutY="399.0" text="Contact Support: 1-800-474-391 Ext. 644" />
             <ImageView fitHeight="77.0" fitWidth="69.0" layoutX="139.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/login-logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="154.0" layoutY="140.0" text="Login" textFill="WHITE">
+            <Label layoutX="154.0" layoutY="140.0" text="Login">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -65,4 +65,8 @@
          </children>
       </Pane>
    </children>
+   <stylesheets>
+      <URL value="@../css/login.css" />
+      <URL value="@../css/login.css" />
+   </stylesheets>
 </AnchorPane>

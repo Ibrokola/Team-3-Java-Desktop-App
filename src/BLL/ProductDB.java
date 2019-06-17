@@ -13,6 +13,13 @@ import java.util.List;
 
 public class ProductDB {
 
+    /*
+     * Purpose: Handles the product connection to database
+     * Author: Ibraheem Kolawole
+     * Module: PROJ-207-OSD
+     * Date May 24, 2019
+     * */
+
     public static List<Product> getProducts() {
         ArrayList<Product> products = null;
 

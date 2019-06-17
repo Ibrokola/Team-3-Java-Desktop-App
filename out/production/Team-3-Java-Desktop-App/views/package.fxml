@@ -58,7 +58,6 @@
                         <Insets bottom="20.0" />
                     </VBox.margin>
                 </Label>
-
                 <!-- <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#282727"> -->
 
                 <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Dashboard" textFill="#e7e5e5">
@@ -152,6 +151,7 @@
                     </padding>
                 </Button>
                 <!-- <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButtonside" text="Sign Out"> -->
+
                 <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="42.0" prefWidth="259.0" styleClass="sideButton" text="Sign Out">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
