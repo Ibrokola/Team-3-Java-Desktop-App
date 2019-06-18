@@ -123,6 +123,33 @@ public class ProductSupplierDB {
         }catch(Exception e) { e.printStackTrace(); }
     }
 
+    // Deletes a Products Suppliers
+    public static void deleteProductSupplier(ProductSupplier prodSupplier){
+        try
+        {
+            //connection built
+            Connection conn = DBConnect.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(
+                    "delete from products_suppliers where ProductSupplierId=?");
+            stmt.setInt(1, prodSupplier.getProductSupplierId());
+
+            //checks if product supplier is deleted
+            int numRows = stmt.executeUpdate();
+            if(numRows == 0){
+                Alert alert = new Alert(
+                        Alert.AlertType.ERROR,
+                        "Product failed to delete. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+
+            conn.close();
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //Searches product suppliers in response to text input
     public static List<ProductSupplier> searchProductsSuppliers(String para) {
         List<ProductSupplier> productSuppliers = null;
