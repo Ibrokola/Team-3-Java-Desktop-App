@@ -31,6 +31,10 @@ public class ProductSupplierDB {
             Statement query = conn.createStatement();
 
             // query statement
+//            String q = "select ProductSupplierId, ProductId, prodName, SupplierId,supName from products_suppliers " +
+//                    "left join products using (ProductId) " +
+//                    "right join suppliers using (SupplierId) ";
+
             String q = "select ProductSupplierId, ProductId, prodName, SupplierId,supName from products_suppliers " +
                     "left join products using (ProductId) " +
                     "right join suppliers using (SupplierId) ";
