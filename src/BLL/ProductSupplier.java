@@ -31,14 +31,14 @@ public class ProductSupplier {
         this.supplierId = new SimpleIntegerProperty(supplierId);
     }
 
-    public ProductSupplier(int productSupplierId, String prodName, String supName) {
+    public ProductSupplier(int productSupplierId, int productId, String prodName, int supplierId, String supName) {
 //        int productId,
 //        int supplierId,
 
         this.productSupplierId = new SimpleIntegerProperty(productSupplierId);
-//        this.productId = new SimpleIntegerProperty(productId);
+        this.productId = new SimpleIntegerProperty(productId);
         this.prodName = new SimpleStringProperty(prodName);
-//        this.supplierId = new SimpleIntegerProperty(supplierId);
+        this.supplierId = new SimpleIntegerProperty(supplierId);
         this.supName = new SimpleStringProperty(supName);
     }
 

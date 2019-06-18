@@ -354,7 +354,7 @@ public class ProductController {
         /*** Add Pane ***/
         if(event.getSource() == btnAddProduct){
 
-            if(Validation.isProvided(txtProdName, "Product name"))
+            if(Validation.isProvided(txtProdName, "product name"))
             {
                 Product product = new Product(txtProdName.getText());
                 ProductDB.addProduct(product);
@@ -364,7 +364,7 @@ public class ProductController {
 
         /*** Update Pane ***/
         if(event.getSource() == btnProdUpdate){
-            if(Validation.isProvided(txtProdUpdate, "Product name"))
+            if(Validation.isProvided(txtProdUpdate, "product name"))
             {
                 Product prod = cbProdUpdate.getSelectionModel().getSelectedItem();
                 Product product = new Product(prod.getProductId(), txtProdUpdate.getText());
@@ -609,6 +609,7 @@ public class ProductController {
         ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
                 ProductSupplierDB.getProductSuppliers());
         tvProdSup.setItems(productsSuppliers);
+
     }
 
     private void loadPaneProdSupAdd(){
@@ -655,12 +656,14 @@ public class ProductController {
 
         cbProdSUpdate.getSelectionModel().clearSelection();
         cbProdSUpdate.getItems().removeAll();
-        ObservableList<Product> products = FXCollections.observableArrayList(ProductDB.getProducts());
+        ObservableList<Product> products = FXCollections.observableArrayList(
+                ProductDB.getProducts());
         cbProdSUpdate.setItems(products);
 
         cbProdSupUpdate.getSelectionModel().clearSelection();
         cbProdSupUpdate.getItems().removeAll();
-        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(SupplierDB.getSuppliers());
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(
+                SupplierDB.getSuppliers());
         cbProdSupUpdate.setItems(suppliers);
 
         // clear text fields
