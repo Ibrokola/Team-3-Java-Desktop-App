@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class ProductSupplier {
 
     /*
-     * Purpose: Product object used to store product data database
+     * Purpose: ProductSupplier object used to store products_suppliers data in database
      * Author: Ibraheem Kolawole
      * Module: PROJ-207-OSD
      * Date May 24, 2019
@@ -18,8 +18,6 @@ public class ProductSupplier {
     private SimpleIntegerProperty supplierId;
     private SimpleStringProperty supName;
 
-    // private SimpleStringProperty productId;
-    // private SimpleStringProperty supplierId;
 
     // For auto-increment
     public ProductSupplier(int productId, int supplierId) {
@@ -27,6 +25,11 @@ public class ProductSupplier {
         this.supplierId = new SimpleIntegerProperty(supplierId);
     }
 
+    public ProductSupplier(int productSupplierId, int productId, int supplierId) {
+        this.productSupplierId = new SimpleIntegerProperty(productSupplierId);
+        this.productId = new SimpleIntegerProperty(productId);
+        this.supplierId = new SimpleIntegerProperty(supplierId);
+    }
 
     public ProductSupplier(int productSupplierId, int productId, String prodName, int supplierId, String supName) {
         this.productSupplierId = new SimpleIntegerProperty(productSupplierId);
@@ -37,22 +40,27 @@ public class ProductSupplier {
     }
 
     public int getProductSupplierId() {
+
         return productSupplierId.get();
     }
 
     public SimpleIntegerProperty productSupplierIdProperty() {
+
         return productSupplierId;
     }
 
     public void setProductSupplierId(int productSupplierId) {
+
         this.productSupplierId.set(productSupplierId);
     }
 
     public int getProductId() {
+
         return productId.get();
     }
 
     public SimpleIntegerProperty productIdProperty() {
+
         return productId;
     }
 
@@ -61,43 +69,53 @@ public class ProductSupplier {
     }
 
     public String getProdName() {
+
         return prodName.get();
     }
 
     public SimpleStringProperty prodNameProperty() {
+
         return prodName;
     }
 
     public void setProdName(String prodName) {
+
         this.prodName.set(prodName);
     }
 
     public int getSupplierId() {
+
         return supplierId.get();
     }
 
     public SimpleIntegerProperty supplierIdProperty() {
+
         return supplierId;
     }
 
     public void setSupplierId(int supplierId) {
+
         this.supplierId.set(supplierId);
     }
 
     public String getSupName() {
+
         return supName.get();
     }
 
     public SimpleStringProperty supNameProperty() {
+
         return supName;
     }
 
     public void setSupName(String supName) {
+
         this.supName.set(supName);
     }
 
     @Override
     public String toString() {
+
         return getProdName() + ": " + getSupName();
     }
 }

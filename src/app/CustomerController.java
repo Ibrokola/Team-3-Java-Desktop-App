@@ -284,6 +284,7 @@ public class CustomerController {
         ObservableList<Agent> agents = FXCollections.observableArrayList(AgentDB.getAgents());
         cbAgentId.setItems(agents);
     }
+
     public void loadDelete(){
         //layout
         paneDelete.toFront();
