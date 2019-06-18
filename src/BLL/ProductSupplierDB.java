@@ -34,8 +34,6 @@ public class ProductSupplierDB {
             String q = "select ProductSupplierId, ProductId, prodName, SupplierId,supName from products_suppliers " +
                     "left join products using (ProductId) " +
                     "right join suppliers using (SupplierId) ";
-            // on products_suppliers.ProductId=products.ProductId
-            // on products_suppliers.SupplierId=suppliers.SupplierId
             // execute statement
             ResultSet rs = query.executeQuery(q);
 
