@@ -11,9 +11,8 @@
 }
 
 
-.tab {
+.tab-label {
     -fx-text-fill: white;
-    -fx-background-color : #23272A;
 }
 
 /* Button styling */
