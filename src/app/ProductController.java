@@ -241,6 +241,28 @@ public class ProductController {
     // Products Suppliers Delete Pane /!START!/
     @FXML
     private Pane paneSupDelete;
+
+    @FXML
+    private TextField txtProdNameDelete;
+
+    @FXML
+    private Button btnDeleteProdSup;
+
+    @FXML
+    private ComboBox<ProductSupplier> cbProSupDelete;
+
+    @FXML
+    private ComboBox<Product> cbProdSDelete;
+
+    @FXML
+    private ComboBox<Supplier> cbProdSupDelete;
+
+    @FXML
+    private TextField txtProdSupDelete;
+
+    @FXML
+    private Button btnDeleteProdSupGoBack;
+
     // Products Suppliers Delete Pane /!END!/
 
     //------------------------------//
@@ -342,8 +364,12 @@ public class ProductController {
         if(event.getSource() == btnUpdateProductSuppliers){
             loadPaneProdSupUpdate();
         }
+        if(event.getSource() == btnDeleteProductSuppliers){
+            loadPaneProdSupDelete();
+        }
         if(event.getSource() == btnUpdateProdSupGoBack ||
-                event.getSource() == btnAddProdSupGoBack){
+                event.getSource() == btnAddProdSupGoBack ||
+                event.getSource() == btnDeleteProdSupGoBack){
             loadPaneProdSupList();
         }
 
@@ -435,15 +461,19 @@ public class ProductController {
         }
 
         /*** Delete Pane ***/
-//         if(event.getSource() == btnProdDelete){
-//           if(Validation.isProvided(txtProdDelete, "Product name"))
-//             {
-//               Product prod = cbProdDelete.getSelectionModel().getSelectedItem();
-//               Product product = new Product(prod.getProductId(), txtProdDelete.getText());
-//               ProductDB.deleteProduct(product);
-//               loadPaneProdList();
-//             }
-//         }
+        if(event.getSource() == btnDeleteProdSup){
+           if(Validation.isProvided(txtProdNameDelete, "Product name") &&
+                   Validation.isProvided(txtProdSupDelete, "Product supplier") &&
+                   Validation.hasSelection(cbProdSDelete, "product") &&
+                   Validation.hasSelection(cbProdSupDelete, "supplier"))
+             {
+               ProductSupplier proSup = cbProSupDelete.getSelectionModel().getSelectedItem();
+               ProductSupplier prodSup = new ProductSupplier(proSup.getProductSupplierId(),
+                       proSup.getProductId(), proSup.getSupplierId());
+               ProductSupplierDB.deleteProductSupplier(prodSup);
+               loadPaneProdSupList();
+             }
+         }
         /*** Products Suppliers Tab End ***/
         /*** PANE OPERATIONS ***/
 
@@ -670,6 +700,43 @@ public class ProductController {
         txtProdNameUpdate.clear();
         txtProdSupUpdate.clear();
     }
+
+
+    private void loadPaneProdSupDelete(){
+
+        paneSupDelete.toFront();
+
+        // layout
+        paneSupAdd.setVisible(false);
+        paneSupUpdate.setVisible(false);
+        paneSupDelete.setVisible(true);
+        paneSupList.setVisible(false);
+
+
+        // combo box setup
+        cbProSupDelete.getSelectionModel().clearSelection();
+        cbProSupDelete.getItems().removeAll();
+        ObservableList<ProductSupplier> productsSuppliers = FXCollections.observableArrayList(
+                ProductSupplierDB.getProductSuppliers());
+        cbProSupDelete.setItems(productsSuppliers);
+
+        cbProdSDelete.getSelectionModel().clearSelection();
+        cbProdSDelete.getItems().removeAll();
+        ObservableList<Product> products = FXCollections.observableArrayList(
+                ProductDB.getProducts());
+        cbProdSDelete.setItems(products);
+
+        cbProdSupDelete.getSelectionModel().clearSelection();
+        cbProdSupDelete.getItems().removeAll();
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(
+                SupplierDB.getSuppliers());
+        cbProdSupDelete.setItems(suppliers);
+
+        // clear text fields
+        txtProdNameDelete.clear();
+        txtProdSupDelete.clear();
+
+    }
     /*** Products Suppliers Tab END ***/
 
 
@@ -680,13 +747,20 @@ public class ProductController {
     void cbProdUpdateSelect(ActionEvent event) {
         Product product = cbProdUpdate.getSelectionModel().getSelectedItem();
 
-        txtProdUpdate.setText(product.getProdName());
+        if (product != null) {
+            txtProdUpdate.setText(product.getProdName());
+        }
+
     }
 
     @FXML
     void cbProdDeleteSelect(ActionEvent event) {
         Product product = cbProdDelete.getSelectionModel().getSelectedItem();
-        txtProdDelete.setText(product.getProdName());
+
+        if (product != null){
+            txtProdDelete.setText(product.getProdName());
+        }
+
     }
     /**** Products TAB END ****/
 
@@ -696,39 +770,83 @@ public class ProductController {
     void cbProdAddSelect(ActionEvent event) {
 
         Product product = cbProdAdd.getSelectionModel().getSelectedItem();
-        txtProdNameAdd.setText(product.getProdName());
+        if (product != null){
+            txtProdNameAdd.setText(product.getProdName());
+        }
     }
 
     @FXML
     void cbProdSupAddSelect(ActionEvent event) {
         Supplier supplier = cbProdSupAdd.getSelectionModel().getSelectedItem();
-        txtProdSupAdd.setText(supplier.getSupName());
+        if (supplier != null){
+            txtProdSupAdd.setText(supplier.getSupName());
+        }
     }
 
     @FXML
     void cbProdSupUpdateSelect(ActionEvent event) {
 
         Supplier supplier = cbProdSupUpdate.getSelectionModel().getSelectedItem();
-        txtProdSupUpdate.setText(supplier.getSupName());
+
+        if (supplier != null){
+            txtProdSupUpdate.setText(supplier.getSupName());
+        }
+
     }
 
     @FXML
     void cbProdSUpdateSelect(ActionEvent event) {
         Product product = cbProdSUpdate.getSelectionModel().getSelectedItem();
-        txtProdNameUpdate.setText(product.getProdName());
-    }
 
+        if (product != null){
+            txtProdNameUpdate.setText(product.getProdName());
+        }
+
+    }
 
     @FXML
     void cbProSupSelect(ActionEvent event) {
 
         ProductSupplier prodSup = cbProSup.getSelectionModel().getSelectedItem();
 
-        cbProdSUpdate.setValue(ProductDB.getProduct(prodSup.getProductId()));
-        cbProdSupUpdate.setValue(SupplierDB.getSupplier(prodSup.getSupplierId()));
+        if (prodSup != null){
+            cbProdSUpdate.setValue(ProductDB.getProduct(prodSup.getProductId()));
+            cbProdSupUpdate.setValue(SupplierDB.getSupplier(prodSup.getSupplierId()));
 
-        txtProdNameUpdate.setText(prodSup.getProdName());
-        txtProdSupUpdate.setText(prodSup.getSupName());
+            txtProdNameUpdate.setText(prodSup.getProdName());
+            txtProdSupUpdate.setText(prodSup.getSupName());
+        }
+    }
+
+    @FXML
+    void cbProSupDeleteSelect(ActionEvent event) {
+        ProductSupplier prodSup = cbProSupDelete.getSelectionModel().getSelectedItem();
+
+        if(prodSup != null){
+            cbProdSDelete.setValue(ProductDB.getProduct(prodSup.getProductId()));
+            cbProdSupDelete.setValue(SupplierDB.getSupplier(prodSup.getSupplierId()));
+
+            txtProdNameDelete.setText(prodSup.getProdName());
+            txtProdSupDelete.setText(prodSup.getSupName());
+        }
+    }
+
+    @FXML
+    void cbProdSDeleteSelect(ActionEvent event) {
+        Product product = cbProdSDelete.getSelectionModel().getSelectedItem();
+
+        if (product != null){
+            txtProdNameDelete.setText(product.getProdName());
+        }
+    }
+
+    @FXML
+    void cbProdSupDeleteSelect(ActionEvent event) {
+        Supplier supplier = cbProdSupDelete.getSelectionModel().getSelectedItem();
+
+        if (supplier != null){
+            txtProdSupDelete.setText(supplier.getSupName());
+        }
     }
     /**** Products Suppliers TAB END ****/
 

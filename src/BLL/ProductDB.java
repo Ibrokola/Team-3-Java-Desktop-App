@@ -147,7 +147,7 @@ public class ProductDB {
         return products;
     }
 
-    // Deletes a Product (Not advisable, due to database inconsistencies)
+    // Deletes a Product
     public static void deleteProduct(Product product){
         try
         {
@@ -157,7 +157,7 @@ public class ProductDB {
             PreparedStatement stmt = conn.prepareStatement("delete from Products where ProductId=?");
             stmt.setInt(1, product.getProductId());
 
-            //checks if agent is deleted
+            //checks if product is deleted
             int numRows = stmt.executeUpdate();
             if(numRows == 0){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Product failed to delete. Please try again or contact Tech Support.");
