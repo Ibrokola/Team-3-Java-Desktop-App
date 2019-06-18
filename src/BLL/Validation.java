@@ -14,13 +14,17 @@ public class Validation {
 
     //checks that a textfield is not empty
     public static boolean isProvided(TextField text, String name){
-        if(text.getText() != ""){
-            return true;
-        }
-        else{
+        if(text.getText().trim().equals("")){
+//            return true;
             Alert alert = new Alert(Alert.AlertType.ERROR, name + " must be filled in!");
             alert.show();
             return false;
+        }
+        else{
+//            Alert alert = new Alert(Alert.AlertType.ERROR, name + " must be filled in!");
+//            alert.show();
+//            return false;
+            return true;
         }
     }
 
