@@ -22,7 +22,6 @@ public class ProductSupplierDB {
     public static List<ProductSupplier> getProductSuppliers() {
         ArrayList<ProductSupplier> productSuppliers = null;
 
-
         try{
             // instantiate DB connection
             Connection conn = DBConnect.getConnection();
@@ -35,9 +34,10 @@ public class ProductSupplierDB {
 //                    "left join products using (ProductId) " +
 //                    "right join suppliers using (SupplierId) ";
 
-            String q = "select ProductSupplierId, ProductId, prodName, SupplierId,supName from products_suppliers " +
-                    "left join products using (ProductId) " +
-                    "right join suppliers using (SupplierId) ";
+            String q = "select products_suppliers.ProductSupplierId, products.prodName, suppliers.supName from products_suppliers " +
+                    "join products on products_suppliers.ProductId=products.ProductId " +
+                    "join suppliers on products_suppliers.SupplierId=suppliers.SupplierId " +
+                    "order by products_suppliers.ProductSupplierId";
             // execute statement
             ResultSet rs = query.executeQuery(q);
 
@@ -48,11 +48,15 @@ public class ProductSupplierDB {
             while(rs.next()){
                 productSuppliers.add(new ProductSupplier(
                         rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5))
+                        rs.getString(2),
+                        rs.getString(3))
                 );
+
+//                rs.getInt(1),
+//                rs.getInt(2),
+//                rs.getString(3),
+//                rs.getInt(4),
+//                rs.getString(5))
             }
 
             rs.close();
@@ -135,13 +139,20 @@ public class ProductSupplierDB {
             //Instantiate DB connection
             Connection conn = DBConnect.getConnection();
 
-            String q = "select ProductSupplierId, ProductId, prodName, SupplierId, supName from products_suppliers " +
-                    "left join products using (ProductId) " +
-                    "right join suppliers using (SupplierId) " +
+//            String q = "select ProductSupplierId, ProductId, prodName, SupplierId, supName from products_suppliers " +
+//                    "left join products using (ProductId) " +
+//                    "right join suppliers using (SupplierId) " +
+//                    "where ProductSupplierId like ? or " +
+//                    "ProductId like ? or " +
+//                    "prodName like ? or " +
+//                    "SupplierId like ? or " +
+//                    "supName like ?";
+
+            String q = "select ProductSupplierId, prodName, supName from products_suppliers " +
+                    "join products on products_suppliers.ProductId=products.ProductId " +
+                    "join suppliers on products_suppliers.SupplierId=suppliers.SupplierId " +
                     "where ProductSupplierId like ? or " +
-                    "ProductId like ? or " +
                     "prodName like ? or " +
-                    "SupplierId like ? or " +
                     "supName like ?";
 
             //Prepare an sql statement
@@ -149,8 +160,8 @@ public class ProductSupplierDB {
             stmt.setString(1, '%' + para + '%');
             stmt.setString(2, '%' + para + '%');
             stmt.setString(3, '%' + para + '%');
-            stmt.setString(4, '%' + para + '%');
-            stmt.setString(5, '%' + para + '%');
+//            stmt.setString(4, '%' + para + '%');
+//            stmt.setString(5, '%' + para + '%');
 
             //Executes statement
             ResultSet rs = stmt.executeQuery();
@@ -161,10 +172,14 @@ public class ProductSupplierDB {
             while (rs.next()) {
                 productSuppliers.add(new ProductSupplier(
                         rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5)));
+                        rs.getString(2),
+                        rs.getString(3)));
+
+//                rs.getInt(1),
+//                rs.getInt(2),
+//                rs.getString(3),
+//                rs.getInt(4),
+//                rs.getString(5)));
             }
             rs.close();
             conn.close();
