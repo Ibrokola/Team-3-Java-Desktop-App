@@ -48,8 +48,12 @@ public class PackageController {
     @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
+    //Button for adding input into "packages" table
 
-
+    // @FXML
+    // private Button btnAddPackage;
+    // @FXML
+    // private Button btnAddGoBack;
 
 
     //panes
@@ -168,17 +172,26 @@ public class PackageController {
         }
 
 
-
         /*** Pane switching buttons ***/
         if(event.getSource() == btnAdd){
+//            paneAdd.toFront();
+//            paneAdd.setVisible(true);
+//            paneUpdate.setVisible(false);
+//            //paneDelete.setVisible(false);
+//            paneOverview.setVisible(false);
+            // loadAddPane();
+
+
+
             loadAddPane();
         }
         if(event.getSource() == btnUpdate){
-            paneUpdate.toFront();
-            paneAdd.setVisible(false);
-            paneUpdate.setVisible(true);
-            //paneDelete.setVisible(false);
-            paneOverview.setVisible(false);
+//            paneUpdate.toFront();
+//            paneAdd.setVisible(false);
+//            paneUpdate.setVisible(true);
+//            //paneDelete.setVisible(false);
+//            paneOverview.setVisible(false);
+            loadUpdatePane();
         }
 
         /*** Operational buttons ***/
@@ -285,6 +298,12 @@ public class PackageController {
         Administrator user = LoginController.userLoggedIn();
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
+
+        paneAdd.setVisible(false);
+        paneUpdate.setVisible(false);
+        //paneDelete.setVisible(false);
+        paneOverview.setVisible(true);
+
         loadOverviewPane();
     }
 
@@ -322,6 +341,13 @@ public class PackageController {
 
     }
 
+
+    // private void loadUpdatePane() {
+    // }
+
+
+
+
     //Loads "Update Packages" pane
     private void loadUpdatePane(){
         paneUpdate.toFront();
@@ -337,7 +363,6 @@ public class PackageController {
         cbUpdatePackage.setItems(packages);
 
     }
-
 
 
 

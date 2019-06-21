@@ -12,9 +12,15 @@ import java.util.List;
 
 public class ProductSupplierDB {
 
+    /*
+     * Purpose: Handles the products suppliers connection to database
+     * Author: Ibraheem Kolawole
+     * Module: PROJ-207-OSD
+     * Date May 24, 2019
+     * */
+
     public static List<ProductSupplier> getProductSuppliers() {
         ArrayList<ProductSupplier> productSuppliers = null;
-
 
         try{
             // instantiate DB connection
@@ -24,11 +30,11 @@ public class ProductSupplierDB {
             Statement query = conn.createStatement();
 
             // query statement
-            String q = "select ProductSupplierId, ProductId, prodName, SupplierId,supName from products_suppliers " +
-                    "left join products using (ProductId) " +
-                    "right join suppliers using (SupplierId) ";
-            // on products_suppliers.ProductId=products.ProductId
-            // on products_suppliers.SupplierId=suppliers.SupplierId
+            String q = "select products_suppliers.ProductSupplierId, products.ProductId, products.prodName, " +
+                    "suppliers.SupplierId, suppliers.supName from products_suppliers " +
+                    "join products on products_suppliers.ProductId=products.ProductId " +
+                    "join suppliers on products_suppliers.SupplierId=suppliers.SupplierId " +
+                    "order by products_suppliers.ProductSupplierId";
             // execute statement
             ResultSet rs = query.executeQuery(q);
 
@@ -38,11 +44,11 @@ public class ProductSupplierDB {
             // retrieve result set and add to product arrays
             while(rs.next()){
                 productSuppliers.add(new ProductSupplier(
-                        rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5))
+                                rs.getInt(1),
+                                rs.getInt(2),
+                                rs.getString(3),
+                                rs.getInt(4),
+                                rs.getString(5))
                 );
             }
 
@@ -117,6 +123,33 @@ public class ProductSupplierDB {
         }catch(Exception e) { e.printStackTrace(); }
     }
 
+    // Deletes a Products Suppliers
+    public static void deleteProductSupplier(ProductSupplier prodSupplier){
+        try
+        {
+            //connection built
+            Connection conn = DBConnect.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(
+                    "delete from products_suppliers where ProductSupplierId=?");
+            stmt.setInt(1, prodSupplier.getProductSupplierId());
+
+            //checks if product supplier is deleted
+            int numRows = stmt.executeUpdate();
+            if(numRows == 0){
+                Alert alert = new Alert(
+                        Alert.AlertType.ERROR,
+                        "Product failed to delete. Please try again or contact Tech Support.");
+                alert.showAndWait();
+            }
+
+            conn.close();
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //Searches product suppliers in response to text input
     public static List<ProductSupplier> searchProductsSuppliers(String para) {
         List<ProductSupplier> productSuppliers = null;
@@ -126,13 +159,14 @@ public class ProductSupplierDB {
             //Instantiate DB connection
             Connection conn = DBConnect.getConnection();
 
-            String q = "select ProductSupplierId, ProductId, prodName, SupplierId, supName from products_suppliers " +
-                    "left join products using (ProductId) " +
-                    "right join suppliers using (SupplierId) " +
+            // query statement
+            String q = "select products_suppliers.ProductSupplierId, products.ProductId, products.prodName, " +
+                    "suppliers.SupplierId, " +
+                    "suppliers.supName from products_suppliers " +
+                    "join products on products_suppliers.ProductId=products.ProductId " +
+                    "join suppliers on products_suppliers.SupplierId=suppliers.SupplierId " +
                     "where ProductSupplierId like ? or " +
-                    "ProductId like ? or " +
                     "prodName like ? or " +
-                    "SupplierId like ? or " +
                     "supName like ?";
 
             //Prepare an sql statement
@@ -140,8 +174,6 @@ public class ProductSupplierDB {
             stmt.setString(1, '%' + para + '%');
             stmt.setString(2, '%' + para + '%');
             stmt.setString(3, '%' + para + '%');
-            stmt.setString(4, '%' + para + '%');
-            stmt.setString(5, '%' + para + '%');
 
             //Executes statement
             ResultSet rs = stmt.executeQuery();
@@ -156,6 +188,7 @@ public class ProductSupplierDB {
                         rs.getString(3),
                         rs.getInt(4),
                         rs.getString(5)));
+
             }
             rs.close();
             conn.close();

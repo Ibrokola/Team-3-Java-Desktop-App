@@ -41,8 +41,6 @@ public class LoginController {
         }
     }
 
-    public static Administrator userLoggedIn(){
-        return tempAdmin;
-    }
-
+    //grabs logged in user
+    public static Administrator userLoggedIn(){ return tempAdmin; }
 }

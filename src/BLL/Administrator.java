@@ -12,18 +12,30 @@ public class Administrator {
 
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
-
-    private boolean loginStatus;
+    private SimpleStringProperty colorMode;
+    private SimpleStringProperty profilePicture;
 
     //Not storing username/password
     public Administrator(String firstName, String lastName){
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-        loginStatus = false;
     }
+    public Administrator(String firstName, String lastName, String colorMode, String profilePicture){
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.colorMode = new SimpleStringProperty(colorMode);
+        this.profilePicture = new SimpleStringProperty(profilePicture);
+    }
+
 
     //getters
     public String getFirstName(){ return firstName.get(); }
     public String getLastName(){ return lastName.get(); }
+    public String getColorMode() { return colorMode.get(); }
+    public String getProfilePicture() { return profilePicture.get(); }
+
+    //setters
+    public void setColorMode(String mode) { colorMode.set(mode); }
+    public void setProfilePicture(String path) { profilePicture.set(path); }
 
 }

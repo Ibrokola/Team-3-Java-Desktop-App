@@ -58,6 +58,7 @@ public class SettingsController {
     @FXML private ToggleGroup colorMode;
 
     private static String currentMode = "darkmode";
+    private String imagePath = "";
 
     @FXML private AnchorPane mainWindow;
     @FXML private ImageView imgProfileDemo;
@@ -136,10 +137,17 @@ public class SettingsController {
         }
 
         if(event.getSource() == btnSave){
+            Administrator sessionUser  = LoginController.userLoggedIn();
+
+            //checks for color mode changes
+            if(rbLightMode.isSelected() || rbDarkMode.isSelected()){
+                AdministratorDB.changeColorMode(sessionUser, currentMode);
+                sessionUser.setColorMode(currentMode);
+            }
+            //checks for password changes
             if(!txtPassword.getText().equals("") && !txtPasswordConfirm.getText().equals("")) {
-                if (txtPassword.getText().equals(txtPasswordConfirm.getText())) {
-                    Administrator tempAdmin = LoginController.userLoggedIn();
-                    AdministratorDB.changePassword(tempAdmin, txtPassword.getText());
+                if (txtPassword.getText().equals(txtPasswordConfirm.getText())) { ;
+                    AdministratorDB.changePassword(sessionUser, txtPassword.getText());
 
                     txtPassword.clear();
                     txtPasswordConfirm.clear();
@@ -148,9 +156,16 @@ public class SettingsController {
                     alert.show();
                 }
             }
+            //checks for image changes
             if(imgProfileDemo.getImage() != null){
                 imgProfilePicture.setImage(imgProfileDemo.getImage());
+                AdministratorDB.changePicture(sessionUser, imagePath);
+                sessionUser.setProfilePicture(imagePath);
             }
+
+            //save alert
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes saved!");
+            alert.show();
         }
         if(event.getSource() == btnAvatar){
             FileChooser chooser = new FileChooser();
@@ -165,6 +180,7 @@ public class SettingsController {
             File profilePicture = chooser.showOpenDialog(tempStage);
 
             if(profilePicture != null){
+                imagePath = profilePicture.toURI().toString();
                 Image image = new Image(profilePicture.toURI().toString());
                 imageHolder = new Image(profilePicture.toURI().toString());
                 imgProfileDemo.setImage(image);
@@ -201,6 +217,8 @@ public class SettingsController {
         String mode = SettingsController.getColorMode();
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add("css/" + mode + ".css");
+        if(mode.equals("darkmode")){ rbDarkMode.setSelected(true); }
+        if(mode.equals("lightmode")){ rbLightMode.setSelected(true); }
         if(SettingsController.getProfilePicture() != null){
             imgProfilePicture.setImage(SettingsController.getProfilePicture());
         }
@@ -221,9 +239,24 @@ public class SettingsController {
 
     //used to set the color mode in other scenes
     public static String getColorMode(){
+        Administrator user = LoginController.userLoggedIn();
+        if(user.getColorMode() != null){
+            currentMode = user.getColorMode();
+        }
         return currentMode;
     }
     //used to set the profile picture in other scenes
-    public static Image getProfilePicture() { return imageHolder; }
+    public static Image getProfilePicture() {
+        Administrator user = LoginController.userLoggedIn();
+        if(user.getProfilePicture() != null){
+            String path = user.getProfilePicture();
+            path.trim();
+            File temp = new File(path);
+            if(temp.isFile()){
+                imageHolder = new Image(temp.toURI().toString());
+            }
+        }
+        return imageHolder;
+    }
 
 }
