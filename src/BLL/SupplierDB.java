@@ -173,4 +173,30 @@ public class SupplierDB {
         return supplier;
     }
 
+    //gets the number of suppliers
+    public static int numOfSuppliers(){
+        int total = 0;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select count(*) from Suppliers";
+
+            //makes a sql statement
+            Statement stmt = connect.createStatement();
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            while(rs.next()){
+                total = rs.getInt("count(*)");
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return total;
+    }
+
 }

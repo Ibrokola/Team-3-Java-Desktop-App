@@ -179,7 +179,6 @@ public class AgentDB {
             PreparedStatement stmt = connect.prepareStatement(updateQuery);
 
             //sets parameters for ?
-
             stmt.setString(1, agent.getFirstName());
             stmt.setString(2, agent.getMiddleInitial());
             stmt.setString(3, agent.getLastName());
@@ -223,5 +222,122 @@ public class AgentDB {
             connect.close();
 
         }catch(Exception e) { e.printStackTrace(); }
+    }
+
+
+    /***                Dashboard Chart Operations                   ***/
+
+    //gets the number of agents total
+    public static int numOfAgents(){
+        int total = 0;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select count(*) from Agents";
+
+            //makes a sql statement
+            Statement stmt = connect.createStatement();
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            while(rs.next()){
+                total = rs.getInt("count(*)");
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return total;
+    }
+
+    //gets the number of agents at a specified agency
+    public static int AgentsPerAgency(int agencyId){
+        int total = 0;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select count(*) from Agents where AgencyId = ?";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+
+            stmt.setInt(1, agencyId);
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                total = rs.getInt("count(*)");
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return total;
+    }
+
+    //gets the number of agents in a specific role
+    public static int numAgentRoles(String role){
+        int total = 0;
+
+        try{
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "select count(*) from Agents where AgtPosition = ?";
+
+            //makes a sql statement
+            PreparedStatement stmt = connect.prepareStatement(selectQuery);
+
+            stmt.setString(1, role);
+
+            //assigns & executes statement
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                total = rs.getInt("count(*)");
+            }
+            connect.close();
+
+        }catch(Exception e) { e.printStackTrace(); }
+
+        return total;
+    }
+
+    //grabs top 3 sellers
+    public static List<AgentSales> getTopSellers(){
+        List<AgentSales> agentSalesList = null;
+
+        try {
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "SELECT a.AgtFirstName, a.AgtLastName, count(*) as sales from Bookings b inner join " +
+                    "Customers c on b.CustomerId = c.CustomerId inner join Agents a on a.AgentId = c.AgentId " +
+                    "group by a.AgtFirstName, a.AgtLastName order by sales desc limit 3";
+            //makes a sql statement
+            Statement query = connect.createStatement();
+
+            //assigns & executes statement
+            ResultSet rs = query.executeQuery(selectQuery);
+
+            agentSalesList = new ArrayList<AgentSales>();
+
+            //runs while reader has data
+            while (rs.next()){
+                AgentSales agent = new AgentSales(rs.getString("AgtFirstName"), rs.getString("AgtLastName"),
+                                                    rs.getInt("sales"));
+                agentSalesList.add(agent);
+            }
+            connect.close();
+
+        }catch(Exception e){ e.printStackTrace(); }
+        return agentSalesList;
     }
 }

@@ -39,8 +39,9 @@ public class AdministratorDB {
 
             //grabs admin
             if(rs.next()){
+                String imgTrimed = rs.getString("img_dir").replace("file:", "");
                 admin = new Administrator(rs.getString("adminFirstName"), rs.getString("adminLastName"),
-                        rs.getString("adminMode"), rs.getString("img_dir"));
+                        rs.getString("adminMode"), imgTrimed);
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Username or Password.");
                 alert.show();

@@ -171,7 +171,7 @@
                <children>
                   <Label layoutX="57.0" layoutY="25.0" text="PAGE TITLE" textFill="#e7e5e5">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TextField fx:id="txtSearch" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" styleClass="searchBar" />

@@ -1,39 +1,35 @@
 package app;
 
-import BLL.*;
+import BLL.Administrator;
+import BLL.Customer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
 
-public class DashboardController {
+public class BookingsController {
     /*
-     * Purpose: Controller for dashboard/home page for the desktop app.
-     * Author: Brent Ward - starting template found at k33ptoo.
+     * Purpose: Display Invoices for a selected Customer
+     * Author: Brent Ward
      * Module: PROJ-207-OSD
-     * Date: May 15, 2019
+     * Date: June 24 2019
      * */
 
     //buttons
@@ -45,27 +41,19 @@ public class DashboardController {
     @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
     @FXML private Button btnSignout;
+    @FXML private Button btnAdd;
+    @FXML private Button btnUpdate;
+    @FXML private Button btnDelete;
 
-    //labels
-    @FXML private Label txtActiveSales;
-    @FXML private Label txtTopPackage;
-    @FXML private Label txtNumCustomers;
-    @FXML private Label txtNumSuppliers;
-    @FXML private Label txtNumAgents;
+    //panes
+    @FXML private Pane paneOverview;
 
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
     @FXML private AnchorPane mainWindow;
     @FXML private ImageView imgProfilePicture;
-
-    //charts
-    @FXML private PieChart pcNumOfAgents;
-    @FXML private PieChart pcAgentRoles;
-    @FXML private BarChart<String, Number> bcTopSellers;
-    @FXML NumberAxis bcYAxis;
-    @FXML CategoryAxis bcXAxis;
-    @FXML private LineChart<String, Number> chartStocks;
+    private Customer selectedCustomer;
 
 
     //handles all button clocks
@@ -134,6 +122,7 @@ public class DashboardController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
             stage.setScene(scene);
         }
+
     }
 
     //Widget Code
@@ -154,7 +143,7 @@ public class DashboardController {
         lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
         lblUserName.setWrapText(true);
 
-        //loads users color setting and profile picture
+        //loads users color setting
         String mode = SettingsController.getColorMode();
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add("css/" + mode + ".css");
@@ -162,64 +151,7 @@ public class DashboardController {
             imgProfilePicture.setImage(SettingsController.getProfilePicture());
         }
 
-        /***            CHART BUILDING            ***/
+        selectedCustomer = CustomerController.getSelectedCustomer();
 
-        //pie chart - agency
-        ObservableList<PieChart.Data> pcNumOfAgentsData = FXCollections.observableArrayList(
-                                                new PieChart.Data("Agency 1", AgentDB.AgentsPerAgency(1)),
-                                                new PieChart.Data("Agency 2", AgentDB.AgentsPerAgency(2)));
-        pcNumOfAgents.setData(pcNumOfAgentsData);
-
-        //pie chart - agent roles
-        ObservableList<PieChart.Data> pcAgentRolesData = FXCollections.observableArrayList(
-                new PieChart.Data("Junior Agent", AgentDB.numAgentRoles("Junior Agent")),
-                new PieChart.Data("Intermediate Agent", AgentDB.numAgentRoles("Intermediate Agent")),
-                new PieChart.Data("Senior Agent", AgentDB.numAgentRoles("Senior Agent")));
-        pcAgentRoles.setData(pcAgentRolesData);
-
-        //bar chart - sellers
-        List<AgentSales> sellers = AgentDB.getTopSellers();
-        bcXAxis = new CategoryAxis();
-        bcYAxis = new NumberAxis();
-        bcTopSellers.setTitle("Top 3 Sellers");
-
-        XYChart.Series<String, Number> dataSet1 = new XYChart.Series<>();
-        dataSet1.setName(sellers.get(0).toString());
-        dataSet1.getData().add(new XYChart.Data<>(sellers.get(0).toString(), sellers.get(0).getSales()));
-        XYChart.Series<String, Number> dataSet2 = new XYChart.Series<>();
-        dataSet1.setName(sellers.get(1).toString());
-        dataSet1.getData().add(new XYChart.Data<>(sellers.get(1).toString(), sellers.get(1).getSales()));
-        XYChart.Series<String, Number> dataSet3 = new XYChart.Series<>();
-        dataSet1.setName(sellers.get(2).toString());
-        dataSet1.getData().add(new XYChart.Data<>(sellers.get(2).toString(), sellers.get(2).getSales()));
-
-        bcTopSellers.getData().addAll(dataSet1, dataSet2, dataSet3);
-        bcTopSellers.setLegendVisible(false);
-
-        //line chart - stocks
-        XYChart.Series series = new XYChart.Series();
-
-        series.getData().add(new XYChart.Data("Jan", 23));
-        series.getData().add(new XYChart.Data("Feb", 14));
-        series.getData().add(new XYChart.Data("Mar", 15));
-        series.getData().add(new XYChart.Data("Apr", 24));
-        series.getData().add(new XYChart.Data("May", 34));
-        series.getData().add(new XYChart.Data("Jun", 36));
-        //series.getData().add(new XYChart.Data("Jul", 22));
-        //series.getData().add(new XYChart.Data("Aug", 45));
-        //series.getData().add(new XYChart.Data("Sep", 43));
-        //series.getData().add(new XYChart.Data("Oct", 17));
-        //series.getData().add(new XYChart.Data("Nov", 29));
-        //series.getData().add(new XYChart.Data("Dec", 25));
-
-        chartStocks.getData().add(series);
-        chartStocks.setLegendVisible(false);
-
-        /***            DASHBOARD TEXT FIELDS            ***/
-        //
-        //
-        txtNumCustomers.setText(Integer.toString(CustomerDB.numOfCustomers()));
-        txtNumSuppliers.setText(Integer.toString(SupplierDB.numOfSuppliers()));
-        txtNumAgents.setText(Integer.toString(AgentDB.numOfAgents()));
     }
 }

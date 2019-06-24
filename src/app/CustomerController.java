@@ -110,6 +110,7 @@ public class CustomerController {
 
     @FXML private AnchorPane mainWindow;
     @FXML private ImageView imgProfilePicture;
+    private static Customer selectedCustomer;
 
 
     //handles all button clocks
@@ -262,6 +263,20 @@ public class CustomerController {
                 tableCustomers.setItems(agents);
             }
         });
+
+        tableCustomers.setOnMouseClicked( event -> {
+            if( event.getClickCount() == 2 ) {
+                selectedCustomer = tableCustomers.getSelectionModel().getSelectedItem();
+
+                //switches to the invoice page
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("../views/bookings.fxml"));
+                } catch (IOException e) { e.printStackTrace(); }
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); //grabs the stage
+                stage.setScene(scene);
+            }});
     }
 
     /***        Load Panes       ***/
@@ -358,6 +373,10 @@ public class CustomerController {
         lblDeleteEmail.setText(tempCustomer.getEmail());
         Agent tempAgent = AgentDB.grabAgent(tempCustomer.getAgent());
         lblDeleteAgent.setText(tempAgent.toString());
+    }
+
+    public static Customer getSelectedCustomer(){
+        return selectedCustomer;
     }
 
 }
