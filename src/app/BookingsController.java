@@ -1,19 +1,21 @@
 package app;
 
 import BLL.Administrator;
+import BLL.Booking;
+import BLL.BookingDB;
 import BLL.Customer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -23,6 +25,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class BookingsController {
     /*
@@ -48,12 +51,25 @@ public class BookingsController {
     //panes
     @FXML private Pane paneOverview;
 
+    //table
+    @FXML private TableView<Booking> tableBookings;
+    @FXML private TableColumn<Booking, String> tcBookingNo;
+    @FXML private TableColumn<Booking, Date> tcBookingDate;
+    @FXML private TableColumn<Booking, Integer> tcTravelerCount;
+    @FXML private TableColumn<Booking, Date> tcTripStart;
+    @FXML private TableColumn<Booking, Date> tcTripEnd;
+    @FXML private TableColumn<Booking, String> tcDescription;
+    @FXML private TableColumn<Booking, String> tcDestination;
+    @FXML private TableColumn<Booking, Double> tcBasePrice;
+    @FXML private TableColumn<Booking, String> tcRegion;
+
     //Other properties
     @FXML private Label lblUserName;
     @FXML private Label lblClock;
     @FXML private AnchorPane mainWindow;
     @FXML private ImageView imgProfilePicture;
     private Customer selectedCustomer;
+    @FXML private Label txtSelectedCustomer;
 
 
     //handles all button clocks
@@ -152,6 +168,26 @@ public class BookingsController {
         }
 
         selectedCustomer = CustomerController.getSelectedCustomer();
+        txtSelectedCustomer.setText(selectedCustomer.toString());
 
+        loadTable();
     }
+
+    private void loadTable(){
+        ObservableList<Booking> bookings = FXCollections.observableArrayList(BookingDB.getBookings(selectedCustomer.getId()));
+
+        //builds the table
+        tcBookingNo.setCellValueFactory(cellData -> cellData.getValue().getBookingNoProperty());
+        tcBookingDate.setCellValueFactory(cellData -> cellData.getValue().getBookingDateProperty());
+        tcTravelerCount.setCellValueFactory(cellData -> cellData.getValue().getTravelerCountProperty().asObject());
+        tcTripStart.setCellValueFactory(cellData -> cellData.getValue().getTripStartProperty());
+        tcTripEnd.setCellValueFactory(cellData -> cellData.getValue().getTripEndProperty());
+        tcDescription.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
+        tcDestination.setCellValueFactory(cellData -> cellData.getValue().getDestinationProperty());
+        tcBasePrice.setCellValueFactory(cellData -> cellData.getValue().getBasePriceProperty().asObject());
+        tcRegion.setCellValueFactory(cellData -> cellData.getValue().getRegionProperty());
+
+        tableBookings.setItems(bookings);
+    }
+
 }

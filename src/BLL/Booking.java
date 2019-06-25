@@ -1,7 +1,8 @@
 package BLL;
 
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking {
@@ -16,13 +17,13 @@ public class Booking {
     private int bookingId;
     private int customerId;
     private SimpleStringProperty bookingNo;
-    private Date bookingDate;
-    private int travelerCount;
-    private Date startDate;
-    private Date endDate;
+    private SimpleObjectProperty<Date> bookingDate;
+    private SimpleIntegerProperty travelerCount;
+    private SimpleObjectProperty<Date> startDate;
+    private SimpleObjectProperty<Date> endDate;
     private SimpleStringProperty description;
     private SimpleStringProperty destination;
-    private double basePrice;
+    private SimpleDoubleProperty basePrice;
     private SimpleStringProperty region;
 
     //constructor
@@ -33,13 +34,13 @@ public class Booking {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.bookingNo = new SimpleStringProperty(bookingNo);
-        this.bookingDate = bookingDate;
-        this.travelerCount = travelerCount;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.bookingDate = new SimpleObjectProperty<>(bookingDate);
+        this.travelerCount = new SimpleIntegerProperty(travelerCount);
+        this.startDate = new SimpleObjectProperty<>(startDate);
+        this.endDate =  new SimpleObjectProperty<>(endDate);
         this.description = new SimpleStringProperty(description);
         this.destination = new SimpleStringProperty(destination);
-        this.basePrice = basePrice;
+        this.basePrice = new SimpleDoubleProperty(basePrice);
         this.region = new SimpleStringProperty(region);
     }
 
@@ -47,18 +48,23 @@ public class Booking {
     public int getBookingId() { return bookingId; }
     public int getCustomerId() { return customerId; }
     public String getBookingNo() { return bookingNo.get(); }
-    public Date getBookingDate() { return bookingDate; }
-    public int getTravelerCount() { return travelerCount; }
-    public Date getStartDate() { return startDate; }
-    public Date getEndDate() { return endDate; }
+    public Date getBookingDate() { return bookingDate.get(); }
+    public int getTravelerCount() { return travelerCount.get(); }
+    public Date getStartDate() { return startDate.get(); }
+    public Date getEndDate() { return endDate.get(); }
     public String getDescription() { return description.get(); }
     public String getDestination() { return destination.get(); }
-    public double getBasePrice() { return basePrice; }
+    public double getBasePrice() { return basePrice.get(); }
     public String getRegion() { return region.get(); }
 
     //property getters
-    public SimpleStringProperty bookingNoProperty() { return bookingNo; }
-    public SimpleStringProperty descriptionProperty() { return description; }
-    public SimpleStringProperty destinationProperty() { return destination; }
-    public SimpleStringProperty regionProperty() { return region; }
+    public SimpleStringProperty getBookingNoProperty() { return bookingNo; }
+    public SimpleObjectProperty<Date> getBookingDateProperty() { return bookingDate; }
+    public SimpleIntegerProperty getTravelerCountProperty() { return travelerCount; }
+    public SimpleObjectProperty<Date> getTripStartProperty() { return startDate; }
+    public SimpleObjectProperty<Date> getTripEndProperty() { return endDate; }
+    public SimpleStringProperty getDescriptionProperty() { return description; }
+    public SimpleStringProperty getDestinationProperty() { return destination; }
+    public SimpleDoubleProperty getBasePriceProperty() { return basePrice; }
+    public SimpleStringProperty getRegionProperty() { return region; }
 }
