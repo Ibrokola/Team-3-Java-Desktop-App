@@ -176,9 +176,9 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <PieChart fx:id="pcNumOfAgents" layoutX="365.0" layoutY="347.0" prefHeight="184.0" prefWidth="186.0" title="Number of Agents" />
-                  <PieChart fx:id="pcAgentRoles" layoutX="569.0" layoutY="279.0" prefHeight="257.0" prefWidth="200.0" title="Agent Roles" />
-                  <BarChart fx:id="bcTopSellers" layoutX="14.0" layoutY="319.0" prefHeight="239.0" prefWidth="340.0" title="Top Sellers">
+                  <PieChart fx:id="pcNumOfAgents" layoutX="354.0" layoutY="294.0" prefHeight="264.0" prefWidth="200.0" title="Number of Agents" />
+                  <PieChart fx:id="pcAgentRoles" layoutX="554.0" layoutY="294.0" prefHeight="264.0" prefWidth="200.0" styleClass="rolePieChart" title="Agent Roles" />
+                  <BarChart fx:id="bcTopSellers" layoutX="14.0" layoutY="294.0" prefHeight="264.0" prefWidth="340.0" title="Top Sellers">
                     <xAxis>
                       <CategoryAxis fx:id="bcXAxis" label="Agents" side="BOTTOM" />
                     </xAxis>
@@ -186,43 +186,58 @@
                       <NumberAxis fx:id="bcYAxis" label="# of Sales" side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <LineChart fx:id="chartStocks" layoutX="14.0" layoutY="72.0" prefHeight="247.0" prefWidth="408.0" title="Travel Experts Stock">
+                  <VBox layoutX="41.0" layoutY="70.0" prefHeight="202.0" prefWidth="276.0" styleClass="mainSidebar">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Sales in the last 3 months: ">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>
+                              <Label fx:id="txtActiveSales" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="106.0" text="1" />
+                           </children></HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Most Popular Package: ">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>
+                              <Label fx:id="txtTopPackage" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="123.0" text="1" />
+                           </children></HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Active Customer Accounts: ">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>
+                              <Label fx:id="txtNumCustomers" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="101.0" text="1" />
+                           </children></HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Current Suppliers: ">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>
+                              <Label fx:id="txtNumSuppliers" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="150.0" text="1" />
+                           </children></HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Staff Count: ">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>
+                              <Label fx:id="txtNumAgents" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="182.0" text="1" />
+                           </children></HBox>
+                     </children>
+                  </VBox>
+                  <LineChart fx:id="chartStocks" layoutX="347.0" layoutY="41.0" prefHeight="231.0" prefWidth="407.0" title="Travel Experts Stock">
                     <xAxis>
-                      <CategoryAxis label="Month" side="BOTTOM" />
+                      <CategoryAxis label="Month" prefWidth="329.0" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis label="Value ($)" side="LEFT" />
                     </yAxis>
                   </LineChart>
-                  <VBox layoutX="465.0" layoutY="31.0" prefHeight="227.0" prefWidth="276.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Sales in the last 3 months: " />
-                              <Label fx:id="txtActiveSales" text="1" />
-                           </children></HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Most Popular Package: " />
-                              <Label fx:id="txtTopPackage" text="1" />
-                           </children></HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Active Customer Accounts: " />
-                              <Label fx:id="txtNumCustomers" text="1" />
-                           </children></HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Current Suppliers: " />
-                              <Label fx:id="txtNumSuppliers" text="1" />
-                           </children></HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Staff Count: " />
-                              <Label fx:id="txtNumAgents" text="1" />
-                           </children></HBox>
-                     </children>
-                  </VBox>
                </children>
             </Pane>
          </children>

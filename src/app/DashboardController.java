@@ -216,8 +216,9 @@ public class DashboardController {
         chartStocks.setLegendVisible(false);
 
         /***            DASHBOARD TEXT FIELDS            ***/
-        //
-        //
+        txtActiveSales.setText(Integer.toString(BookingDB.recentSales()));
+        String topPackage = BookingDB.topPackage();
+        if(topPackage == null){ txtTopPackage.setText("N/A");} else { txtTopPackage.setText(topPackage); }
         txtNumCustomers.setText(Integer.toString(CustomerDB.numOfCustomers()));
         txtNumSuppliers.setText(Integer.toString(SupplierDB.numOfSuppliers()));
         txtNumAgents.setText(Integer.toString(AgentDB.numOfAgents()));

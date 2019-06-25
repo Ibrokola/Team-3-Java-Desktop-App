@@ -82,6 +82,26 @@ public class BookingDB {
     public static int recentSales(){
         int total = 0;
 
+        try {
+            //connection built
+            Connection connect = DBConnect.getConnection();
+
+            //query
+            String selectQuery = "SELECT count(*) FROM bookings WHERE BookingDate BETWEEN CURDATE() - INTERVAL 90 DAY AND CURDATE()";
+            //makes a sql statement
+            Statement query = connect.createStatement();
+
+            //assigns & executes statement
+            ResultSet rs = query.executeQuery(selectQuery);
+
+            //runs while reader has data
+            while (rs.next()){
+                total = rs.getInt("count(*)");
+            }
+            connect.close();
+
+        }catch(Exception e){ e.printStackTrace(); }
+
         return total;
     }
 }

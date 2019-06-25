@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -76,6 +77,7 @@ public class SupplierController {
     @FXML private Label lblClock;
     @FXML private TextField txtSearch;
     @FXML private AnchorPane mainWindow;
+    @FXML private ImageView imgProfilePicture;
 
     //---------------------------------------------------------------
     //Table view properties
@@ -115,10 +117,13 @@ public class SupplierController {
             lblUserName.setText(user.getLastName() + ", " + user.getFirstName());
             lblUserName.setWrapText(true);
 
-            //loads users color setting
+            //loads users color setting and profile picture
             String mode = SettingsController.getColorMode();
             mainWindow.getStylesheets().clear();
             mainWindow.getStylesheets().add("css/" + mode + ".css");
+            if(SettingsController.getProfilePicture() != null){
+                imgProfilePicture.setImage(SettingsController.getProfilePicture());
+            }
 
             //layout setup
             refreshOverviewPane();

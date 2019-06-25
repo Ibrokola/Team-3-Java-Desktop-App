@@ -3,25 +3,29 @@
     -fx-text-fill: white;
 }
 .infoPane {
-    -fx-background-color: #f2f2f2;
-    -fx-text-fill: black;
+    -fx-background-color: #2C2F33;
+    -fx-text-fill: white;
 }
 
 .button {
-    -fx-background-color : #d3cfcf;
-    -fx-text-fill: black;
+    -fx-background-color : #23272A;
+    -fx-text-fill: white;
 }
 .button:hover {
-    -fx-background-color : #e8e3e3;
+    -fx-background-color : #2C2F33;
 }
 .button:pressed {
-    -fx-background-color : #f1f1f1;
+    -fx-background-color : #3d464c;
 }
 
 /* Text field Styling */
 .text-field{
-    -fx-background-color:  #f2f2f2;
-    -fx-border-color:  #23272A;
+    -fx-background-color:  #2C2F33;
+    -fx-border-color:  #B7C3D7;
     -fx-border-radius:  2em;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: white
 }

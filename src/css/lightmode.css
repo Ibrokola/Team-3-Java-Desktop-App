@@ -6,6 +6,31 @@
     main pane background color: #f2f2f2
  */
 
+/* Chart Styling */
+ .chart {
+    -fx-background-color: #d3cfcf
+ }
+ .chart-legend {
+    -fx-background-color: #d3cfcf
+ }
+ .axis{
+    -fx-tick-label-fill: black;
+ }
+ .axis-label {
+    -fx-text-fill: black;
+ }
+.chart-plot-background {
+    -fx-background-color: #e8e8e8
+}
+.chart-alternative-row-fill {
+    -fx-fill: #d3cfcf;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+
+
+
 .label{
     -fx-text-fill: black;
 }
@@ -122,5 +147,9 @@
 
 .scroll-pane > .corner {
     -fx-background-color: #c4bcbc;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #d3cfcf
 }
 
